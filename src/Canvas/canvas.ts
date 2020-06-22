@@ -19,8 +19,6 @@ namespace Percept {
          */
         constructor(element?: HTMLCanvasElement | HTMLDivElement, width?: number, height?: number) {
             if (!element) {
-                document.body.style.width = window.innerWidth + 'px';
-                document.body.style.height = window.innerHeight + 'px';
                 this.canvas = document.createElement('canvas');
                 this.canvas.width = document.body.clientWidth;
                 this.canvas.height = document.body.clientHeight;

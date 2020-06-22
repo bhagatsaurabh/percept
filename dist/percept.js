@@ -31,8 +31,6 @@ var Percept;
         function Canvas(element, width, height) {
             this.drawingHandle = -1;
             if (!element) {
-                document.body.style.width = window.innerWidth + 'px';
-                document.body.style.height = window.innerHeight + 'px';
                 this.canvas = document.createElement('canvas');
                 this.canvas.width = document.body.clientWidth;
                 this.canvas.height = document.body.clientHeight;
