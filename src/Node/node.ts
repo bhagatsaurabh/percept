@@ -1,3 +1,4 @@
+/**@hidden */
 namespace Percept {
 
     export abstract class Node implements Event {

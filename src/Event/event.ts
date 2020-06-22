@@ -1,3 +1,4 @@
+/**@hidden */
 namespace Percept {
     export interface Event {
         registeredEvents: any

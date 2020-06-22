@@ -61,7 +61,7 @@ var Percept;
             this.height = this.canvas.height;
             this.context = this.canvas.getContext('2d');
         }
-        Canvas.prototype.load = function (drawing) {
+        Canvas.prototype.draw = function (drawing) {
             if (this.drawingHandle != -1) {
                 window.cancelAnimationFrame(this.drawingHandle);
             }

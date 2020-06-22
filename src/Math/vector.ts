@@ -1,4 +1,8 @@
 namespace Percept {
+
+    /**
+     * Stores 2D Vector
+     */
     export class Vector2 {
 
         tmpX: number;
@@ -124,6 +128,7 @@ namespace Percept {
             return new Vector2(1, 1);
         }
 
+        
         static Bounds(vectors: Vector2[]): Vector2[] {
             let minVec = new Vector2(Number.MAX_VALUE, Number.MAX_VALUE);
             let maxVec = new Vector2(Number.MIN_VALUE, Number.MIN_VALUE);

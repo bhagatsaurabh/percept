@@ -1,4 +1,8 @@
 namespace Percept {
+
+    /**
+     * A 3x3 Matrix
+     */
     export class Matrix {
         value: number[][];
 
@@ -77,6 +81,9 @@ namespace Percept {
             ]);
         }
 
+        /**
+         * Decomposes the rotation component from matrix to get absolute rotation for a child transform
+         */
         getRotation(): number {
             return Math.atan2(this.value[0][1], this.value[0][0]) * (180 / Math.PI);
         }

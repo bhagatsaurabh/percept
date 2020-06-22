@@ -1,12 +1,22 @@
 namespace Percept {
+    /**
+     * The Canvas object holds an HTMLCanvasElement reference and its 2d context
+     */
     export class Canvas {
 
         canvas: HTMLCanvasElement;
         context: CanvasRenderingContext2D;
         width: number;
         height: number;
-        drawingHandle: number = -1;
+        private drawingHandle: number = -1;
 
+        /**
+         * If no parameters are passed then a new canvas element will be created and appended to `<body>`
+         * 
+         * @param element Reference to an html `<canvas>` or `<div>` element, if a `<div>` element is passed, then a canvas will be created and appended
+         * @param width Passing a width will overwrite previously defined canvas width
+         * @param height Passing a height will overwrite previously defined canvas height
+         */
         constructor(element?: HTMLCanvasElement | HTMLDivElement, width?: number, height?: number) {
             if (!element) {
                 this.canvas = document.createElement('canvas');
@@ -37,7 +47,12 @@ namespace Percept {
             this.context = this.canvas.getContext('2d');
         }
 
-        load(drawing: Drawing) {
+        /**
+         * Calls render function of `Drawing`
+         * 
+         * @param drawing A `Drawing` object, which will be rendered by this canvas
+         */
+        draw(drawing: Drawing) {
             if(this.drawingHandle != -1) {
                 window.cancelAnimationFrame(this.drawingHandle);
             }

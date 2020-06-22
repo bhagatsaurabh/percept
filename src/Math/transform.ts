@@ -1,7 +1,12 @@
+/**@hidden */
 namespace Percept {
+    
+    // Stores a node's transform (position, rotation, scale)
     export class Transform {
 
+        // reference control points to apply transform to
         refControlPoints: Vector2[];
+        // transformed control points
         controlPoints: Vector2[];
         localTrasform: Matrix;
         worldTransform: Matrix;
@@ -60,7 +65,7 @@ namespace Percept {
             this.controlPoints = [...controlPoints];
         }
 
-        relativeControlPoints(controlPoints: Vector2[]): Vector2[] {
+        private relativeControlPoints(controlPoints: Vector2[]): Vector2[] {
             let result: Vector2[] = [];
             controlPoints.forEach((controlPoint) => {
                 result.push(controlPoint.subtract(this.position));
@@ -68,6 +73,7 @@ namespace Percept {
             return result;
         }
 
+        // Updates this node's worldTransform using parent's worldTransform if any
         updateWorldTransform(parentWorldTransform?: Matrix) {
 
             // Set translation
@@ -126,7 +132,8 @@ namespace Percept {
             this.applyTransform();
         }
 
-        applyTransform() {
+        // Transforms each control point using this node's worldTransform
+        private applyTransform() {
             this.refControlPoints.forEach((controlPoint, index) => {
                 this.controlPoints[index] = controlPoint.transform(this.worldTransform);
             });
