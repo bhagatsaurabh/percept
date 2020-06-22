@@ -1,5 +1,5 @@
 {
-  "name": "project-percept",
+  "name": "percept",
   "version": "1.0.0",
   "description": "Canvas Drawing Framework",
   "main": "util.js",
