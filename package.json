@@ -1,0 +1,12 @@
+{
+  "name": "project-percept",
+  "version": "1.0.0",
+  "description": "Canvas Drawing Framework",
+  "main": "util.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "Saurabh Bhagat",
+  "license": "ISC"
+}
