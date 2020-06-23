@@ -2,6 +2,7 @@ var line = new Percept.View.Line(
     'myLine',
     new Percept.Vector2(100, 100),
     new Percept.Vector2(200, 200),
+    0,
     {
         color: 'red',
         width: 3
