@@ -6,4 +6,4 @@ Rendering framework built on top of HTML5 canvas
 
 Working with HTML5 canvas can be quite cumbersome, especially if you are making an animation or game or adding interactivity, Percept provides an easy to use framework for drawing on canvas
 
-Check the documentation [here](https://saurabh-prosoft.github.io/Percept/)
+Check the [Examples](https://perceptjs.herokuapp.com/) or [Docs](https://perceptjs.herokuapp.com/docs/)
