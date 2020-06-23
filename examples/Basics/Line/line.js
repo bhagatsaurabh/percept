@@ -8,7 +8,7 @@ var line = new Percept.View.Line(
     }
  );
  
- var canvas = new Percept.Canvas();
+ var canvas = new Percept.Canvas(document.getElementById('ex1R'));
  var drawing = new Percept.Drawing(canvas);
  
  drawing.add(line);
