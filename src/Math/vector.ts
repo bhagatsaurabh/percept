@@ -142,6 +142,16 @@ namespace Percept {
             return [minVec, maxVec];
         }
 
+        static Average(vectors: Vector2[]) {
+            let sumX = 0;
+            let sumY = 0;
+            vectors.forEach((vector) => {
+                sumX += vector.x;
+                sumY += vector.y;
+            });
+            return new Vector2(sumX / vectors.length, sumY / vectors.length);
+        }
+
         clone(): Vector2 {
             return new Vector2(this.x, this.y);
         }

@@ -548,6 +548,15 @@ var Percept;
             });
             return [minVec, maxVec];
         };
+        Vector2.Average = function (vectors) {
+            var sumX = 0;
+            var sumY = 0;
+            vectors.forEach(function (vector) {
+                sumX += vector.x;
+                sumY += vector.y;
+            });
+            return new Vector2(sumX / vectors.length, sumY / vectors.length);
+        };
         Vector2.prototype.clone = function () {
             return new Vector2(this.x, this.y);
         };
@@ -941,7 +950,7 @@ var Percept;
         var Polygon = (function (_super) {
             __extends(Polygon, _super);
             function Polygon(id, vertices, center, props) {
-                var _this = _super.call(this, id, center, vertices) || this;
+                var _this = _super.call(this, id, (center instanceof Percept.Vector2) ? center : Percept.Vector2.Average(vertices), vertices) || this;
                 _this.props = props;
                 if (_this.props && _this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
                     _this.props.outlineColor.node = _this;

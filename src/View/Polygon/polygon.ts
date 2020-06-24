@@ -15,9 +15,13 @@ namespace Percept.View {
 
     export class Polygon extends Node {
 
-        constructor(id: string, vertices: Vector2[], center: Vector2, public props?: IPolygonProperties) {
+        constructor(id: string, vertices: Vector2[], center: Vector2 | Percept.Handle, public props?: IPolygonProperties) {
             
-            super(id, center, vertices);
+            super(
+                id,
+                (center instanceof Vector2) ? center : Vector2.Average(vertices),
+                vertices
+            );
 
             if (this.props && this.props.outlineColor && typeof(this.props.outlineColor) != 'string') {
                 this.props.outlineColor.node = this;
