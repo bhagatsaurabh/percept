@@ -142,7 +142,7 @@ namespace Percept {
             return [minVec, maxVec];
         }
 
-        static Average(vectors: Vector2[]) {
+        static Average(vectors: Vector2[]): Vector2 {
             let sumX = 0;
             let sumY = 0;
             vectors.forEach((vector) => {
@@ -150,6 +150,20 @@ namespace Percept {
                 sumY += vector.y;
             });
             return new Vector2(sumX / vectors.length, sumY / vectors.length);
+        }
+
+        static Random(minXOrCanvas: number | Canvas, maxX?: number, minY?: number, maxY?: number): Vector2 {
+            if(minXOrCanvas instanceof Canvas) {
+                return new Vector2(
+                    Math.random() * minXOrCanvas.width,
+                    Math.random() * minXOrCanvas.height
+                );
+            } else {
+                return new Vector2(
+                    Math.random() * (maxX - minXOrCanvas) + minXOrCanvas,
+                    Math.random() * (maxY - minY) + minY
+                );
+            }
         }
 
         clone(): Vector2 {

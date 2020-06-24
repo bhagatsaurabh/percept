@@ -557,6 +557,14 @@ var Percept;
             });
             return new Vector2(sumX / vectors.length, sumY / vectors.length);
         };
+        Vector2.Random = function (minXOrCanvas, maxX, minY, maxY) {
+            if (minXOrCanvas instanceof Percept.Canvas) {
+                return new Vector2(Math.random() * minXOrCanvas.width, Math.random() * minXOrCanvas.height);
+            }
+            else {
+                return new Vector2(Math.random() * (maxX - minXOrCanvas) + minXOrCanvas, Math.random() * (maxY - minY) + minY);
+            }
+        };
         Vector2.prototype.clone = function () {
             return new Vector2(this.x, this.y);
         };
