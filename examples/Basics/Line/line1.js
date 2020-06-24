@@ -1,7 +1,9 @@
-var rectangle1 = new Percept.View.Rectangle('rect1', new Percept.Vector2(100, 100), 50, 50, {
+var canvas = new Percept.Canvas(document.getElementById('ex2R'));
+
+var rectangle1 = new Percept.View.Rectangle('rect1', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 15, 15, {
     fill: true, fillColor: 'red'
 });
-var rectangle2 = new Percept.View.Rectangle('rect1', new Percept.Vector2(100, 300), 50, 50, {
+var rectangle2 = new Percept.View.Rectangle('rect1', rectangle1.position.add(100, 0), 15, 15, {
     fill: true, fillColor: 'green'
 });
 
@@ -10,7 +12,6 @@ var line = new Percept.View.Line('myLine', rectangle1, rectangle2, 0, {
     width: 3
 });
 
-var canvas = new Percept.Canvas(document.getElementById('ex2R'));
 var drawing = new Percept.Drawing(canvas, () => {
     rectangle2.position.addInPlace(0, .2);
 });
