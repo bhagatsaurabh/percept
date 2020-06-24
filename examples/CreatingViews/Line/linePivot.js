@@ -1,4 +1,4 @@
-var canvas = new Percept.Canvas(document.getElementById('ex3R'));
+var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
 var line1 = new Percept.View.Line(
     'line1',
