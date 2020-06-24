@@ -15,7 +15,7 @@ var poly = new Percept.View.Polygon(
         fillColor: 'green',
     }
 );
-poly.position = new Vector2(canvas.width / 2, canvas.height / 2);
+poly.position = new Percept.Vector2(canvas.width / 2, canvas.height / 2);
 
 var drawing = new Percept.Drawing(canvas);
 drawing.add(poly);
