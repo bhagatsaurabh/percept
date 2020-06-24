@@ -10,7 +10,7 @@ var line = new Percept.View.Line('myLine', rectangle1, rectangle2, 0, {
     width: 3
 });
 
-var canvas = new Percept.Canvas(document.getElementById('ex1R'));
+var canvas = new Percept.Canvas(document.getElementById('ex2R'));
 var drawing = new Percept.Drawing(canvas, () => {
     rectangle2.position.addInPlace(0, .2);
 });
