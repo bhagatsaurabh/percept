@@ -11,6 +11,9 @@ var line2 = new Percept.View.Line('line2', new Percept.Vector2(canvas.width * .6
 var drawing = new Percept.Drawing(canvas, () => {
     line1.localRotation += .5;
     line2.localRotation += .5;
+
+    Percept.Debug.debugPoint('line1Pivot', drawing, line1.absolutePosition, {color: 'blue'});
+    Percept.Debug.debugPoint('line2Pivot', drawing, line2.absolutePosition, {color: 'blue'});
 });
 
 drawing.add(line1);
