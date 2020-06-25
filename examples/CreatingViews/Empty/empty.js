@@ -6,7 +6,8 @@ for (var i = 0 ; i < 50 ; i++) {
     empty.on('update', function(view) {
         Percept.Debug.debugPoint(view.id, drawing, view.absolutePosition, {color: 'blue'});
     });
+    
+    drawing.add(empty);
 }
 
-drawing.add(empty);
 canvas.draw(drawing);
