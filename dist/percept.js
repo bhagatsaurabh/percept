@@ -651,7 +651,7 @@ var Percept;
         };
         Node.prototype.call = function (method) {
             if (this.registeredEvents[method]) {
-                this.registeredEvents[method]();
+                this.registeredEvents[method](this);
             }
             for (var _i = 0, _a = this.transform.childs; _i < _a.length; _i++) {
                 var child = _a[_i];

@@ -70,7 +70,7 @@ namespace Percept {
 
         call(method: string) {
             if (this.registeredEvents[method]) {
-                this.registeredEvents[method]();
+                this.registeredEvents[method](this);
             }
 
             for (var child of this.transform.childs) {
