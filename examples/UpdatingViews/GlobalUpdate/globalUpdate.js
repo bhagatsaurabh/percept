@@ -20,4 +20,9 @@ var drawing = new Percept.Drawing(canvas, () => {
     rect2.localRotation += 1;
     rect3.localRotation += .5;
 });
+
+drawing.add(rect1);
+drawing.add(rect2);
+drawing.add(rect3);
+
 canvas.draw(drawing);
