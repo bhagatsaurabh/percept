@@ -25,7 +25,5 @@ var drawing = new Percept.Drawing(canvas, () => {
 });
 
 drawing.add(rect1);
-drawing.add(rect2);
-drawing.add(rect3);
 
 canvas.draw(drawing);
