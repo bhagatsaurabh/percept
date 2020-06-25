@@ -4,7 +4,7 @@ var circle1 = new Percept.View.Ellipse('circle1', new Percept.Vector2(canvas.wid
     fill: true,
     fillColor: 'red'
 });
-var circle2 = new Percept.View.Ellipse('circle2', new Percept.Vector2(50, 0), 15, 15, {
+var circle2 = new Percept.View.Ellipse('circle2', new Percept.Vector2(80, 0), 15, 15, {
     fill: true,
     fillColor: 'green'
 });
@@ -19,7 +19,7 @@ var circle4 = new Percept.View.Ellipse('circle4', new Percept.Vector2(canvas.wid
     fill: true,
     fillColor: 'red'
 });
-var circle5 = new Percept.View.Ellipse('circle5', new Percept.Vector2(50, 0), 15, 15, {
+var circle5 = new Percept.View.Ellipse('circle5', new Percept.Vector2(80, 0), 15, 15, {
     fill: true,
     fillColor: 'green'
 });
