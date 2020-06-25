@@ -73,6 +73,18 @@ var Percept;
 })(Percept || (Percept = {}));
 var Percept;
 (function (Percept) {
+    var Color = (function () {
+        function Color() {
+        }
+        Color.Random = function () {
+            return ('#' + Math.floor(Math.random() * 16777215).toString(16));
+        };
+        return Color;
+    }());
+    Percept.Color = Color;
+})(Percept || (Percept = {}));
+var Percept;
+(function (Percept) {
     var Debug = (function () {
         function Debug() {
         }
@@ -454,12 +466,6 @@ var Percept;
         Vector2.prototype.toString = function () {
             return '[' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ']';
         };
-        Vector2.Midpoint = function (vector1, vector2) {
-            return new Vector2((vector1.x + vector2.x) / 2, (vector1.y + vector2.y) / 2);
-        };
-        Vector2.Distance = function (vector1, vector2) {
-            return Math.sqrt(Math.pow(vector2.x - vector1.x, 2) + Math.pow(vector2.y - vector1.y, 2));
-        };
         Vector2.prototype.add = function (arg1, arg2) {
             if (arg1 instanceof Vector2) {
                 return new Vector2(this.x + arg1.x, this.y + arg1.y);
@@ -544,6 +550,12 @@ var Percept;
             this.x = result[0][0];
             this.y = result[0][1];
         };
+        Vector2.Midpoint = function (vector1, vector2) {
+            return new Vector2((vector1.x + vector2.x) / 2, (vector1.y + vector2.y) / 2);
+        };
+        Vector2.Distance = function (vector1, vector2) {
+            return Math.sqrt(Math.pow(vector2.x - vector1.x, 2) + Math.pow(vector2.y - vector1.y, 2));
+        };
         Vector2.Zero = function () {
             return new Vector2(0, 0);
         };
@@ -581,6 +593,9 @@ var Percept;
             else {
                 return new Vector2(Math.random() * (maxX - minXOrCanvas) + minXOrCanvas, Math.random() * (maxY - minY) + minY);
             }
+        };
+        Vector2.Lerp = function (start, end, amount) {
+            return new Vector2(start.x + ((end.x - start.x) * amount), start.y + ((end.y - start.y) * amount));
         };
         Vector2.prototype.clone = function () {
             return new Vector2(this.x, this.y);

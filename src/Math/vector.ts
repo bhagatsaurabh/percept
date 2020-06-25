@@ -13,14 +13,6 @@ namespace Percept {
         toString() {
             return '[' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ']';
         }
-
-        static Midpoint(vector1: Vector2, vector2: Vector2): Vector2 {
-            return new Vector2((vector1.x + vector2.x) / 2, (vector1.y + vector2.y) / 2);
-        }
-
-        static Distance(vector1: Vector2, vector2: Vector2): number {
-            return Math.sqrt(Math.pow(vector2.x - vector1.x, 2) + Math.pow(vector2.y - vector1.y, 2));
-        }
         
         add(arg1: number | Vector2, arg2?: number): Vector2 {
             // Params : (vector2d) or (x, y)
@@ -120,6 +112,14 @@ namespace Percept {
             this.y = result[0][1];
         }
 
+        static Midpoint(vector1: Vector2, vector2: Vector2): Vector2 {
+            return new Vector2((vector1.x + vector2.x) / 2, (vector1.y + vector2.y) / 2);
+        }
+
+        static Distance(vector1: Vector2, vector2: Vector2): number {
+            return Math.sqrt(Math.pow(vector2.x - vector1.x, 2) + Math.pow(vector2.y - vector1.y, 2));
+        }
+        
         static Zero(): Vector2 {
             return new Vector2(0, 0);
         }
@@ -164,6 +164,13 @@ namespace Percept {
                     Math.random() * (maxY - minY) + minY
                 );
             }
+        }
+
+        static Lerp(start: Vector2, end: Vector2, amount: number): Vector2 {
+            return new Vector2(
+                start.x + ((end.x - start.x) * amount),
+                start.y + ((end.y - start.y) * amount)
+            );
         }
 
         clone(): Vector2 {
