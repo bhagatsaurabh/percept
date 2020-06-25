@@ -63,5 +63,23 @@ namespace Percept {
             node.setContext(this.canvas.context);
             node.setDrawing(this);
         }
+
+        remove(nodeOrID: Node | string) {
+            if (nodeOrID instanceof Node) nodeOrID = nodeOrID.id;
+
+            let queue = [];
+            let currentNode;
+            queue.push(this.renderTree);
+
+            while((currentNode = queue.shift())) {
+                if (currentNode.id == nodeOrID) {
+                    currentNode.transform.parent.childs.splice(currentNode.transform.parent.childs.indexOf(currentNode.transform), 1);
+                } else {
+                    currentNode.transform.childs.forEach((child) => {
+                        queue.push(child.node);
+                    });
+                }
+            }
+        }
     }
 }

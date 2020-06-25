@@ -91,5 +91,9 @@ namespace Percept {
                 child.node.setDrawing(drawing);
             });
         }
+
+        dispose(): void {
+            this.drawing.remove(this.id);
+        }
     }
 }
