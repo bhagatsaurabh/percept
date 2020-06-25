@@ -2,9 +2,11 @@ var canvas = new Percept.Canvas(document.getElementById('canvas'));
 var drawing = new Percept.Drawing(canvas);
 
 for (var i = 0 ; i < 20 ; i++) {
-    var strider = new Percept.View.Ellipse('strider' + i, new Percept.Vector2(canvas.width / 2, canvas.height / 2), 2, 2, {
+    var strider = new Percept.View.Ellipse('strider' + i, new Percept.Vector2(canvas.width / 2, canvas.height / 2), 4, 4, {
         fill: true,
-        fillColor: Percept.Color.Random()
+        fillColor: Percept.Color.Random(),
+        shadowColor: 'black',
+        shadowBlur: 3
     });
 
     strider.currentTarget = Percept.Vector2.Random(canvas);
