@@ -164,6 +164,23 @@ var Percept;
             node.setContext(this.canvas.context);
             node.setDrawing(this);
         };
+        Drawing.prototype.remove = function (nodeOrID) {
+            if (nodeOrID instanceof Percept.Node)
+                nodeOrID = nodeOrID.id;
+            var queue = [];
+            var currentNode;
+            queue.push(this.renderTree);
+            while ((currentNode = queue.shift())) {
+                if (currentNode.id == nodeOrID) {
+                    currentNode.transform.parent.childs.splice(currentNode.transform.parent.childs.indexOf(currentNode.transform), 1);
+                }
+                else {
+                    currentNode.transform.childs.forEach(function (child) {
+                        queue.push(child.node);
+                    });
+                }
+            }
+        };
         return Drawing;
     }());
     Percept.Drawing = Drawing;
@@ -669,6 +686,9 @@ var Percept;
             this.transform.childs.forEach(function (child) {
                 child.node.setDrawing(drawing);
             });
+        };
+        Node.prototype.dispose = function () {
+            this.drawing.remove(this.id);
         };
         return Node;
     }());
