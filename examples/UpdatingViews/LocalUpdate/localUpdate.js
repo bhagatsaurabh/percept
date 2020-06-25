@@ -13,7 +13,7 @@ for (var i = 0 ; i < 20 ; i++) {
             view.currentTarget = Percept.Vector2.Random(canvas);
         }
 
-        view.position = Percept.Vector2.Lerp(view.position, view.currentTarget, .2);
+        view.position = Percept.Vector2.Lerp(view.position, view.currentTarget, .05);
     });
 
     drawing.add(strider);
