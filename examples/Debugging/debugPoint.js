@@ -12,7 +12,7 @@ var poly1 = new Percept.View.Polygon('poly1',
     Percept.Handle.AUTO,
     {
         fill: true,
-        fillColor: 'white'
+        fillColor: '#ffffff'
     }
 );
 poly1.position = new Percept.Vector2(canvas.width / 2, canvas.height / 2);
