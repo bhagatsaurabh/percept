@@ -7,9 +7,22 @@ namespace Percept {
         context: CanvasRenderingContext2D;
         transform: Transform;
         registeredEvents: any;
+        order: number;
         
         abstract _render(): void;
         abstract getDimension(): Vector2;
+
+        get zIndex(): number {
+            return this.order;
+        }
+
+        set zIndex(zIndex: number) {
+            this.order = zIndex;
+
+            (this.parent) && this.parent.transform.childs.sort((a, b) => {
+                return a.node.order - b.node.order;
+            });
+        }
 
         get parent(): Node {
             return this.transform.parent.node;
@@ -52,6 +65,7 @@ namespace Percept {
         constructor(public id: string, position: Vector2, controlPoints: Vector2[]) {
             this.transform = new Transform(position, 0, 0, Vector2.One(), controlPoints, this);
             this.registeredEvents = {};
+            this.order = 0;
         }
 
         on(eventKey: string, callback: Function): void {
@@ -91,6 +105,8 @@ namespace Percept {
                 child.node.setDrawing(drawing);
             });
         }
+
+
 
         dispose(): void {
             this.drawing.remove(this.id);

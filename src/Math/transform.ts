@@ -22,6 +22,10 @@ namespace Percept {
             }
             (newParent) && (newParent.childs.push(this));
             this._parent = newParent;
+
+            (this.parent) && this.parent.childs.sort((a, b) => {
+                return a.node.order - b.node.order;
+            });
         }
 
         get position(): Vector2 {

@@ -193,6 +193,13 @@ var Percept;
                 }
             }
         };
+        Drawing.prototype._debugSceneGraph = function (root, indent) {
+            var _this = this;
+            console.log(indent + root.id + '[' + root.order + ']');
+            root.transform.childs.forEach(function (child) {
+                _this._debugSceneGraph(child.node, ' ' + indent);
+            });
+        };
         return Drawing;
     }());
     Percept.Drawing = Drawing;
@@ -340,6 +347,9 @@ var Percept;
                 }
                 (newParent) && (newParent.childs.push(this));
                 this._parent = newParent;
+                (this.parent) && this.parent.childs.sort(function (a, b) {
+                    return a.node.order - b.node.order;
+                });
             },
             enumerable: false,
             configurable: true
@@ -611,7 +621,21 @@ var Percept;
             this.id = id;
             this.transform = new Percept.Transform(position, 0, 0, Percept.Vector2.One(), controlPoints, this);
             this.registeredEvents = {};
+            this.order = 0;
         }
+        Object.defineProperty(Node.prototype, "zIndex", {
+            get: function () {
+                return this.order;
+            },
+            set: function (zIndex) {
+                this.order = zIndex;
+                (this.parent) && this.parent.transform.childs.sort(function (a, b) {
+                    return a.node.order - b.node.order;
+                });
+            },
+            enumerable: false,
+            configurable: true
+        });
         Object.defineProperty(Node.prototype, "parent", {
             get: function () {
                 return this.transform.parent.node;

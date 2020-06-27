@@ -81,5 +81,13 @@ namespace Percept {
                 }
             }
         }
+
+        _debugSceneGraph(root: Node, indent: string): void {
+            console.log(indent + root.id + '[' + root.order + ']');
+
+            root.transform.childs.forEach((child) => {
+                this._debugSceneGraph(child.node, ' ' + indent);
+            });
+        }
     }
 }
