@@ -61,8 +61,29 @@ namespace Percept.View {
             if (this.props && this.props.fill) {
                 this.context.fill();
             }
-            if ((this.props && this.props.outline) || (!this.props) || (this.props && !this.props.outline && !this.props.fill)) {
+            if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
                 this.context.stroke();
+            }
+
+            this.offRender();
+        }
+
+        _offRender(): void {
+            (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
+            this.offContext.strokeStyle = this.hitColor;
+            this.offContext.fillStyle = this.hitColor;
+
+            this.offContext.beginPath();
+            this.offContext.moveTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
+            this.offContext.lineTo(this.transform.controlPoints[1].x, this.transform.controlPoints[1].y);
+            this.offContext.lineTo(this.transform.controlPoints[2].x, this.transform.controlPoints[2].y);
+            this.offContext.lineTo(this.transform.controlPoints[3].x, this.transform.controlPoints[3].y);
+            this.offContext.lineTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
+            if (this.props && this.props.fill) {
+                this.offContext.fill();
+            }
+            if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                this.offContext.stroke();
             }
         }
 

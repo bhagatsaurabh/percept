@@ -1,10 +1,6 @@
 namespace Percept.View {
 
     interface IImageProperties {
-        outline?: boolean,
-        outlineColor?: string | LinearGradient | RadialGradient,
-        outlineWidth?: number,
-        outlineDashSegments?: number[],
         shadowColor?: string,
         shadowOffset?: Vector2,
         staticShadow?: boolean,
@@ -24,17 +20,11 @@ namespace Percept.View {
             } else {
                 this._source = source;
             }
-
-            if (this.props && this.props.outlineColor && typeof(this.props.outlineColor) != 'string') {
-                this.props.outlineColor.node = this;
-            }
+            this._source.crossOrigin = "Anonymous";
         }
 
         _render(): void {
             if (this.props) {
-                (this.props.outlineColor) && (this.context.strokeStyle = (typeof(this.props.outlineColor) == 'string') ? this.props.outlineColor : this.props.outlineColor.create(this.context));
-                (this.props.outlineWidth) && (this.context.lineWidth = this.props.outlineWidth);
-                (this.props.outlineDashSegments) && this.context.setLineDash(this.props.outlineDashSegments);
                 (this.props.shadowColor) && (this.context.shadowColor = this.props.shadowColor);
                 (this.props.shadowBlur) && (this.context.shadowBlur = this.props.shadowBlur);
                 if (this.props.shadowOffset) {
@@ -54,11 +44,22 @@ namespace Percept.View {
             this.context.rotate(this.transform.worldTransform.getRotation() * (Math.PI / 180));
             this.context.translate(-this.absolutePosition.x, -this.absolutePosition.y);
 
-            let topRight = this.absolutePosition.subtract(this.width / 2, this.height / 2);
-            this.context.drawImage(this._source, topRight.x, topRight.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
-            if ((this.props && this.props.outline)) {
-                this.context.strokeRect(topRight.x, topRight.y, this.width, this.height);
-            }
+            let topLeft = this.absolutePosition.subtract((this.width * this.transform.scale.x) / 2, (this.height * this.transform.scale.y) / 2);
+            this.context.drawImage(this._source, topLeft.x, topLeft.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
+
+            this.offRender();
+        }
+
+        _offRender(): void {
+            this.offContext.fillStyle = this.hitColor;
+
+            // Rotate bounding-rectangle using worldTransform's rotation component
+            this.offContext.translate(this.absolutePosition.x, this.absolutePosition.y);
+            this.offContext.rotate(this.transform.worldTransform.getRotation() * (Math.PI / 180));
+            this.offContext.translate(-this.absolutePosition.x, -this.absolutePosition.y);
+
+            let topLeft = this.absolutePosition.subtract((this.width * this.transform.scale.x) / 2, (this.height * this.transform.scale.y) / 2);
+            this.offContext.fillRect(topLeft.x, topLeft.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
         }
 
         getDimension(): Vector2 {

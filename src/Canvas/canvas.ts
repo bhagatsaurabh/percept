@@ -6,6 +6,9 @@ namespace Percept {
 
         canvas: HTMLCanvasElement;
         context: CanvasRenderingContext2D;
+        offCanvas: OffscreenCanvas;
+        offContext: OffscreenCanvasRenderingContext2D;
+        
         width: number;
         height: number;
         private drawingHandle: number = -1;
@@ -45,6 +48,9 @@ namespace Percept {
             this.width = this.canvas.width;
             this.height = this.canvas.height;
             this.context = this.canvas.getContext('2d');
+
+            this.offCanvas = new OffscreenCanvas(this.width, this.height);
+            this.offContext = this.offCanvas.getContext('2d');
         }
 
         /**

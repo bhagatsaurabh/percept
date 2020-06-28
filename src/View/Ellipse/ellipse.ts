@@ -69,8 +69,37 @@ namespace Percept.View {
             if (this.props && this.props.fill) {
                 this.context.fill();
             }
-            if ((this.props && this.props.outline) || (!this.props) || (this.props && !this.props.outline && !this.props.fill)) {
+            if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
                 this.context.stroke();
+            }
+
+            this.offRender();
+        }
+
+        _offRender(): void {
+            (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
+            this.offContext.strokeStyle = this.hitColor;
+            this.offContext.fillStyle = this.hitColor;
+
+            let position = this.absolutePosition;
+            this.offContext.beginPath();
+            if (this.minor == this.major) {
+                this.offContext.arc(position.x, position.y, this.minor, 0, 2 * Math.PI);
+            } else {
+                this.offContext.ellipse(
+                    position.x, position.y,
+                    this.major,
+                    this.minor,
+                    Math.atan2(this.transform.controlPoints[1].y - position.y, this.transform.controlPoints[1].x - position.x),
+                    0,
+                    2 * Math.PI
+                );
+            }
+            if (this.props && this.props.fill) {
+                this.offContext.fill();
+            }
+            if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                this.offContext.stroke();
             }
         }
 

@@ -7,6 +7,7 @@ namespace Percept.View {
         }
 
         _render(): void {}
+        _offRender(): void {}
 
         getDimension(): Vector2 {
             return Vector2.Zero();

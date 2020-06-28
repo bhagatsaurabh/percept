@@ -5,11 +5,14 @@ namespace Percept {
 
         drawing: Drawing;
         context: CanvasRenderingContext2D;
+        offContext: OffscreenCanvasRenderingContext2D;
         transform: Transform;
         registeredEvents: any;
         order: number;
+        hitColor: string;
         
         abstract _render(): void;
+        abstract _offRender(): void;
         abstract getDimension(): Vector2;
 
         get zIndex(): number {
@@ -68,6 +71,21 @@ namespace Percept {
             this.order = 0;
         }
 
+        setHitColor() {
+            // Set unique color for hit detection in offscreen canvas
+            let color: string = Color.Random();
+            while(this.drawing.colorToNode[color]) {
+                color = Color.Random();
+            }
+
+            this.hitColor = color;
+            this.drawing.colorToNode[color] = this;
+
+            this.transform.childs.forEach((child)=> {
+                child.node.setHitColor();
+            })
+        }
+
         on(eventKey: string, callback: Function): void {
             this.registeredEvents[eventKey] = callback;
         }
@@ -82,20 +100,25 @@ namespace Percept {
             }
         }
 
-        call(method: string) {
-            if (this.registeredEvents[method]) {
-                this.registeredEvents[method](this);
-            }
+        offRender(): void {
+            this.offContext.save();
+            this._offRender();
+            this.offContext.restore();
+        }
 
+        call(method: string) {
+            (this.registeredEvents[method]) && (this.registeredEvents[method](this));
+            
             for (var child of this.transform.childs) {
                 child.node.call(method);
             }
         }
 
-        setContext(context: CanvasRenderingContext2D) {
+        setContext(context: CanvasRenderingContext2D, offContext: OffscreenCanvasRenderingContext2D) {
             this.context = context;
+            this.offContext = offContext;
             this.transform.childs.forEach((child) => {
-                child.node.setContext(context);
+                child.node.setContext(context, offContext);
             });
         }
 

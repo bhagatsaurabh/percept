@@ -60,6 +60,8 @@ var Percept;
             this.width = this.canvas.width;
             this.height = this.canvas.height;
             this.context = this.canvas.getContext('2d');
+            this.offCanvas = new OffscreenCanvas(this.width, this.height);
+            this.offContext = this.offCanvas.getContext('2d');
         }
         Canvas.prototype.draw = function (drawing) {
             if (this.drawingHandle != -1) {
@@ -78,6 +80,13 @@ var Percept;
         }
         Color.Random = function () {
             return ('#' + Math.floor(Math.random() * 16777215).toString(16));
+        };
+        Color.rgbToHex = function (r, g, b) {
+            return "#" + Color._componentToHex(r) + Color._componentToHex(g) + Color._componentToHex(b);
+        };
+        Color._componentToHex = function (c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? '0' + hex : hex;
         };
         return Color;
     }());
@@ -157,9 +166,25 @@ var Percept;
             rootNode.drawing = this;
             this.renderTree = rootNode;
             this.debugCalls = {};
+            this._registerEvents();
+            this.mousePos = Percept.Vector2.Zero();
+            this.colorToNode = {};
         }
+        Drawing.prototype._registerEvents = function () {
+            var _this = this;
+            this.canvas.canvas.onmousemove = function (ev) {
+                _this.mousePos.x = ev.clientX - _this.canvas.canvas.offsetLeft;
+                _this.mousePos.y = ev.clientY - _this.canvas.canvas.offsetTop;
+            };
+            this.canvas.canvas.onclick = function () {
+                var pixel = _this.canvas.offContext.getImageData(_this.mousePos.x, _this.mousePos.y, 1, 1).data;
+                var hitColor = Percept.Color.rgbToHex(pixel[0], pixel[1], pixel[2]);
+                (_this.colorToNode[hitColor]) && (_this.colorToNode[hitColor].call('click'));
+            };
+        };
         Drawing.prototype.render = function () {
             this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.canvas.offContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.renderTree.call('update');
             (this.globalUpdate) && this.globalUpdate();
             this.renderTree.transform.childs.forEach(function (child) {
@@ -173,8 +198,9 @@ var Percept;
         };
         Drawing.prototype.add = function (node) {
             node.parent = this.renderTree;
-            node.setContext(this.canvas.context);
+            node.setContext(this.canvas.context, this.canvas.offContext);
             node.setDrawing(this);
+            node.setHitColor();
         };
         Drawing.prototype.remove = function (nodeOrID) {
             if (nodeOrID instanceof Percept.Node)
@@ -693,6 +719,17 @@ var Percept;
             enumerable: false,
             configurable: true
         });
+        Node.prototype.setHitColor = function () {
+            var color = Percept.Color.Random();
+            while (this.drawing.colorToNode[color]) {
+                color = Percept.Color.Random();
+            }
+            this.hitColor = color;
+            this.drawing.colorToNode[color] = this;
+            this.transform.childs.forEach(function (child) {
+                child.node.setHitColor();
+            });
+        };
         Node.prototype.on = function (eventKey, callback) {
             this.registeredEvents[eventKey] = callback;
         };
@@ -705,19 +742,23 @@ var Percept;
                 child.node.render();
             }
         };
+        Node.prototype.offRender = function () {
+            this.offContext.save();
+            this._offRender();
+            this.offContext.restore();
+        };
         Node.prototype.call = function (method) {
-            if (this.registeredEvents[method]) {
-                this.registeredEvents[method](this);
-            }
+            (this.registeredEvents[method]) && (this.registeredEvents[method](this));
             for (var _i = 0, _a = this.transform.childs; _i < _a.length; _i++) {
                 var child = _a[_i];
                 child.node.call(method);
             }
         };
-        Node.prototype.setContext = function (context) {
+        Node.prototype.setContext = function (context, offContext) {
             this.context = context;
+            this.offContext = offContext;
             this.transform.childs.forEach(function (child) {
-                child.node.setContext(context);
+                child.node.setContext(context, offContext);
             });
         };
         Node.prototype.setDrawing = function (drawing) {
@@ -848,8 +889,28 @@ var Percept;
                 if (this.props && this.props.fill) {
                     this.context.fill();
                 }
-                if ((this.props && this.props.outline) || (!this.props) || (this.props && !this.props.outline && !this.props.fill)) {
+                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
                     this.context.stroke();
+                }
+                this.offRender();
+            };
+            Ellipse.prototype._offRender = function () {
+                (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
+                this.offContext.strokeStyle = this.hitColor;
+                this.offContext.fillStyle = this.hitColor;
+                var position = this.absolutePosition;
+                this.offContext.beginPath();
+                if (this.minor == this.major) {
+                    this.offContext.arc(position.x, position.y, this.minor, 0, 2 * Math.PI);
+                }
+                else {
+                    this.offContext.ellipse(position.x, position.y, this.major, this.minor, Math.atan2(this.transform.controlPoints[1].y - position.y, this.transform.controlPoints[1].x - position.x), 0, 2 * Math.PI);
+                }
+                if (this.props && this.props.fill) {
+                    this.offContext.fill();
+                }
+                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                    this.offContext.stroke();
                 }
             };
             Ellipse.prototype.getDimension = function () {
@@ -870,6 +931,7 @@ var Percept;
                 return _super.call(this, id, position, []) || this;
             }
             Empty.prototype._render = function () { };
+            Empty.prototype._offRender = function () { };
             Empty.prototype.getDimension = function () {
                 return Percept.Vector2.Zero();
             };
@@ -896,16 +958,11 @@ var Percept;
                 else {
                     _this._source = source;
                 }
-                if (_this.props && _this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
-                    _this.props.outlineColor.node = _this;
-                }
+                _this._source.crossOrigin = "Anonymous";
                 return _this;
             }
             Image.prototype._render = function () {
                 if (this.props) {
-                    (this.props.outlineColor) && (this.context.strokeStyle = (typeof (this.props.outlineColor) == 'string') ? this.props.outlineColor : this.props.outlineColor.create(this.context));
-                    (this.props.outlineWidth) && (this.context.lineWidth = this.props.outlineWidth);
-                    (this.props.outlineDashSegments) && this.context.setLineDash(this.props.outlineDashSegments);
                     (this.props.shadowColor) && (this.context.shadowColor = this.props.shadowColor);
                     (this.props.shadowBlur) && (this.context.shadowBlur = this.props.shadowBlur);
                     if (this.props.shadowOffset) {
@@ -923,11 +980,17 @@ var Percept;
                 this.context.translate(this.absolutePosition.x, this.absolutePosition.y);
                 this.context.rotate(this.transform.worldTransform.getRotation() * (Math.PI / 180));
                 this.context.translate(-this.absolutePosition.x, -this.absolutePosition.y);
-                var topRight = this.absolutePosition.subtract(this.width / 2, this.height / 2);
-                this.context.drawImage(this._source, topRight.x, topRight.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
-                if ((this.props && this.props.outline)) {
-                    this.context.strokeRect(topRight.x, topRight.y, this.width, this.height);
-                }
+                var topLeft = this.absolutePosition.subtract((this.width * this.transform.scale.x) / 2, (this.height * this.transform.scale.y) / 2);
+                this.context.drawImage(this._source, topLeft.x, topLeft.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
+                this.offRender();
+            };
+            Image.prototype._offRender = function () {
+                this.offContext.fillStyle = this.hitColor;
+                this.offContext.translate(this.absolutePosition.x, this.absolutePosition.y);
+                this.offContext.rotate(this.transform.worldTransform.getRotation() * (Math.PI / 180));
+                this.offContext.translate(-this.absolutePosition.x, -this.absolutePosition.y);
+                var topLeft = this.absolutePosition.subtract((this.width * this.transform.scale.x) / 2, (this.height * this.transform.scale.y) / 2);
+                this.offContext.fillRect(topLeft.x, topLeft.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
             };
             Image.prototype.getDimension = function () {
                 return new Percept.Vector2(this.width, this.height);
@@ -1001,6 +1064,15 @@ var Percept;
                 this.context.moveTo(this.from.x, this.from.y);
                 this.context.lineTo(this.to.x, this.to.y);
                 this.context.stroke();
+                this.offRender();
+            };
+            Line.prototype._offRender = function () {
+                (this.props.lineWidth) && (this.offContext.lineWidth = this.props.lineWidth);
+                this.offContext.strokeStyle = this.hitColor;
+                this.offContext.beginPath();
+                this.offContext.moveTo(this.from.x, this.from.y);
+                this.offContext.lineTo(this.to.x, this.to.y);
+                this.offContext.stroke();
             };
             Line.prototype.getDimension = function () {
                 return new Percept.Vector2(Percept.Vector2.Distance(this.transform.controlPoints[0], this.transform.controlPoints[1]), 0);
@@ -1056,8 +1128,26 @@ var Percept;
                 if (this.props && this.props.fill) {
                     this.context.fill();
                 }
-                if ((this.props && this.props.outline) || (!this.props) || (this.props && !this.props.outline && !this.props.fill)) {
+                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
                     this.context.stroke();
+                }
+                this.offRender();
+            };
+            Polygon.prototype._offRender = function () {
+                (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
+                this.offContext.strokeStyle = this.hitColor;
+                this.offContext.fillStyle = this.hitColor;
+                this.offContext.beginPath();
+                this.offContext.moveTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
+                for (var index = 1; index < this.transform.controlPoints.length; index++) {
+                    this.offContext.lineTo(this.transform.controlPoints[index].x, this.transform.controlPoints[index].y);
+                }
+                this.offContext.closePath();
+                if (this.props && this.props.fill) {
+                    this.offContext.fill();
+                }
+                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                    this.offContext.stroke();
                 }
             };
             Polygon.prototype.getDimension = function () {
@@ -1120,8 +1210,26 @@ var Percept;
                 if (this.props && this.props.fill) {
                     this.context.fill();
                 }
-                if ((this.props && this.props.outline) || (!this.props) || (this.props && !this.props.outline && !this.props.fill)) {
+                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
                     this.context.stroke();
+                }
+                this.offRender();
+            };
+            Rectangle.prototype._offRender = function () {
+                (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
+                this.offContext.strokeStyle = this.hitColor;
+                this.offContext.fillStyle = this.hitColor;
+                this.offContext.beginPath();
+                this.offContext.moveTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
+                this.offContext.lineTo(this.transform.controlPoints[1].x, this.transform.controlPoints[1].y);
+                this.offContext.lineTo(this.transform.controlPoints[2].x, this.transform.controlPoints[2].y);
+                this.offContext.lineTo(this.transform.controlPoints[3].x, this.transform.controlPoints[3].y);
+                this.offContext.lineTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
+                if (this.props && this.props.fill) {
+                    this.offContext.fill();
+                }
+                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                    this.offContext.stroke();
                 }
             };
             Rectangle.prototype.getDimension = function () {

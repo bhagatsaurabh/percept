@@ -18,6 +18,9 @@ namespace Percept {
         /**@hidden */
         debugCalls: IDebugCall;
 
+        colorToNode: {[key:string]: Node};
+        mousePos: Vector2;
+
         /**
          * 
          * @param canvas The Canvas object
@@ -29,6 +32,24 @@ namespace Percept {
             rootNode.drawing = this;
             this.renderTree = rootNode;
             this.debugCalls = {}
+
+            this._registerEvents();
+            this.mousePos = Vector2.Zero();
+            this.colorToNode = {};
+        }
+
+        _registerEvents(): void {
+            this.canvas.canvas.onmousemove = (ev) => {
+                this.mousePos.x = ev.clientX - this.canvas.canvas.offsetLeft;
+                this.mousePos.y = ev.clientY - this.canvas.canvas.offsetTop;
+            };
+
+            this.canvas.canvas.onclick = () => {
+                let pixel = this.canvas.offContext.getImageData(this.mousePos.x, this.mousePos.y, 1, 1).data;
+                let hitColor = Color.rgbToHex(pixel[0], pixel[1], pixel[2]);
+
+                (this.colorToNode[hitColor]) && (this.colorToNode[hitColor].call('click'));
+            };
         }
     
         /**
@@ -36,6 +57,7 @@ namespace Percept {
          */
         render() {
             this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.canvas.offContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
             this.renderTree.call('update');
 
@@ -60,8 +82,9 @@ namespace Percept {
          */
         add(node: Node): void {
             node.parent = this.renderTree;
-            node.setContext(this.canvas.context);
+            node.setContext(this.canvas.context, this.canvas.offContext);
             node.setDrawing(this);
+            node.setHitColor();
         }
 
         remove(nodeOrID: Node | string) {

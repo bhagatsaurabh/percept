@@ -66,6 +66,18 @@ namespace Percept.View {
             this.context.moveTo(this.from.x, this.from.y);
             this.context.lineTo(this.to.x, this.to.y);
             this.context.stroke();
+
+            this.offRender();
+        }
+
+        _offRender(): void {
+            (this.props.lineWidth) && (this.offContext.lineWidth = this.props.lineWidth);
+            this.offContext.strokeStyle = this.hitColor;
+
+            this.offContext.beginPath();
+            this.offContext.moveTo(this.from.x, this.from.y);
+            this.offContext.lineTo(this.to.x, this.to.y);
+            this.offContext.stroke();
         }
 
         getDimension(): Vector2 {
