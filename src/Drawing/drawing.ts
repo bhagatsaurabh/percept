@@ -39,9 +39,18 @@ namespace Percept {
         }
 
         _registerEvents(): void {
+            let currentHitNode: Node, prevHitNode: Node;
+
             this.canvas.canvasElement.onmousemove = (ev) => {
                 this.mousePos.x = ev.clientX - this.canvas.canvasElement.offsetLeft;
                 this.mousePos.y = ev.clientY - this.canvas.canvasElement.offsetTop;
+                
+                currentHitNode = this._getHitNode(this.mousePos);
+                if (currentHitNode != prevHitNode) {
+                    (prevHitNode) && prevHitNode.call('mouseexit');
+                    (currentHitNode) && currentHitNode.call('mouseenter');
+                }
+                prevHitNode = currentHitNode;
             };
 
             this.canvas.canvasElement.onmousedown = () => {

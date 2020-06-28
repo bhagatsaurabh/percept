@@ -172,9 +172,16 @@ var Percept;
         }
         Drawing.prototype._registerEvents = function () {
             var _this = this;
+            var currentHitNode, prevHitNode;
             this.canvas.canvasElement.onmousemove = function (ev) {
                 _this.mousePos.x = ev.clientX - _this.canvas.canvasElement.offsetLeft;
                 _this.mousePos.y = ev.clientY - _this.canvas.canvasElement.offsetTop;
+                currentHitNode = _this._getHitNode(_this.mousePos);
+                if (currentHitNode != prevHitNode) {
+                    (prevHitNode) && prevHitNode.call('mouseexit');
+                    (currentHitNode) && currentHitNode.call('mouseenter');
+                }
+                prevHitNode = currentHitNode;
             };
             this.canvas.canvasElement.onmousedown = function () {
                 var hitNode = _this._getHitNode(_this.mousePos);
