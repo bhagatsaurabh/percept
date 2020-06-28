@@ -4,9 +4,9 @@ namespace Percept {
      */
     export class Canvas {
 
-        canvas: HTMLCanvasElement;
+        canvasElement: HTMLCanvasElement;
         context: CanvasRenderingContext2D;
-        offCanvas: OffscreenCanvas;
+        offCanvasElement: OffscreenCanvas;
         offContext: OffscreenCanvasRenderingContext2D;
         
         width: number;
@@ -22,35 +22,35 @@ namespace Percept {
          */
         constructor(element?: HTMLCanvasElement | HTMLDivElement, width?: number, height?: number) {
             if (!element) {
-                this.canvas = document.createElement('canvas');
-                this.canvas.width = document.body.clientWidth;
-                this.canvas.height = document.body.clientHeight;
-                document.body.appendChild(this.canvas);
+                this.canvasElement = document.createElement('canvas');
+                this.canvasElement.width = document.body.clientWidth;
+                this.canvasElement.height = document.body.clientHeight;
+                document.body.appendChild(this.canvasElement);
             } else {
                 if (element instanceof HTMLDivElement) {
-                    this.canvas = document.createElement('canvas');
+                    this.canvasElement = document.createElement('canvas');
                     if (width && height) {
-                        this.canvas.width = width;
-                        this.canvas.height = height;
+                        this.canvasElement.width = width;
+                        this.canvasElement.height = height;
                     } else {
-                        this.canvas.width = element.clientWidth;
-                        this.canvas.height = element.clientHeight;
+                        this.canvasElement.width = element.clientWidth;
+                        this.canvasElement.height = element.clientHeight;
                     }
-                    element.appendChild(this.canvas);
+                    element.appendChild(this.canvasElement);
                 } else {
-                    this.canvas = element;
+                    this.canvasElement = element;
                     if (width && height) {
-                        this.canvas.width = width;
-                        this.canvas.height = height;
+                        this.canvasElement.width = width;
+                        this.canvasElement.height = height;
                     }
                 }
             }
-            this.width = this.canvas.width;
-            this.height = this.canvas.height;
-            this.context = this.canvas.getContext('2d');
+            this.width = this.canvasElement.width;
+            this.height = this.canvasElement.height;
+            this.context = this.canvasElement.getContext('2d');
 
-            this.offCanvas = new OffscreenCanvas(this.width, this.height);
-            this.offContext = this.offCanvas.getContext('2d');
+            this.offCanvasElement = new OffscreenCanvas(this.width, this.height);
+            this.offContext = this.offCanvasElement.getContext('2d');
         }
 
         /**

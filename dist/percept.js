@@ -31,37 +31,37 @@ var Percept;
         function Canvas(element, width, height) {
             this.drawingHandle = -1;
             if (!element) {
-                this.canvas = document.createElement('canvas');
-                this.canvas.width = document.body.clientWidth;
-                this.canvas.height = document.body.clientHeight;
-                document.body.appendChild(this.canvas);
+                this.canvasElement = document.createElement('canvas');
+                this.canvasElement.width = document.body.clientWidth;
+                this.canvasElement.height = document.body.clientHeight;
+                document.body.appendChild(this.canvasElement);
             }
             else {
                 if (element instanceof HTMLDivElement) {
-                    this.canvas = document.createElement('canvas');
+                    this.canvasElement = document.createElement('canvas');
                     if (width && height) {
-                        this.canvas.width = width;
-                        this.canvas.height = height;
+                        this.canvasElement.width = width;
+                        this.canvasElement.height = height;
                     }
                     else {
-                        this.canvas.width = element.clientWidth;
-                        this.canvas.height = element.clientHeight;
+                        this.canvasElement.width = element.clientWidth;
+                        this.canvasElement.height = element.clientHeight;
                     }
-                    element.appendChild(this.canvas);
+                    element.appendChild(this.canvasElement);
                 }
                 else {
-                    this.canvas = element;
+                    this.canvasElement = element;
                     if (width && height) {
-                        this.canvas.width = width;
-                        this.canvas.height = height;
+                        this.canvasElement.width = width;
+                        this.canvasElement.height = height;
                     }
                 }
             }
-            this.width = this.canvas.width;
-            this.height = this.canvas.height;
-            this.context = this.canvas.getContext('2d');
-            this.offCanvas = new OffscreenCanvas(this.width, this.height);
-            this.offContext = this.offCanvas.getContext('2d');
+            this.width = this.canvasElement.width;
+            this.height = this.canvasElement.height;
+            this.context = this.canvasElement.getContext('2d');
+            this.offCanvasElement = new OffscreenCanvas(this.width, this.height);
+            this.offContext = this.offCanvasElement.getContext('2d');
         }
         Canvas.prototype.draw = function (drawing) {
             if (this.drawingHandle != -1) {
@@ -81,8 +81,8 @@ var Percept;
         Color.Random = function () {
             return ('#' + Math.floor(Math.random() * 16777215).toString(16));
         };
-        Color.rgbToHex = function (r, g, b) {
-            return "#" + Color._componentToHex(r) + Color._componentToHex(g) + Color._componentToHex(b);
+        Color.rgbToHex = function (rgb) {
+            return "#" + Color._componentToHex(rgb[0]) + Color._componentToHex(rgb[1]) + Color._componentToHex(rgb[2]);
         };
         Color._componentToHex = function (c) {
             var hex = c.toString(16);
@@ -166,21 +166,36 @@ var Percept;
             rootNode.drawing = this;
             this.renderTree = rootNode;
             this.debugCalls = {};
-            this._registerEvents();
             this.mousePos = Percept.Vector2.Zero();
             this.colorToNode = {};
+            this._registerEvents();
         }
         Drawing.prototype._registerEvents = function () {
             var _this = this;
-            this.canvas.canvas.onmousemove = function (ev) {
-                _this.mousePos.x = ev.clientX - _this.canvas.canvas.offsetLeft;
-                _this.mousePos.y = ev.clientY - _this.canvas.canvas.offsetTop;
+            this.canvas.canvasElement.onmousemove = function (ev) {
+                _this.mousePos.x = ev.clientX - _this.canvas.canvasElement.offsetLeft;
+                _this.mousePos.y = ev.clientY - _this.canvas.canvasElement.offsetTop;
             };
-            this.canvas.canvas.onclick = function () {
-                var pixel = _this.canvas.offContext.getImageData(_this.mousePos.x, _this.mousePos.y, 1, 1).data;
-                var hitColor = Percept.Color.rgbToHex(pixel[0], pixel[1], pixel[2]);
-                (_this.colorToNode[hitColor]) && (_this.colorToNode[hitColor].call('click'));
+            this.canvas.canvasElement.onmousedown = function () {
+                var hitNode = _this._getHitNode(_this.mousePos);
+                (hitNode) && hitNode.call('mousedown');
             };
+            this.canvas.canvasElement.onmouseup = function () {
+                var hitNode = _this._getHitNode(_this.mousePos);
+                (hitNode) && hitNode.call('mouseup');
+            };
+            this.canvas.canvasElement.onclick = function () {
+                var hitNode = _this._getHitNode(_this.mousePos);
+                (hitNode) && hitNode.call('click');
+            };
+            this.canvas.canvasElement.oncontextmenu = function (ev) {
+                ev.preventDefault();
+                var hitNode = _this._getHitNode(_this.mousePos);
+                (hitNode) && hitNode.call('rightclick');
+            };
+        };
+        Drawing.prototype._getHitNode = function (position) {
+            return (this.colorToNode[Percept.Color.rgbToHex(this.canvas.offContext.getImageData(position.x, position.y, 1, 1).data)]);
         };
         Drawing.prototype.render = function () {
             this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);

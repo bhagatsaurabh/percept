@@ -33,23 +33,48 @@ namespace Percept {
             this.renderTree = rootNode;
             this.debugCalls = {}
 
-            this._registerEvents();
             this.mousePos = Vector2.Zero();
             this.colorToNode = {};
+            this._registerEvents();
         }
 
         _registerEvents(): void {
-            this.canvas.canvas.onmousemove = (ev) => {
-                this.mousePos.x = ev.clientX - this.canvas.canvas.offsetLeft;
-                this.mousePos.y = ev.clientY - this.canvas.canvas.offsetTop;
+            this.canvas.canvasElement.onmousemove = (ev) => {
+                this.mousePos.x = ev.clientX - this.canvas.canvasElement.offsetLeft;
+                this.mousePos.y = ev.clientY - this.canvas.canvasElement.offsetTop;
             };
 
-            this.canvas.canvas.onclick = () => {
-                let pixel = this.canvas.offContext.getImageData(this.mousePos.x, this.mousePos.y, 1, 1).data;
-                let hitColor = Color.rgbToHex(pixel[0], pixel[1], pixel[2]);
+            this.canvas.canvasElement.onmousedown = () => {
+                let hitNode = this._getHitNode(this.mousePos);
+                (hitNode) && hitNode.call('mousedown');
+            }
 
-                (this.colorToNode[hitColor]) && (this.colorToNode[hitColor].call('click'));
+            this.canvas.canvasElement.onmouseup = () => {
+                let hitNode = this._getHitNode(this.mousePos);
+                (hitNode) && hitNode.call('mouseup');
+            }
+
+            this.canvas.canvasElement.onclick = () => {
+                let hitNode = this._getHitNode(this.mousePos);
+                (hitNode) && hitNode.call('click');
             };
+
+            this.canvas.canvasElement.oncontextmenu = (ev) => {
+                ev.preventDefault();
+
+                let hitNode = this._getHitNode(this.mousePos);
+                (hitNode) && hitNode.call('rightclick');
+            }
+        }
+
+        _getHitNode(position: Vector2): Node {
+            return (
+                this.colorToNode[
+                    Color.rgbToHex(
+                        this.canvas.offContext.getImageData(position.x, position.y, 1, 1).data
+                    )
+                ]
+            );
         }
     
         /**

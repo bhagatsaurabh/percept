@@ -5,8 +5,8 @@ namespace Percept {
             return ('#' + Math.floor(Math.random()*16777215).toString(16));
         }
 
-        static rgbToHex(r: number, g: number, b: number): string {
-            return "#" + Color._componentToHex(r) + Color._componentToHex(g) + Color._componentToHex(b);
+        static rgbToHex(rgb: number[] | Uint8ClampedArray): string {
+            return "#" + Color._componentToHex(rgb[0]) + Color._componentToHex(rgb[1]) + Color._componentToHex(rgb[2]);
         }
 
         static _componentToHex(c: number) {
