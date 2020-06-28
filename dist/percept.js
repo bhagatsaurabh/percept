@@ -173,6 +173,8 @@ var Percept;
         Drawing.prototype._registerEvents = function () {
             var _this = this;
             var currentHitNode, prevHitNode;
+            var isDragging = false;
+            var currentDragNode = null;
             this.canvas.canvasElement.onmousemove = function (ev) {
                 _this.mousePos.x = ev.clientX - _this.canvas.canvasElement.offsetLeft;
                 _this.mousePos.y = ev.clientY - _this.canvas.canvasElement.offsetTop;
@@ -182,12 +184,17 @@ var Percept;
                     (currentHitNode) && currentHitNode.call('mouseenter');
                 }
                 prevHitNode = currentHitNode;
+                (currentDragNode) && currentDragNode.call('drag', [_this.mousePos.clone()]);
             };
             this.canvas.canvasElement.onmousedown = function () {
+                isDragging = true;
+                currentDragNode = currentHitNode;
                 var hitNode = _this._getHitNode(_this.mousePos);
                 (hitNode) && hitNode.call('mousedown');
             };
             this.canvas.canvasElement.onmouseup = function () {
+                isDragging = false;
+                currentDragNode = null;
                 var hitNode = _this._getHitNode(_this.mousePos);
                 (hitNode) && hitNode.call('mouseup');
             };
@@ -769,11 +776,19 @@ var Percept;
             this._offRender();
             this.offContext.restore();
         };
-        Node.prototype.call = function (method) {
-            (this.registeredEvents[method]) && (this.registeredEvents[method](this));
-            for (var _i = 0, _a = this.transform.childs; _i < _a.length; _i++) {
-                var child = _a[_i];
-                child.node.call(method);
+        Node.prototype.call = function (method, args) {
+            var _a;
+            if (this.registeredEvents[method]) {
+                if (args) {
+                    (_a = this.registeredEvents)[method].apply(_a, __spreadArrays([this], args));
+                }
+                else {
+                    this.registeredEvents[method](this);
+                }
+            }
+            for (var _i = 0, _b = this.transform.childs; _i < _b.length; _i++) {
+                var child = _b[_i];
+                child.node.call(method, args);
             }
         };
         Node.prototype.setContext = function (context, offContext) {

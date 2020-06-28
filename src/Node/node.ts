@@ -106,11 +106,17 @@ namespace Percept {
             this.offContext.restore();
         }
 
-        call(method: string) {
-            (this.registeredEvents[method]) && (this.registeredEvents[method](this));
+        call(method: string, args?: any[]) {
+            if (this.registeredEvents[method]) {
+                if (args) {
+                    this.registeredEvents[method](this, ...args);
+                } else {
+                    this.registeredEvents[method](this);
+                }
+            }
             
             for (var child of this.transform.childs) {
-                child.node.call(method);
+                child.node.call(method, args);
             }
         }
 

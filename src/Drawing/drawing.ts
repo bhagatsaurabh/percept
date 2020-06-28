@@ -40,6 +40,8 @@ namespace Percept {
 
         _registerEvents(): void {
             let currentHitNode: Node, prevHitNode: Node;
+            let isDragging = false;
+            let currentDragNode: Node = null;
 
             this.canvas.canvasElement.onmousemove = (ev) => {
                 this.mousePos.x = ev.clientX - this.canvas.canvasElement.offsetLeft;
@@ -51,14 +53,22 @@ namespace Percept {
                     (currentHitNode) && currentHitNode.call('mouseenter');
                 }
                 prevHitNode = currentHitNode;
+
+                (currentDragNode) && currentDragNode.call('drag', [this.mousePos.clone()]);
             };
 
             this.canvas.canvasElement.onmousedown = () => {
+                isDragging = true;
+                currentDragNode = currentHitNode;
+
                 let hitNode = this._getHitNode(this.mousePos);
                 (hitNode) && hitNode.call('mousedown');
             }
 
             this.canvas.canvasElement.onmouseup = () => {
+                isDragging = false;
+                currentDragNode = null;
+
                 let hitNode = this._getHitNode(this.mousePos);
                 (hitNode) && hitNode.call('mouseup');
             }
