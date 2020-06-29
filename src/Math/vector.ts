@@ -18,6 +18,8 @@ namespace Percept {
             // Params : (vector2d) or (x, y)
             if (arg1 instanceof Vector2) {
                 return new Vector2(this.x + arg1.x, this.y + arg1.y);
+            } else if (!arg2){
+                return new Vector2(this.x + arg1, this.y + arg1);
             } else {
                 return new Vector2(this.x + arg1, this.y + arg2);
             }
