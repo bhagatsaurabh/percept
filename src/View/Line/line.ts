@@ -37,7 +37,8 @@ namespace Percept.View {
                     []
             );
 
-            if (this.props && this.props.color && typeof(this.props.color) != 'string') {
+            (!props) && (this.props = {});
+            if (this.props.color && typeof(this.props.color) != 'string') {
                 this.props.color.node = this;
             }
         }
@@ -66,8 +67,6 @@ namespace Percept.View {
             this.context.moveTo(this.from.x, this.from.y);
             this.context.lineTo(this.to.x, this.to.y);
             this.context.stroke();
-
-            this.offRender();
         }
 
         _offRender(): void {

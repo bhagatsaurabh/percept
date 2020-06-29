@@ -766,6 +766,7 @@ var Percept;
             this.context.save();
             this._render();
             this.context.restore();
+            this.offRender();
             for (var _i = 0, _a = this.transform.childs; _i < _a.length; _i++) {
                 var child = _a[_i];
                 child.node.render();
@@ -887,10 +888,11 @@ var Percept;
                 _this.minor = minor;
                 _this.major = major;
                 _this.props = props;
-                if (_this.props && _this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
+                (!props) && (_this.props = {});
+                if (_this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
                     _this.props.outlineColor.node = _this;
                 }
-                if (_this.props && _this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
+                if (_this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
                     _this.props.fillColor.node = _this;
                 }
                 return _this;
@@ -923,13 +925,12 @@ var Percept;
                 else {
                     this.context.ellipse(position.x, position.y, this.major, this.minor, Math.atan2(this.transform.controlPoints[1].y - position.y, this.transform.controlPoints[1].x - position.x), 0, 2 * Math.PI);
                 }
-                if (this.props && this.props.fill) {
+                if (this.props.fill) {
                     this.context.fill();
                 }
-                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                if (this.props.outline || !this.props.fill) {
                     this.context.stroke();
                 }
-                this.offRender();
             };
             Ellipse.prototype._offRender = function () {
                 (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
@@ -943,10 +944,10 @@ var Percept;
                 else {
                     this.offContext.ellipse(position.x, position.y, this.major, this.minor, Math.atan2(this.transform.controlPoints[1].y - position.y, this.transform.controlPoints[1].x - position.x), 0, 2 * Math.PI);
                 }
-                if (this.props && this.props.fill) {
+                if (this.props.fill) {
                     this.offContext.fill();
                 }
-                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                if (this.props.outline || !this.props.fill) {
                     this.offContext.stroke();
                 }
             };
@@ -988,6 +989,7 @@ var Percept;
                 _this.width = width;
                 _this.height = height;
                 _this.props = props;
+                (!props) && (_this.props = {});
                 if (typeof (source) == 'string') {
                     _this._source = new window.Image();
                     _this._source.src = source;
@@ -1019,7 +1021,6 @@ var Percept;
                 this.context.translate(-this.absolutePosition.x, -this.absolutePosition.y);
                 var topLeft = this.absolutePosition.subtract((this.width * this.transform.scale.x) / 2, (this.height * this.transform.scale.y) / 2);
                 this.context.drawImage(this._source, topLeft.x, topLeft.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
-                this.offRender();
             };
             Image.prototype._offRender = function () {
                 this.offContext.fillStyle = this.hitColor;
@@ -1052,7 +1053,8 @@ var Percept;
                 _this._from = _from;
                 _this._to = _to;
                 _this.props = props;
-                if (_this.props && _this.props.color && typeof (_this.props.color) != 'string') {
+                (!props) && (_this.props = {});
+                if (_this.props.color && typeof (_this.props.color) != 'string') {
                     _this.props.color.node = _this;
                 }
                 return _this;
@@ -1101,7 +1103,6 @@ var Percept;
                 this.context.moveTo(this.from.x, this.from.y);
                 this.context.lineTo(this.to.x, this.to.y);
                 this.context.stroke();
-                this.offRender();
             };
             Line.prototype._offRender = function () {
                 (this.props.lineWidth) && (this.offContext.lineWidth = this.props.lineWidth);
@@ -1128,10 +1129,11 @@ var Percept;
             function Polygon(id, vertices, center, props) {
                 var _this = _super.call(this, id, (center instanceof Percept.Vector2) ? center : Percept.Vector2.Average(vertices), vertices) || this;
                 _this.props = props;
-                if (_this.props && _this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
+                (!props) && (_this.props = {});
+                if (_this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
                     _this.props.outlineColor.node = _this;
                 }
-                if (_this.props && _this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
+                if (_this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
                     _this.props.fillColor.node = _this;
                 }
                 return _this;
@@ -1162,13 +1164,12 @@ var Percept;
                     this.context.lineTo(this.transform.controlPoints[index].x, this.transform.controlPoints[index].y);
                 }
                 this.context.closePath();
-                if (this.props && this.props.fill) {
+                if (this.props.fill) {
                     this.context.fill();
                 }
-                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                if (this.props.outline || !this.props.fill) {
                     this.context.stroke();
                 }
-                this.offRender();
             };
             Polygon.prototype._offRender = function () {
                 (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
@@ -1180,10 +1181,10 @@ var Percept;
                     this.offContext.lineTo(this.transform.controlPoints[index].x, this.transform.controlPoints[index].y);
                 }
                 this.offContext.closePath();
-                if (this.props && this.props.fill) {
+                if (this.props.fill) {
                     this.offContext.fill();
                 }
-                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                if (this.props.outline || !this.props.fill) {
                     this.offContext.stroke();
                 }
             };
@@ -1210,10 +1211,11 @@ var Percept;
                     position.add(-width / 2, height / 2)
                 ]) || this;
                 _this.props = props;
-                if (_this.props && _this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
+                (!props) && (_this.props = {});
+                if (_this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
                     _this.props.outlineColor.node = _this;
                 }
-                if (_this.props && _this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
+                if (_this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
                     _this.props.fillColor.node = _this;
                 }
                 return _this;
@@ -1244,13 +1246,12 @@ var Percept;
                 this.context.lineTo(this.transform.controlPoints[2].x, this.transform.controlPoints[2].y);
                 this.context.lineTo(this.transform.controlPoints[3].x, this.transform.controlPoints[3].y);
                 this.context.lineTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
-                if (this.props && this.props.fill) {
+                if (this.props.fill) {
                     this.context.fill();
                 }
-                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                if (this.props.outline || !this.props.fill) {
                     this.context.stroke();
                 }
-                this.offRender();
             };
             Rectangle.prototype._offRender = function () {
                 (this.props.outlineWidth) && (this.offContext.lineWidth = this.props.outlineWidth);
@@ -1262,10 +1263,10 @@ var Percept;
                 this.offContext.lineTo(this.transform.controlPoints[2].x, this.transform.controlPoints[2].y);
                 this.offContext.lineTo(this.transform.controlPoints[3].x, this.transform.controlPoints[3].y);
                 this.offContext.lineTo(this.transform.controlPoints[0].x, this.transform.controlPoints[0].y);
-                if (this.props && this.props.fill) {
+                if (this.props.fill) {
                     this.offContext.fill();
                 }
-                if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+                if (this.props.outline || !this.props.fill) {
                     this.offContext.stroke();
                 }
             };
@@ -1275,6 +1276,82 @@ var Percept;
             return Rectangle;
         }(Percept.Node));
         View.Rectangle = Rectangle;
+    })(View = Percept.View || (Percept.View = {}));
+})(Percept || (Percept = {}));
+var Percept;
+(function (Percept) {
+    var View;
+    (function (View) {
+        var Text = (function (_super) {
+            __extends(Text, _super);
+            function Text(id, position, text, props) {
+                var _this = _super.call(this, id, position, []) || this;
+                _this.props = props;
+                (!props) && (_this.props = {});
+                _this.text = text;
+                if (_this.props.outlineColor && typeof (_this.props.outlineColor) != 'string') {
+                    _this.props.outlineColor.node = _this;
+                }
+                if (_this.props.fillColor && typeof (_this.props.fillColor) != 'string') {
+                    _this.props.fillColor.node = _this;
+                }
+                var textMetricContext = document.createElement('canvas').getContext('2d');
+                (_this.props.font) && (textMetricContext.font = _this.props.font);
+                _this._originalWidth = textMetricContext.measureText(text).width;
+                _this._originalHeight = textMetricContext.measureText('M').width;
+                return _this;
+            }
+            Object.defineProperty(Text.prototype, "text", {
+                get: function () {
+                    return this._text;
+                },
+                set: function (text) {
+                    this._text = text;
+                },
+                enumerable: false,
+                configurable: true
+            });
+            Text.prototype._render = function () {
+                if (this.props) {
+                    (this.props.outlineColor) && (this.context.strokeStyle = (typeof (this.props.outlineColor) == 'string') ? this.props.outlineColor : this.props.outlineColor.create(this.context));
+                    (this.props.fillColor) && (this.context.fillStyle = (typeof (this.props.fillColor) == 'string') ? this.props.fillColor : this.props.fillColor.create(this.context));
+                    (this.props.outlineWidth) && (this.context.lineWidth = this.props.outlineWidth);
+                    (this.props.shadowColor) && (this.context.shadowColor = this.props.shadowColor);
+                    (this.props.shadowBlur) && (this.context.shadowBlur = this.props.shadowBlur);
+                    if (this.props.shadowOffset) {
+                        if (!this.props.staticShadow) {
+                            var shadowOffset = this.props.shadowOffset.transform(this.transform.worldTransform).subtract(this.absolutePosition);
+                            this.context.shadowOffsetX = shadowOffset.x;
+                            this.context.shadowOffsetY = shadowOffset.y;
+                        }
+                        else {
+                            this.context.shadowOffsetX = this.props.shadowOffset.x;
+                            this.context.shadowOffsetY = this.props.shadowOffset.y;
+                        }
+                    }
+                    (this.props.font) && (this.context.font = this.props.font);
+                }
+                this.context.translate(this.absolutePosition.x, this.absolutePosition.y);
+                this.context.scale(this.scale.x, this.scale.y);
+                this.context.rotate(this.transform.worldTransform.getRotation() * (Math.PI / 180));
+                this.context.translate(-this.absolutePosition.x, -this.absolutePosition.y);
+                (this.props.outline) && this.context.strokeText(this.text, this.absolutePosition.x - (this._originalWidth / 2), this.absolutePosition.y + (this._originalHeight / 2));
+                (this.props.fill || !this.props.outline) && this.context.fillText(this.text, this.absolutePosition.x - (this._originalWidth / 2), this.absolutePosition.y + (this._originalHeight / 2));
+            };
+            Text.prototype._offRender = function () {
+                this.offContext.fillStyle = this.hitColor;
+                this.offContext.translate(this.absolutePosition.x, this.absolutePosition.y);
+                this.offContext.scale(this.scale.x, this.scale.y);
+                this.offContext.rotate(this.transform.worldTransform.getRotation() * (Math.PI / 180));
+                this.offContext.translate(-this.absolutePosition.x, -this.absolutePosition.y);
+                this.offContext.fillRect(this.absolutePosition.x - (this._originalWidth / 2), this.absolutePosition.y - (this._originalHeight / 2), (this._originalWidth), (this._originalHeight));
+            };
+            Text.prototype.getDimension = function () {
+                return new Percept.Vector2(Percept.Vector2.Distance(this.transform.controlPoints[0], this.transform.controlPoints[1]), 0);
+            };
+            return Text;
+        }(Percept.Node));
+        View.Text = Text;
     })(View = Percept.View || (Percept.View = {}));
 })(Percept || (Percept = {}));
 //# sourceMappingURL=percept.js.map

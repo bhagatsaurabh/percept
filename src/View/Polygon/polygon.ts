@@ -23,10 +23,11 @@ namespace Percept.View {
                 vertices
             );
 
-            if (this.props && this.props.outlineColor && typeof(this.props.outlineColor) != 'string') {
+            (!props) && (this.props = {});
+            if (this.props.outlineColor && typeof(this.props.outlineColor) != 'string') {
                 this.props.outlineColor.node = this;
             }
-            if (this.props && this.props.fillColor && typeof(this.props.fillColor) != 'string') {
+            if (this.props.fillColor && typeof(this.props.fillColor) != 'string') {
                 this.props.fillColor.node = this;
             }
         }
@@ -58,14 +59,12 @@ namespace Percept.View {
             }
             this.context.closePath();
 
-            if (this.props && this.props.fill) {
+            if (this.props.fill) {
                 this.context.fill();
             }
-            if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+            if (this.props.outline || !this.props.fill) {
                 this.context.stroke();
             }
-
-            this.offRender();
         }
 
         _offRender(): void {
@@ -80,10 +79,10 @@ namespace Percept.View {
             }
             this.offContext.closePath();
 
-            if (this.props && this.props.fill) {
+            if (this.props.fill) {
                 this.offContext.fill();
             }
-            if ((!this.props) || (this.props && this.props.outline) || (this.props && !this.props.outline && !this.props.fill)) {
+            if (this.props.outline || !this.props.fill) {
                 this.offContext.stroke();
             }
         }

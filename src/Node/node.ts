@@ -94,6 +94,7 @@ namespace Percept {
             this.context.save();
             this._render();
             this.context.restore();
+            this.offRender();
 
             for (var child of this.transform.childs) {
                 child.node.render();

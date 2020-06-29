@@ -14,6 +14,7 @@ namespace Percept.View {
         constructor(id: string, position: Vector2, source: string | HTMLImageElement, public width: number, public height: number, public props?: IImageProperties) {
             super(id, position, []);
             
+            (!props) && (this.props = {});
             if (typeof(source) == 'string') {
                 this._source = new window.Image();
                 this._source.src = source;
@@ -46,8 +47,6 @@ namespace Percept.View {
 
             let topLeft = this.absolutePosition.subtract((this.width * this.transform.scale.x) / 2, (this.height * this.transform.scale.y) / 2);
             this.context.drawImage(this._source, topLeft.x, topLeft.y, this.width * this.transform.scale.x, this.height * this.transform.scale.y);
-
-            this.offRender();
         }
 
         _offRender(): void {
