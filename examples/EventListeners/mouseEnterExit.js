@@ -1,6 +1,6 @@
 var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-var middle = new Percept.View.Rectangle('middle', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 40, 10, {
+var middle = new Percept.View.Rectangle('middle', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 70, 30, {
     fill: true,
     fillColor: '#cc99ff',
     outline: true,
@@ -15,7 +15,7 @@ middle.on('mouseenter', () => {
 });
 
 for (var i = 1 ; i < 10 ; i++) {
-    var movingCirc = new Percept.View.Ellipse('movingCirc' + i, Percept.Vector2.Zero(), 15, 15, {
+    var movingCirc = new Percept.View.Ellipse('movingCirc' + i, Percept.Vector2.Zero(), 5, 5, {
         fill: true,
         fillColor: Percept.Color.Random(),
         shadowColor: 'black',
