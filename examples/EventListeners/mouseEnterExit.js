@@ -10,7 +10,7 @@ var middle = new Percept.View.Rectangle('middle', new Percept.Vector2(canvas.wid
 });
 middle.on('mouseenter', () => {
     middle.childs.forEach((child) => {
-        child.position.multiplyInPlace(50);
+        child.position.addInPlace(50);
     });
 });
 

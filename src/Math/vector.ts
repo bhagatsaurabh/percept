@@ -28,6 +28,9 @@ namespace Percept {
             if (arg1 instanceof Vector2) {
                 this.x += arg1.x;
                 this.y += arg1.y;
+            } else if (!arg2) {
+                this.x += arg1;
+                this.y += arg1;
             } else {
                 this.x += arg1;
                 this.y += arg2;
