@@ -563,6 +563,10 @@ var Percept;
                 this.x *= arg1.x;
                 this.y *= arg1.y;
             }
+            else if (!arg2) {
+                this.x *= arg1;
+                this.y *= arg1;
+            }
             else {
                 this.x *= arg1;
                 this.y *= arg2;
@@ -697,6 +701,15 @@ var Percept;
             },
             set: function (newParent) {
                 this.transform.parent = newParent.transform;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Node.prototype, "childs", {
+            get: function () {
+                return this.transform.childs.map(function (child) {
+                    return child.node;
+                });
             },
             enumerable: false,
             configurable: true

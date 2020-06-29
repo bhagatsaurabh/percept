@@ -34,6 +34,12 @@ namespace Percept {
             this.transform.parent = newParent.transform;
         }
 
+        get childs(): Node[] {
+            return this.transform.childs.map((child) => {
+                return child.node;
+            });
+        }
+
         get position(): Vector2 {
             return this.transform.position;
         }
