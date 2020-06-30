@@ -101,13 +101,19 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#canvas" class="tsd-kind-icon">canvas</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#colortonode" class="tsd-kind-icon">color<wbr>ToNode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#globalupdate" class="tsd-kind-icon">global<wbr>Update</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#mousepos" class="tsd-kind-icon">mouse<wbr>Pos</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#_debugscenegraph" class="tsd-kind-icon">_debug<wbr>Scene<wbr>Graph</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#_gethitnode" class="tsd-kind-icon">_get<wbr>Hit<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#_registerevents" class="tsd-kind-icon">_register<wbr>Events</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_drawing_drawing_.percept.drawing.html#remove" class="tsd-kind-icon">remove</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,7 +131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/bd1cb3c/src/Drawing/drawing.ts#L19">Drawing/drawing.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L22">Drawing/drawing.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -162,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<span class="tsd-signature-symbol">:</span> <a href="_canvas_canvas_.percept.canvas.html" class="tsd-signature-type">Canvas</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/bd1cb3c/src/Drawing/drawing.ts#L26">Drawing/drawing.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L29">Drawing/drawing.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,12 +178,30 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="colortonode" class="tsd-anchor"></a>
+					<h3>color<wbr>ToNode</h3>
+					<div class="tsd-signature tsd-kind-icon">color<wbr>ToNode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L21">Drawing/drawing.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">Node</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="globalupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> global<wbr>Update</h3>
 					<div class="tsd-signature tsd-kind-icon">global<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/bd1cb3c/src/Drawing/drawing.ts#L26">Drawing/drawing.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L29">Drawing/drawing.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -186,20 +210,96 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="mousepos" class="tsd-anchor"></a>
+					<h3>mouse<wbr>Pos</h3>
+					<div class="tsd-signature tsd-kind-icon">mouse<wbr>Pos<span class="tsd-signature-symbol">:</span> <a href="_math_vector_.percept.vector2.html" class="tsd-signature-type">Vector2</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L22">Drawing/drawing.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="add" class="tsd-anchor"></a>
-					<h3>add</h3>
+					<a name="_debugscenegraph" class="tsd-anchor"></a>
+					<h3>_debug<wbr>Scene<wbr>Graph</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">_debug<wbr>Scene<wbr>Graph<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span>, indent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/bd1cb3c/src/Drawing/drawing.ts#L61">Drawing/drawing.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L163">Drawing/drawing.ts:163</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>root: <span class="tsd-signature-type">Node</span></h5>
+								</li>
+								<li>
+									<h5>indent: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_gethitnode" class="tsd-anchor"></a>
+					<h3>_get<wbr>Hit<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_get<wbr>Hit<wbr>Node<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="_math_vector_.percept.vector2.html" class="tsd-signature-type">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L91">Drawing/drawing.ts:91</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="_math_vector_.percept.vector2.html" class="tsd-signature-type">Vector2</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Node</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_registerevents" class="tsd-anchor"></a>
+					<h3>_register<wbr>Events</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_register<wbr>Events<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L41">Drawing/drawing.ts:41</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="add" class="tsd-anchor"></a>
+					<h3>add</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L129">Drawing/drawing.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -210,10 +310,33 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>node: <span class="tsd-signature-type">Node</span></h5>
+									<h5>node: <span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A View object to be rendered</p>
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="remove" class="tsd-anchor"></a>
+					<h3>remove</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>nodeOrID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/saurabh-prosoft/Percept/blob/8e5d15e/src/Drawing/drawing.ts#L145">Drawing/drawing.ts:145</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeOrID: <span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -230,6 +353,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_canvas_canvas_.html">&quot;<wbr>Canvas/canvas&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_color_color_.html">&quot;<wbr>Color/color&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_debug_debug_.html">&quot;<wbr>Debug/debug&quot;</a>
@@ -282,6 +408,9 @@
 						<a href="../modules/_view_rectangle_rectangle_.html">&quot;<wbr>View/<wbr>Rectangle/rectangle&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/_view_text_text_.html">&quot;<wbr>View/<wbr>Text/text&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/_view_view_.html">&quot;<wbr>View/view&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -303,10 +432,28 @@
 								<a href="_drawing_drawing_.percept.drawing.html#canvas" class="tsd-kind-icon">canvas</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_drawing_drawing_.percept.drawing.html#colortonode" class="tsd-kind-icon">color<wbr>ToNode</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_drawing_drawing_.percept.drawing.html#globalupdate" class="tsd-kind-icon">global<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_drawing_drawing_.percept.drawing.html#mousepos" class="tsd-kind-icon">mouse<wbr>Pos</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_drawing_drawing_.percept.drawing.html#_debugscenegraph" class="tsd-kind-icon">_debug<wbr>Scene<wbr>Graph</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_drawing_drawing_.percept.drawing.html#_gethitnode" class="tsd-kind-icon">_get<wbr>Hit<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_drawing_drawing_.percept.drawing.html#_registerevents" class="tsd-kind-icon">_register<wbr>Events</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_drawing_drawing_.percept.drawing.html#add" class="tsd-kind-icon">add</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_drawing_drawing_.percept.drawing.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
 						</ul>
 					</li>
