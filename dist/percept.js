@@ -167,6 +167,7 @@ var Percept;
             this.renderTree = rootNode;
             this.debugCalls = {};
             this.mousePos = Percept.Vector2.Zero();
+            this._canvasClientRect = this.canvas.canvasElement.getClientRects()[0];
             this.colorToNode = {};
             this._registerEvents();
         }
@@ -176,8 +177,8 @@ var Percept;
             var isDragging = false;
             var currentDragNode = null;
             this.canvas.canvasElement.onmousemove = function (ev) {
-                _this.mousePos.x = ev.clientX - _this.canvas.canvasElement.offsetLeft;
-                _this.mousePos.y = ev.clientY - _this.canvas.canvasElement.offsetTop;
+                _this.mousePos.x = ev.clientX - _this._canvasClientRect.left;
+                _this.mousePos.y = ev.clientY - _this._canvasClientRect.top;
                 currentHitNode = _this._getHitNode(_this.mousePos);
                 if (currentHitNode != prevHitNode) {
                     (prevHitNode) && prevHitNode.call('mouseexit');

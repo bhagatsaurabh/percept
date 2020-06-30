@@ -20,6 +20,7 @@ namespace Percept {
 
         colorToNode: {[key:string]: Node};
         mousePos: Vector2;
+        _canvasClientRect: DOMRect;
 
         /**
          * 
@@ -34,6 +35,7 @@ namespace Percept {
             this.debugCalls = {}
 
             this.mousePos = Vector2.Zero();
+            this._canvasClientRect = this.canvas.canvasElement.getClientRects()[0];
             this.colorToNode = {};
             this._registerEvents();
         }
@@ -44,8 +46,8 @@ namespace Percept {
             let currentDragNode: Node = null;
 
             this.canvas.canvasElement.onmousemove = (ev) => {
-                this.mousePos.x = ev.clientX - this.canvas.canvasElement.offsetLeft;
-                this.mousePos.y = ev.clientY - this.canvas.canvasElement.offsetTop;
+                this.mousePos.x = ev.clientX - this._canvasClientRect.left;
+                this.mousePos.y = ev.clientY - this._canvasClientRect.top;
                 
                 currentHitNode = this._getHitNode(this.mousePos);
                 if (currentHitNode != prevHitNode) {
