@@ -228,10 +228,21 @@ var Percept;
             window.requestAnimationFrame(this.render.bind(this));
         };
         Drawing.prototype.add = function (node) {
-            node.parent = this.renderTree;
-            node.setContext(this.canvas.context, this.canvas.offContext);
-            node.setDrawing(this);
-            node.setHitColor();
+            var _this = this;
+            if (node instanceof Percept.Node) {
+                node.parent = this.renderTree;
+                node.setContext(this.canvas.context, this.canvas.offContext);
+                node.setDrawing(this);
+                node.setHitColor();
+            }
+            else {
+                node.forEach(function (cNode) {
+                    cNode.parent = _this.renderTree;
+                    cNode.setContext(_this.canvas.context, _this.canvas.offContext);
+                    cNode.setDrawing(_this);
+                    cNode.setHitColor();
+                });
+            }
         };
         Drawing.prototype.remove = function (nodeOrID) {
             if (nodeOrID instanceof Percept.Node)

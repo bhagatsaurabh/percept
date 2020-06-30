@@ -126,11 +126,20 @@ namespace Percept {
          * 
          * @param node A View object to be rendered
          */
-        add(node: Node): void {
-            node.parent = this.renderTree;
-            node.setContext(this.canvas.context, this.canvas.offContext);
-            node.setDrawing(this);
-            node.setHitColor();
+        add(node: Node | Node[]): void {
+            if (node instanceof Node) {
+                node.parent = this.renderTree;
+                node.setContext(this.canvas.context, this.canvas.offContext);
+                node.setDrawing(this);
+                node.setHitColor();
+            } else {
+                node.forEach((cNode) => {
+                    cNode.parent = this.renderTree;
+                    cNode.setContext(this.canvas.context, this.canvas.offContext);
+                    cNode.setDrawing(this);
+                    cNode.setHitColor();
+                });
+            }
         }
 
         remove(nodeOrID: Node | string) {
