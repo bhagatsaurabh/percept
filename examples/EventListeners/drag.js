@@ -41,7 +41,7 @@ shapes.forEach((shape) => {
     });
 });
 
-var caption = new Percept.View.Text('caption', canvas.width / 2, canvas.height / 2 - 50, 'Drag shapes', {
+var caption = new Percept.View.Text('caption', new Percept.Vector2(canvas.width / 2, canvas.height / 2 - 50), 'Drag shapes', {
     font: '12px Arial'
 });
 
