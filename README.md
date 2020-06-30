@@ -11,7 +11,7 @@ Working with HTML5 canvas can be quite cumbersome, especially if you are making 
 Drawing a simple draggable rotating rectangle
 
 ```javascript
-var canvas = new Percept.Canvas();
+var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
 var shape = new Percept.View.Rectangle('rect', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 100, 30, {
   fill: true,
