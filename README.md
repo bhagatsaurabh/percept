@@ -1,16 +1,13 @@
 # Percept
----
 An HTML5 Canvas drawing framework
 
 Working with HTML5 canvas can be quite cumbersome, especially if you are making an animation or game or adding interactivity, Percept provides an easy to use framework for rendering on canvas
 
 ## CDN
----
 
 * [https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0/dist/percept.js](https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0/dist/percept.js)
 
 ## Usage
----
 Drawing a simple draggable rotating rectangle
 
 ```javascript
@@ -35,6 +32,5 @@ canvas.draw(drawing);
 ```
 
 ## Documentation
----
 * [Docs](https://perceptjs.herokuapp.com/docs/)
 * [Examples](https://perceptjs.herokuapp.com/)
