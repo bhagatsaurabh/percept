@@ -20,7 +20,9 @@ middle.on('mouseexit', () => {
         child.position = Percept.Vector2.Zero();
     });
 });
-var text = new Percept.View.Text('caption', new Percept.Vector2(0, -20), 'Hover over me');
+var text = new Percept.View.Text('caption', new Percept.Vector2(0, -40), 'Hover over me', {
+    font: '12px Arial'
+});
 text.parent = middle;
 
 for (var i = 0 ; i < 10 ; i++) {
