@@ -20,10 +20,9 @@ middle.on('mouseexit', () => {
         child.position = Percept.Vector2.Zero();
     });
 });
-var text = new Percept.View.Text('caption', new Percept.Vector2(0, -40), 'Hover over me', {
+var text = new Percept.View.Text('caption', middle.position.subtract(0, 40), 'Hover over me', {
     font: '12px Arial'
 });
-text.parent = middle;
 
 for (var i = 0 ; i < 10 ; i++) {
     var movingCirc = new Percept.View.Ellipse('movingCirc' + i, Percept.Vector2.Zero(), 5, 5, {
@@ -42,4 +41,5 @@ for (var i = 0 ; i < 10 ; i++) {
 
 var drawing = new Percept.Drawing(canvas);
 drawing.add(middle);
+drawing.add(text);
 canvas.draw(drawing);
