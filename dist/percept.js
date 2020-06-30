@@ -175,9 +175,11 @@ var Percept;
             var currentHitNode, prevHitNode;
             var isDragging = false;
             var currentDragNode = null;
+            var canvasOffset;
             this.canvas.canvasElement.onmousemove = function (ev) {
-                _this.mousePos.x = ev.clientX - _this.canvas.canvasElement.getBoundingClientRect().left;
-                _this.mousePos.y = ev.clientY - _this.canvas.canvasElement.getBoundingClientRect().top;
+                canvasOffset = _this.canvas.canvasElement.getBoundingClientRect();
+                _this.mousePos.x = ev.clientX - canvasOffset.left;
+                _this.mousePos.y = ev.clientY - canvasOffset.top;
                 currentHitNode = _this._getHitNode(_this.mousePos);
                 if (currentHitNode != prevHitNode) {
                     (prevHitNode) && prevHitNode.call('mouseexit');

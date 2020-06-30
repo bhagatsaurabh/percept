@@ -42,10 +42,12 @@ namespace Percept {
             let currentHitNode: Node, prevHitNode: Node;
             let isDragging = false;
             let currentDragNode: Node = null;
+            let canvasOffset: DOMRect;
 
             this.canvas.canvasElement.onmousemove = (ev) => {
-                this.mousePos.x = ev.clientX - this.canvas.canvasElement.getBoundingClientRect().left;
-                this.mousePos.y = ev.clientY - this.canvas.canvasElement.getBoundingClientRect().top;
+                canvasOffset = this.canvas.canvasElement.getBoundingClientRect();
+                this.mousePos.x = ev.clientX - canvasOffset.left;
+                this.mousePos.y = ev.clientY - canvasOffset.top;
                 
                 currentHitNode = this._getHitNode(this.mousePos);
                 if (currentHitNode != prevHitNode) {
