@@ -16,7 +16,7 @@ var shape3 = new Percept.View.Polygon('poly',
         new Percept.Vector2(35, 28),
         new Percept.Vector2(0, 28)
     ],
-    Percept.Handle.AUTO
+    Percept.Handle.AUTO,
     {
         fill: true,
         fillColor: '#FFCC99	'
