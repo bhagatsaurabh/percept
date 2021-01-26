@@ -6,11 +6,11 @@ Working with HTML5 canvas can be quite cumbersome, especially if you are making 
 ## Usage - NPM
 
 ```
-npm i @saurabh-prosoft/percept
+npm i canvas-percept
 ```
 
 ```javascript
-import Percept from '@saurabh-prosoft/percept/lib/percept.js';
+import Percept from 'canvas-percept/lib/percept.js';
 ```
 
 ## Usage - CDN
