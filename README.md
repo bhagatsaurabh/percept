@@ -5,7 +5,7 @@ Working with HTML5 canvas can be quite cumbersome, especially if you are making 
 
 ## CDN
 
-* [https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0/dist/percept.js](https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0/dist/percept.js)
+* [https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0/dist/percept.js](https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0.2/dist/percept.js)
 
 ## Usage
 Drawing a simple draggable rotating rectangle
