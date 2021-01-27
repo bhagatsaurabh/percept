@@ -15,7 +15,7 @@ import * as Percept from 'canvas-percept';
 
 ## Usage - CDN
 
-* [https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0.2/dist/percept.js](https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@2.0.2/dist/percept.js)
+* [https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@1.0.0/_bundles/percept.js](https://cdn.jsdelivr.net/gh/saurabh-prosoft/Percept@1.0.0/_bundles/percept.js)
 
 Drawing a simple draggable rotating rectangle
 
