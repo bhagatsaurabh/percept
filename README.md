@@ -10,7 +10,7 @@ npm i canvas-percept
 ```
 
 ```javascript
-import Percept from 'canvas-percept/lib/percept.js';
+import * as Percept from 'canvas-percept';
 ```
 
 ## Usage - CDN
