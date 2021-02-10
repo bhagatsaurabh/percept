@@ -1,6 +1,6 @@
 {
   "name": "canvas-percept",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HTML5 Canvas rendering library",
   "main": "lib/percept.js",
   "scripts": {
@@ -25,5 +25,8 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.17.0",
     "webpack-cli": "^4.4.0"
+  },
+  "dependencies": {
+    "typedoc": "^0.20.19"
   }
 }
