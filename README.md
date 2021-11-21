@@ -17,6 +17,10 @@ import * as Percept from 'canvas-percept';
 
 * [https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/_bundles/percept.js](https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/_bundles/percept.js)
 
+```html
+<script src="https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/_bundles/percept.js"></script>
+```
+
 ## Example
 
 Drawing a simple draggable rotating rectangle
