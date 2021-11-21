@@ -26,22 +26,18 @@ import * as Percept from 'canvas-percept';
 Drawing a simple draggable rotating rectangle
 
 ```javascript
-var canvas = new Percept.Canvas(document.getElementById('canvas'));
+let canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-var shape = new Percept.View.Rectangle('rect', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 100, 30, {
+let shape = new Percept.View.Rectangle('rect', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 100, 30, {
   fill: true,
   fillColor: new Percept.LinearGradient(Percept.Vector2.Zero(), 45, Percept.Handle.AUTO, ['red', 'green', 'blue'], [0, .5, 1]),
   shadowColor: '#000',
   shadowBlur: 5
 });
-shape.on('drag', (view, pos) => {
-   view.position = pos;
-});
-shape.on('update', () => {
-  shape.localRotation += 1;
-});
+shape.on('drag', (view, pos) => view.position = pos);
+shape.on('update', () => shape.localRotation += 1);
 
-var drawing = new Percept.Drawing(canvas);
+let drawing = new Percept.Drawing(canvas);
 drawing.add(shape);
 canvas.draw(drawing);
 ```
