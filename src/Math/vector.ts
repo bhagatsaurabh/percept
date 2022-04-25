@@ -1,25 +1,25 @@
-import { Canvas } from "../canvas";
-import { Constant, Matrix } from "./math";
+import { Canvas } from "../core";
+import { Constant } from "../common";
+import { Matrix } from "../math";
 
 /**
  * Stores 2D Vector
  */
 export class Vector2 {
-
   tmpX: number;
   tmpY: number;
 
-  constructor(public x: number, public y: number) { }
+  constructor(public x: number, public y: number) {}
 
   toString() {
-    return '[' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ']';
+    return "[" + this.x.toFixed(3) + ", " + this.y.toFixed(3) + "]";
   }
 
   add(arg1: number | Vector2, arg2?: number): Vector2 {
     // Params : (vector2d) or (x, y)
     if (arg1 instanceof Vector2) {
       return new Vector2(this.x + arg1.x, this.y + arg1.y);
-    } else if (typeof arg2 === 'undefined') {
+    } else if (typeof arg2 === "undefined") {
       return new Vector2(this.x + arg1, this.y + arg1);
     } else {
       return new Vector2(this.x + arg1, this.y + arg2);
@@ -90,8 +90,8 @@ export class Vector2 {
     let cosT = Math.cos(degrees);
     let sinT = Math.sin(degrees);
     return new Vector2(
-      (cosT * (this.x - pivot.x)) - (sinT * (this.y - pivot.y)) + pivot.x,
-      (sinT * (this.x - pivot.x)) + (cosT * (this.y - pivot.y)) + pivot.y
+      cosT * (this.x - pivot.x) - sinT * (this.y - pivot.y) + pivot.x,
+      sinT * (this.x - pivot.x) + cosT * (this.y - pivot.y) + pivot.y
     );
   }
 
@@ -99,8 +99,8 @@ export class Vector2 {
     degrees = degrees * Constant.TAU;
     let cosT = Math.cos(degrees);
     let sinT = Math.sin(degrees);
-    this.tmpX = (cosT * (this.x - pivot.x)) - (sinT * (this.y - pivot.y)) + pivot.x;
-    this.tmpY = (sinT * (this.x - pivot.x)) + (cosT * (this.y - pivot.y)) + pivot.y;
+    this.tmpX = cosT * (this.x - pivot.x) - sinT * (this.y - pivot.y) + pivot.x;
+    this.tmpY = sinT * (this.x - pivot.x) + cosT * (this.y - pivot.y) + pivot.y;
     this.x = this.tmpX;
     this.y = this.tmpY;
     return this;
@@ -122,11 +122,16 @@ export class Vector2 {
   }
 
   static Midpoint(vector1: Vector2, vector2: Vector2): Vector2 {
-    return new Vector2((vector1.x + vector2.x) / 2, (vector1.y + vector2.y) / 2);
+    return new Vector2(
+      (vector1.x + vector2.x) / 2,
+      (vector1.y + vector2.y) / 2
+    );
   }
 
   static Distance(vector1: Vector2, vector2: Vector2): number {
-    return Math.sqrt(Math.pow(vector2.x - vector1.x, 2) + Math.pow(vector2.y - vector1.y, 2));
+    return Math.sqrt(
+      Math.pow(vector2.x - vector1.x, 2) + Math.pow(vector2.y - vector1.y, 2)
+    );
   }
 
   static Zero(): Vector2 {
@@ -136,7 +141,6 @@ export class Vector2 {
   static One(): Vector2 {
     return new Vector2(1, 1);
   }
-
 
   static Bounds(vectors: Vector2[]): Vector2[] {
     let minVec = new Vector2(Number.MAX_VALUE, Number.MAX_VALUE);
@@ -161,7 +165,12 @@ export class Vector2 {
     return new Vector2(sumX / vectors.length, sumY / vectors.length);
   }
 
-  static Random(minXOrCanvas: number | Canvas, maxX?: number, minY?: number, maxY?: number): Vector2 {
+  static Random(
+    minXOrCanvas: number | Canvas,
+    maxX?: number,
+    minY?: number,
+    maxY?: number
+  ): Vector2 {
     if (minXOrCanvas instanceof Canvas) {
       return new Vector2(
         Math.random() * minXOrCanvas.width,
@@ -177,8 +186,8 @@ export class Vector2 {
 
   static Lerp(start: Vector2, end: Vector2, amount: number): Vector2 {
     return new Vector2(
-      start.x + ((end.x - start.x) * amount),
-      start.y + ((end.y - start.y) * amount)
+      start.x + (end.x - start.x) * amount,
+      start.y + (end.y - start.y) * amount
     );
   }
 

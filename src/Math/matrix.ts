@@ -11,7 +11,9 @@ export class Matrix {
   multiply(another: Matrix | number[][]): Matrix {
     let result;
     if (another instanceof Matrix) {
-      result = [...Array(this.value.length)].map(() => Array(another.value[0].length));
+      result = [...Array(this.value.length)].map(() =>
+        Array(another.value[0].length)
+      );
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another.value[0].length; j++) {
@@ -23,7 +25,9 @@ export class Matrix {
         }
       }
     } else {
-      result = [...Array(this.value.length)].map(() => Array(another[0].length));
+      result = [...Array(this.value.length)].map(() =>
+        Array(another[0].length)
+      );
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another[0].length; j++) {
@@ -42,7 +46,9 @@ export class Matrix {
   multiplyInPlace(another: Matrix | number[][]): Matrix {
     let result;
     if (another instanceof Matrix) {
-      result = [...Array(this.value.length)].map(() => Array(another.value[0].length));
+      result = [...Array(this.value.length)].map(() =>
+        Array(another.value[0].length)
+      );
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another.value[0].length; j++) {
@@ -54,7 +60,9 @@ export class Matrix {
         }
       }
     } else {
-      result = [...Array(this.value.length)].map(() => Array(another[0].length));
+      result = [...Array(this.value.length)].map(() =>
+        Array(another[0].length)
+      );
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another[0].length; j++) {
@@ -75,7 +83,7 @@ export class Matrix {
     return new Matrix([
       [this.value[0][0], this.value[0][1], this.value[0][2]],
       [this.value[1][0], this.value[1][1], this.value[1][2]],
-      [this.value[2][0], this.value[2][1], this.value[2][2]]
+      [this.value[2][0], this.value[2][1], this.value[2][2]],
     ]);
   }
 
@@ -87,11 +95,19 @@ export class Matrix {
   }
 
   static Identity() {
-    return new Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+    return new Matrix([
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+    ]);
   }
 
   static Zero() {
-    return new Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+    return new Matrix([
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ]);
   }
 
   static Multiply(matrix1: number[][], matrix2: number[][]) {

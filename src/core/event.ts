@@ -1,6 +1,5 @@
-/**@hidden */
 export interface Event {
-  registeredEvents: any
+  registeredEvents: any;
 
   on(eventKey: string, callback: Function): void;
 }

@@ -1,3 +1,3 @@
 export enum Handle {
-  AUTO = -1
+  AUTO = -1,
 }

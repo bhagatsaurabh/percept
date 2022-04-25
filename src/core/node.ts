@@ -1,7 +1,5 @@
-import { Transform, Vector2 } from "./Math/math";
-import { Drawing } from "./drawing";
-import { Event } from "./event";
-import { Color } from "./color";
+import { Transform, Vector2 } from "../math";
+import { Drawing, Event, Color } from ".";
 
 /**@hidden */
 export abstract class Node implements Event {
