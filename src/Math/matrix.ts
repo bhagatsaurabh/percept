@@ -8,7 +8,7 @@ export class Matrix {
     this.value = value;
   }
 
-  multiply(another: Matrix | number[][]): Matrix {
+  private _multiply(another: Matrix | number[][]): number[][] {
     let result;
     if (another instanceof Matrix) {
       result = [...Array(this.value.length)].map(() =>
@@ -40,42 +40,15 @@ export class Matrix {
       }
     }
 
-    return new Matrix(result);
+    return result;
+  }
+
+  multiply(another: Matrix | number[][]): Matrix {
+    return new Matrix(this._multiply(another));
   }
 
   multiplyInPlace(another: Matrix | number[][]): Matrix {
-    let result;
-    if (another instanceof Matrix) {
-      result = [...Array(this.value.length)].map(() =>
-        Array(another.value[0].length)
-      );
-
-      for (let i = 0; i < this.value.length; i++) {
-        for (let j = 0; j < another.value[0].length; j++) {
-          let sum = 0;
-          for (let k = 0; k < this.value[0].length; k++) {
-            sum += this.value[i][k] * another.value[k][j];
-          }
-          result[i][j] = sum;
-        }
-      }
-    } else {
-      result = [...Array(this.value.length)].map(() =>
-        Array(another[0].length)
-      );
-
-      for (let i = 0; i < this.value.length; i++) {
-        for (let j = 0; j < another[0].length; j++) {
-          let sum = 0;
-          for (let k = 0; k < this.value[0].length; k++) {
-            sum += this.value[i][k] * another[k][j];
-          }
-          result[i][j] = sum;
-        }
-      }
-    }
-
-    this.value = result;
+    this.value = this._multiply(another);
     return this;
   }
 
