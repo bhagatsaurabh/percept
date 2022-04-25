@@ -11,7 +11,7 @@ export class Matrix {
   multiply(another: Matrix | number[][]): Matrix {
     let result;
     if (another instanceof Matrix) {
-      result = [...Array(this.value.length)].map(x => Array(another.value[0].length));
+      result = [...Array(this.value.length)].map(() => Array(another.value[0].length));
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another.value[0].length; j++) {
@@ -23,7 +23,7 @@ export class Matrix {
         }
       }
     } else {
-      result = [...Array(this.value.length)].map(x => Array(another[0].length));
+      result = [...Array(this.value.length)].map(() => Array(another[0].length));
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another[0].length; j++) {
@@ -42,7 +42,7 @@ export class Matrix {
   multiplyInPlace(another: Matrix | number[][]): Matrix {
     let result;
     if (another instanceof Matrix) {
-      result = [...Array(this.value.length)].map(x => Array(another.value[0].length));
+      result = [...Array(this.value.length)].map(() => Array(another.value[0].length));
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another.value[0].length; j++) {
@@ -54,7 +54,7 @@ export class Matrix {
         }
       }
     } else {
-      result = [...Array(this.value.length)].map(x => Array(another[0].length));
+      result = [...Array(this.value.length)].map(() => Array(another[0].length));
 
       for (let i = 0; i < this.value.length; i++) {
         for (let j = 0; j < another[0].length; j++) {
@@ -95,7 +95,7 @@ export class Matrix {
   }
 
   static Multiply(matrix1: number[][], matrix2: number[][]) {
-    let result = [...Array(matrix1.length)].map(x => Array(matrix2[0].length));
+    let result = [...Array(matrix1.length)].map(() => Array(matrix2[0].length));
 
     for (let i = 0; i < matrix1.length; i++) {
       for (let j = 0; j < matrix2[0].length; j++) {

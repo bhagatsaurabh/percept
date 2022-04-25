@@ -1,12 +1,10 @@
-import { Transform } from './Math/math';
-import { Drawing } from './drawing';
-import { Event } from './event';
-import { Vector2 } from './Math/math';
-import { Color } from './color';
+import { Transform, Vector2 } from "./Math/math";
+import { Drawing } from "./drawing";
+import { Event } from "./event";
+import { Color } from "./color";
 
 /**@hidden */
 export abstract class Node implements Event {
-
   drawing: Drawing;
   context: CanvasRenderingContext2D;
   offContext: OffscreenCanvasRenderingContext2D;
@@ -26,9 +24,11 @@ export abstract class Node implements Event {
   set zIndex(zIndex: number) {
     this.order = zIndex;
 
-    (this.parent) && this.parent.transform.childs.sort((a, b) => {
-      return a.node.order - b.node.order;
-    });
+    if (this.parent) {
+      this.parent.transform.childs.sort((a, b) => {
+        return a.node.order - b.node.order;
+      });
+    }
   }
 
   get parent(): Node {
@@ -76,7 +76,14 @@ export abstract class Node implements Event {
   }
 
   constructor(public id: string, position: Vector2, controlPoints: Vector2[]) {
-    this.transform = new Transform(position, 0, 0, Vector2.One(), controlPoints, this);
+    this.transform = new Transform(
+      position,
+      0,
+      0,
+      Vector2.One(),
+      controlPoints,
+      this
+    );
     this.registeredEvents = {};
     this.order = 0;
   }
@@ -93,7 +100,7 @@ export abstract class Node implements Event {
 
     this.transform.childs.forEach((child) => {
       child.node.setHitColor();
-    })
+    });
   }
 
   on(eventKey: string, callback: Function): void {
@@ -131,7 +138,10 @@ export abstract class Node implements Event {
     }
   }
 
-  setContext(context: CanvasRenderingContext2D, offContext: OffscreenCanvasRenderingContext2D) {
+  setContext(
+    context: CanvasRenderingContext2D,
+    offContext: OffscreenCanvasRenderingContext2D
+  ) {
     this.context = context;
     this.offContext = offContext;
     this.transform.childs.forEach((child) => {
@@ -145,8 +155,6 @@ export abstract class Node implements Event {
       child.node.setDrawing(drawing);
     });
   }
-
-
 
   dispose(): void {
     this.drawing.remove(this.id);

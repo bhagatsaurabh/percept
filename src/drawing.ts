@@ -45,7 +45,6 @@ export class Drawing {
 
   _registerEvents(): void {
     let currentHitNode: Node, prevHitNode: Node;
-    let isDragging = false;
     let currentDragNode: Node = null;
     let canvasOffset: DOMRect;
 
@@ -65,7 +64,6 @@ export class Drawing {
     };
 
     this.canvas.canvasElement.onmousedown = () => {
-      isDragging = true;
       currentDragNode = currentHitNode;
 
       let hitNode = this._getHitNode(this.mousePos);
@@ -73,7 +71,6 @@ export class Drawing {
     }
 
     this.canvas.canvasElement.onmouseup = () => {
-      isDragging = false;
       currentDragNode = null;
 
       let hitNode = this._getHitNode(this.mousePos);

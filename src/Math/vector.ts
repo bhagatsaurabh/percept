@@ -1,6 +1,5 @@
 import { Canvas } from "../canvas";
-import { Constant } from "./math";
-import { Matrix } from "./math";
+import { Constant, Matrix } from "./math";
 
 /**
  * Stores 2D Vector

@@ -1,5 +1,4 @@
-import { Constant } from "../Math/math";
-import { Vector2 } from "../Math/math";
+import { Constant, Vector2 } from "../Math/math";
 import { Handle } from "../enums";
 import { Node } from '../node';
 
@@ -27,8 +26,6 @@ export class LinearGradient {
     from = this.offset.subtract(delta).transform(this.node.transform.worldTransform);
     to = this.offset.add(delta).transform(this.node.transform.worldTransform);
 
-    //Debug.debugLine(this.node.drawing, from, to, {color: 'yellow', width: 2});
-
     gradient = context.createLinearGradient(from.x, from.y, to.x, to.y);
     this.colors.forEach((color, index) => {
       gradient.addColorStop(this.weights[index], color);
@@ -55,9 +52,6 @@ export class RadialGradient {
       fromRadius = this.fromRadius;
       toRadius = this.toRadius;
     }
-
-    //Debug.debugPoint(this.node.drawing, fromCenter, {color: 'green', radius: 2});
-    //Debug.debugPoint(this.node.drawing, toCenter, {color: 'red', radius: 2});
 
     gradient = context.createRadialGradient(fromCenter.x, fromCenter.y, fromRadius, toCenter.x, toCenter.y, toRadius);
     this.colors.forEach((color, index) => {
