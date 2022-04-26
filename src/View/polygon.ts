@@ -1,7 +1,7 @@
-import { Vector2 } from "../math";
+import { Vector2 } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
-import { Node } from "../core";
-import { Handle } from "../common";
+import { Node } from "../core/node";
+import { Handle } from "../common/enums";
 
 interface IPolygonProperties {
   outline?: boolean;

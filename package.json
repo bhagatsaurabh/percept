@@ -4,7 +4,7 @@
   "description": "HTML5 Canvas rendering library",
   "main": "lib/percept.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "clean": "shx rm -rf bundles lib lib-esm",
     "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack --config=webpack.prod.js",
     "docs": "typedoc --out docs/ src/percept.ts --excludePrivate --darkHighlightTheme dark-plus"
@@ -25,6 +25,7 @@
     "@types/offscreencanvas": "^2019.6.4",
     "babel-jest": "^28.0.0",
     "jest": "^27.5.1",
+    "jest-canvas-mock": "^2.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^27.1.4",
     "ts-loader": "^8.0.14",

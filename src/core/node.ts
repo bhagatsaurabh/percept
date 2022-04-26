@@ -1,11 +1,13 @@
 import { Transform, Vector2 } from "../math";
-import { Drawing, Event, Color } from ".";
+import { Drawing } from "./drawing";
+import { Event } from "./event";
+import { Color } from "./color";
 
 /**@hidden */
 export abstract class Node implements Event {
   drawing: Drawing;
   context: CanvasRenderingContext2D;
-  offContext: OffscreenCanvasRenderingContext2D;
+  offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
   transform: Transform;
   registeredEvents: any;
   order: number;
@@ -138,7 +140,7 @@ export abstract class Node implements Event {
 
   setContext(
     context: CanvasRenderingContext2D,
-    offContext: OffscreenCanvasRenderingContext2D
+    offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D
   ) {
     this.context = context;
     this.offContext = offContext;

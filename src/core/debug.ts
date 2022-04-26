@@ -1,5 +1,5 @@
 import { Drawing, IDebugCall } from ".";
-import { Vector2 } from "../math";
+import { Vector2 } from "../math/vector";
 
 /**
  * Includes static methods for debugging

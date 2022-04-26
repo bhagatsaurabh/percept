@@ -1,4 +1,4 @@
-import { Drawing } from ".";
+import { Drawing } from "./drawing";
 
 /**
  * The Canvas object holds an HTMLCanvasElement reference and its 2d context
@@ -6,12 +6,12 @@ import { Drawing } from ".";
 export class Canvas {
   canvasElement: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
-  offCanvasElement: OffscreenCanvas;
-  offContext: OffscreenCanvasRenderingContext2D;
+  offCanvasElement: OffscreenCanvas | HTMLCanvasElement;
+  offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
   width: number;
   height: number;
-  private drawingHandle: number = -1;
+  private frameId: number = 0;
 
   /**
    * If no parameters are passed then a new canvas element will be created and appended to `<body>`
@@ -53,8 +53,15 @@ export class Canvas {
     this.height = this.canvasElement.height;
     this.context = this.canvasElement.getContext("2d");
 
-    this.offCanvasElement = new OffscreenCanvas(this.width, this.height);
-    this.offContext = this.offCanvasElement.getContext("2d");
+    if (typeof OffscreenCanvas !== "undefined") {
+      this.offCanvasElement = new OffscreenCanvas(this.width, this.height);
+      this.offContext = this.offCanvasElement.getContext("2d");
+    } else {
+      this.offCanvasElement = document.createElement("canvas");
+      this.offCanvasElement.width = this.width;
+      this.offCanvasElement.height = this.height;
+      this.offContext = this.offCanvasElement.getContext("2d");
+    }
   }
 
   /**
@@ -63,9 +70,23 @@ export class Canvas {
    * @param drawing A `Drawing` object, which will be rendered by this canvas
    */
   draw(drawing: Drawing) {
-    if (this.drawingHandle != -1) {
-      window.cancelAnimationFrame(this.drawingHandle);
-    }
-    window.requestAnimationFrame(drawing.render.bind(drawing));
+    this.stop();
+    this.render(drawing);
+  }
+
+  /**
+   * Stops rendering current Drawing
+   */
+  stop() {
+    window.cancelAnimationFrame(this.frameId);
+  }
+
+  /* istanbul ignore next */
+  private render(drawing: Drawing) {
+    drawing.render();
+    if (this.frameId < 0) return;
+    this.frameId = window.requestAnimationFrame(
+      this.render.bind(this, drawing)
+    );
   }
 }

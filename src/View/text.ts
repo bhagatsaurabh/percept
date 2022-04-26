@@ -1,4 +1,4 @@
-import { Vector2 } from "../math";
+import { Vector2 } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 

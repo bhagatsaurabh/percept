@@ -1,5 +1,5 @@
-import { Vector2 } from "../math";
-import { Node } from "../core";
+import { Vector2 } from "../math/vector";
+import { Node } from "../core/node";
 
 interface IImageProperties {
   shadowColor?: string;

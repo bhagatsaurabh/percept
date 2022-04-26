@@ -1,6 +1,6 @@
 import { Constant, Handle } from "../common";
-import { Node } from "../core";
-import { Vector2 } from "../math";
+import { Node } from "../core/node";
+import { Vector2 } from "../math/vector";
 
 export class LinearGradient {
   node: Node;

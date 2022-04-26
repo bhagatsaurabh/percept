@@ -3,4 +3,5 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
   testEnvironment: "jsdom",
+  setupFiles: ["jest-canvas-mock"],
 };

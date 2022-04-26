@@ -1,6 +1,6 @@
-import { Canvas } from "../core";
-import { Constant } from "../common";
-import { Matrix } from "../math";
+import { Canvas } from "../core/canvas";
+import { Constant } from "../common/constants";
+import { Matrix } from "../math/matrix";
 
 /**
  * Stores 2D Vector

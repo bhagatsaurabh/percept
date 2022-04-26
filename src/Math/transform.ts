@@ -1,6 +1,6 @@
 import { Matrix, Vector2 } from ".";
-import { Constant } from "../common";
-import { Node } from "../core";
+import { Constant } from "../common/constants";
+import { Node } from "../core/node";
 
 // Stores a node's transform (position, rotation, scale)
 export class Transform {

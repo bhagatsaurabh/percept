@@ -1,6 +1,6 @@
 import { Canvas, Debug, Node, Color } from ".";
-import { Vector2 } from "../math";
-import { Empty } from "../view";
+import { Vector2 } from "../math/vector";
+import { Empty } from "../view/empty";
 
 export interface IDebugCall {
   [key: string]: {
@@ -119,7 +119,6 @@ export class Drawing {
     });
 
     Debug.show(this.debugCalls, this.canvas.context);
-    window.requestAnimationFrame(this.render.bind(this));
   }
 
   /**

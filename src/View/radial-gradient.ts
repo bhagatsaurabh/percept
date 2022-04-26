@@ -1,6 +1,6 @@
-import { Vector2 } from "../math";
-import { Handle } from "../common";
-import { Node } from "../core";
+import { Vector2 } from "../math/vector";
+import { Handle } from "../common/enums";
+import { Node } from "../core/node";
 
 export class RadialGradient {
   node: Node;
