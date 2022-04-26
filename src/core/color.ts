@@ -12,7 +12,8 @@ export class Color {
     );
   }
 
-  static _componentToHex(c: number) {
+  /* istanbul ignore next */
+  private static _componentToHex(c: number) {
     let hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
   }
