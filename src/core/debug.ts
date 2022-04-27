@@ -1,4 +1,4 @@
-import { Drawing, IDebugCall } from ".";
+import { Drawing, DebugCall } from ".";
 import { Vector2 } from "../math/vector";
 
 /**
@@ -29,6 +29,7 @@ export class Debug {
     });
   }
 
+  /* istanbul ignore next */
   private static _debugPoint(
     context: CanvasRenderingContext2D,
     center: Vector2,
@@ -72,6 +73,7 @@ export class Debug {
     });
   }
 
+  /* istanbul ignore next */
   private static _debugLine(
     context: CanvasRenderingContext2D,
     from: Vector2,
@@ -101,7 +103,10 @@ export class Debug {
    *
    * Starts debug render calls stored in debugCalls
    */
-  static show(debugCalls: IDebugCall, context: CanvasRenderingContext2D) {
+  static show(
+    debugCalls: Record<string, DebugCall[]>,
+    context: CanvasRenderingContext2D
+  ) {
     for (let debug in debugCalls) {
       for (let call of debugCalls[debug]) {
         context.save();
@@ -112,6 +117,7 @@ export class Debug {
   }
 
   // Used for persisting the debug calls on canvas (shifts array of debug calls to limit array size to frames)
+  /* istanbul ignore next */
   private static limitDebugCalls(
     drawing: Drawing,
     key: string,

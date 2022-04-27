@@ -1,7 +1,7 @@
 import { Vector2 } from "../math/vector";
 import { Node } from "../core/node";
 
-interface IImageProperties {
+export interface ImageOptions {
   shadowColor?: string;
   shadowOffset?: Vector2;
   staticShadow?: boolean;
@@ -17,7 +17,7 @@ export class Image extends Node {
     source: string | HTMLImageElement,
     public width: number,
     public height: number,
-    public props?: IImageProperties
+    public props?: ImageOptions
   ) {
     super(id, position, []);
 

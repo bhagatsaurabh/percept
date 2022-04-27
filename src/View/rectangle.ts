@@ -2,7 +2,7 @@ import { Vector2 } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
-interface IRectangleProperties {
+export interface RectangleOptions {
   outline?: boolean;
   fill?: boolean;
   outlineColor?: string | LinearGradient | RadialGradient;
@@ -21,7 +21,7 @@ export class Rectangle extends Node {
     position: Vector2,
     width: number,
     height: number,
-    public props?: IRectangleProperties
+    public props?: RectangleOptions
   ) {
     super(id, position, [
       position.add(-width / 2, -height / 2),

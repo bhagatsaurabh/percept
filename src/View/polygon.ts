@@ -3,7 +3,7 @@ import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 import { Handle } from "../common/enums";
 
-interface IPolygonProperties {
+export interface PolygonOptions {
   outline?: boolean;
   fill?: boolean;
   outlineColor?: string | LinearGradient | RadialGradient;
@@ -21,7 +21,7 @@ export class Polygon extends Node {
     id: string,
     vertices: Vector2[],
     center: Vector2 | Handle,
-    public props?: IPolygonProperties
+    public props?: PolygonOptions
   ) {
     super(
       id,

@@ -2,7 +2,7 @@ import { Vector2 } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
-interface ILineProperties {
+export interface LineOptions {
   color?: string | LinearGradient | RadialGradient;
   lineWidth?: number;
   lineCap?: CanvasLineCap;
@@ -28,7 +28,7 @@ export class Line extends Node {
     public _from: Vector2 | Node,
     public _to: Vector2 | Node,
     pivot?: number,
-    public props?: ILineProperties
+    public props?: LineOptions
   ) {
     super(
       id,

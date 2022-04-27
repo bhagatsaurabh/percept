@@ -2,7 +2,7 @@ import { Vector2 } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
-interface IEllipseProperties {
+export interface EllipseOptions {
   outline?: boolean;
   fill?: boolean;
   outlineColor?: string | LinearGradient | RadialGradient;
@@ -21,7 +21,7 @@ export class Ellipse extends Node {
     position: Vector2,
     public minor: number,
     public major: number,
-    public props?: IEllipseProperties
+    public props?: EllipseOptions
   ) {
     super(id, position, [
       position.subtract(0, minor),

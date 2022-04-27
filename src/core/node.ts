@@ -3,7 +3,6 @@ import { Drawing } from "./drawing";
 import { Event } from "./event";
 import { Color } from "./color";
 
-/**@hidden */
 export abstract class Node implements Event {
   drawing: Drawing;
   context: CanvasRenderingContext2D;

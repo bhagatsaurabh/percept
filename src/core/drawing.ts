@@ -2,12 +2,10 @@ import { Canvas, Debug, Node, Color } from ".";
 import { Vector2 } from "../math/vector";
 import { Empty } from "../view/empty";
 
-export interface IDebugCall {
-  [key: string]: {
-    debugFunction: Function;
-    arguments: any[];
-    frames?: number;
-  }[];
+export interface DebugCall {
+  debugFunction: Function;
+  arguments: any[];
+  frames?: number;
 }
 
 /**
@@ -17,7 +15,7 @@ export class Drawing {
   // Scene-graph root node
   private renderTree: Node;
   /**@hidden */
-  debugCalls: IDebugCall;
+  debugCalls: Record<string, DebugCall[]>;
 
   colorToNode: { [key: string]: Node };
   mousePos: Vector2;

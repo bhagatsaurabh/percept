@@ -2,7 +2,7 @@ import { Vector2 } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
-interface ITextProperties {
+export interface TextOptions {
   font?: string;
   outline?: boolean;
   fill?: boolean;
@@ -31,7 +31,7 @@ export class Text extends Node {
     id: string,
     position: Vector2,
     text: string,
-    public props?: ITextProperties
+    public props?: TextOptions
   ) {
     super(id, position, []);
 
