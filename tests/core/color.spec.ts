@@ -1,5 +1,7 @@
 import { Color } from "../../src/core/color";
 
+jest.clearAllMocks();
+
 describe("The Color static methods", () => {
   test("if static method Random generates a valid color hex", () => {
     expect(/^#[0-9A-F]{6}$/i.test(Color.Random())).toStrictEqual(true);

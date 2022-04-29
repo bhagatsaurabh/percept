@@ -1,4 +1,4 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
@@ -10,7 +10,7 @@ export interface TextOptions {
   fillColor?: string | LinearGradient | RadialGradient;
   outlineWidth?: number;
   shadowColor?: string;
-  shadowOffset?: Vector2;
+  shadowOffset?: Vector;
   staticShadow?: boolean;
   shadowBlur?: number;
 }
@@ -29,7 +29,7 @@ export class Text extends Node {
 
   constructor(
     id: string,
-    position: Vector2,
+    position: Vector,
     text: string,
     public props?: TextOptions
   ) {
@@ -127,9 +127,9 @@ export class Text extends Node {
     );
   }
 
-  getDimension(): Vector2 {
-    return new Vector2(
-      Vector2.Distance(
+  getDimension(): Vector {
+    return new Vector(
+      Vector.Distance(
         this.transform.controlPoints[0],
         this.transform.controlPoints[1]
       ),

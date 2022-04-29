@@ -1,9 +1,9 @@
 var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-var rectangle1 = new Percept.View.Rectangle('rect1', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 15, 15, {
+var rectangle1 = new Percept.View.Rectangle('rect1', new Percept.Vector(canvas.width / 2, canvas.height / 2), 15, 15, {
     fill: true, fillColor: 'red'
 });
-var rectangle2 = new Percept.View.Rectangle('rect2', new Percept.Vector2(100, 0), 15, 15, {
+var rectangle2 = new Percept.View.Rectangle('rect2', new Percept.Vector(100, 0), 15, 15, {
     fill: true, fillColor: 'green'
 });
 

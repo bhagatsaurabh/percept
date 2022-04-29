@@ -1,14 +1,14 @@
 var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-var rect1 = new Percept.View.Rectangle('rect1', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 40, 40, {
+var rect1 = new Percept.View.Rectangle('rect1', new Percept.Vector(canvas.width / 2, canvas.height / 2), 40, 40, {
     fill: true,
     fillColor: 'red'
 });
-var rect2 = new Percept.View.Rectangle('rect2', new Percept.Vector2(100, 0), 20, 20, {
+var rect2 = new Percept.View.Rectangle('rect2', new Percept.Vector(100, 0), 20, 20, {
     fill: true,
     fillColor: 'green'
 });
-var rect3 = new Percept.View.Rectangle('rect3', new Percept.Vector2(50, 0), 10, 10, {
+var rect3 = new Percept.View.Rectangle('rect3', new Percept.Vector(50, 0), 10, 10, {
     fill: true,
     fillColor: 'blue'
 });

@@ -8,6 +8,7 @@ export class Matrix {
     this.value = value;
   }
 
+  /* istanbul ignore next */
   private _multiply(another: Matrix | number[][]): number[][] {
     let result;
     if (another instanceof Matrix) {

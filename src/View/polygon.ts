@@ -1,4 +1,4 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 import { Handle } from "../common/enums";
@@ -11,7 +11,7 @@ export interface PolygonOptions {
   outlineWidth?: number;
   outlineDashSegments?: number[];
   shadowColor?: string;
-  shadowOffset?: Vector2;
+  shadowOffset?: Vector;
   staticShadow?: boolean;
   shadowBlur?: number;
 }
@@ -19,13 +19,13 @@ export interface PolygonOptions {
 export class Polygon extends Node {
   constructor(
     id: string,
-    vertices: Vector2[],
-    center: Vector2 | Handle,
+    vertices: Vector[],
+    center: Vector | Handle,
     public props?: PolygonOptions
   ) {
     super(
       id,
-      center instanceof Vector2 ? center : Vector2.Average(vertices),
+      center instanceof Vector ? center : Vector.Average(vertices),
       vertices
     );
 
@@ -120,10 +120,10 @@ export class Polygon extends Node {
     }
   }
 
-  getDimension(): Vector2 {
-    let bounds = Vector2.Bounds(this.transform.controlPoints);
+  getDimension(): Vector {
+    let bounds = Vector.Bounds(this.transform.controlPoints);
 
-    return new Vector2(
+    return new Vector(
       Math.abs(bounds[0].x - bounds[1].x),
       Math.abs(bounds[0].y - bounds[1].y)
     );

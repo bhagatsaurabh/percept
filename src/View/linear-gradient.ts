@@ -1,12 +1,12 @@
 import { Constant, Handle } from "../common";
 import { Node } from "../core/node";
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 
 export class LinearGradient {
   node: Node;
 
   constructor(
-    public offset: Vector2,
+    public offset: Vector,
     public degrees: number,
     public length: number | Handle,
     public colors: string[],
@@ -18,7 +18,7 @@ export class LinearGradient {
       from,
       to,
       length,
-      delta = new Vector2(0, 0);
+      delta = new Vector(0, 0);
 
     length =
       this.length == Handle.AUTO ? this.node.getDimension().max() : this.length;

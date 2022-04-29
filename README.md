@@ -28,9 +28,9 @@ Drawing a simple draggable rotating rectangle
 ```javascript
 let canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-let shape = new Percept.View.Rectangle('rect', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 100, 30, {
+let shape = new Percept.View.Rectangle('rect', new Percept.Vector(canvas.width / 2, canvas.height / 2), 100, 30, {
   fill: true,
-  fillColor: new Percept.LinearGradient(Percept.Vector2.Zero(), 45, Percept.Handle.AUTO, ['red', 'green', 'blue'], [0, .5, 1]),
+  fillColor: new Percept.LinearGradient(Percept.Vector.Zero(), 45, Percept.Handle.AUTO, ['red', 'green', 'blue'], [0, .5, 1]),
   shadowColor: '#000',
   shadowBlur: 5
 });

@@ -1,6 +1,6 @@
 var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-var middle = new Percept.View.Rectangle('middle', new Percept.Vector2(canvas.width / 2, canvas.height / 2), 70, 30, {
+var middle = new Percept.View.Rectangle('middle', new Percept.Vector(canvas.width / 2, canvas.height / 2), 70, 30, {
     fill: true,
     fillColor: '#cc99ff',
     outline: true,
@@ -17,7 +17,7 @@ middle.on('mouseenter', () => {
 middle.on('mouseexit', () => {
     middle.props.fillColor = '#cc99ff';
     middle.childs.forEach((child) => {
-        child.position = Percept.Vector2.Zero();
+        child.position = Percept.Vector.Zero();
     });
 });
 var text = new Percept.View.Text('caption', middle.position.subtract(0, 40), 'Hover over me', {
@@ -25,7 +25,7 @@ var text = new Percept.View.Text('caption', middle.position.subtract(0, 40), 'Ho
 });
 
 for (var i = 0 ; i < 10 ; i++) {
-    var movingCirc = new Percept.View.Ellipse('movingCirc' + i, Percept.Vector2.Zero(), 5, 5, {
+    var movingCirc = new Percept.View.Ellipse('movingCirc' + i, Percept.Vector.Zero(), 5, 5, {
         fill: true,
         fillColor: Percept.Color.Random(),
         shadowColor: 'black',

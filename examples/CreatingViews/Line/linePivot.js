@@ -2,16 +2,16 @@ var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
 var line1 = new Percept.View.Line(
     'line1',
-    new Percept.Vector2(canvas.width * .3, canvas.height / 2),
-    new Percept.Vector2(canvas.width * .4, canvas.height / 2),
+    new Percept.Vector(canvas.width * .3, canvas.height / 2),
+    new Percept.Vector(canvas.width * .4, canvas.height / 2),
     0,
     { color: 'red'}
 );
 
 var line2 = new Percept.View.Line(
     'line2',
-    new Percept.Vector2(canvas.width * .7, canvas.height / 2),
-    new Percept.Vector2(canvas.width * .8, canvas.height / 2),
+    new Percept.Vector(canvas.width * .7, canvas.height / 2),
+    new Percept.Vector(canvas.width * .8, canvas.height / 2),
     0.5,
     { color: 'green'}
 );

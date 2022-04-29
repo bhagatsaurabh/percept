@@ -2,8 +2,8 @@ var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
 var line = new Percept.View.Line(
     'myLine',
-    new Percept.Vector2(canvas.width / 2, canvas.height / 2),
-    new Percept.Vector2(canvas.width / 2 + 100, canvas.height / 2 + 100),
+    new Percept.Vector(canvas.width / 2, canvas.height / 2),
+    new Percept.Vector(canvas.width / 2 + 100, canvas.height / 2 + 100),
     0,
     {
         color: 'red',

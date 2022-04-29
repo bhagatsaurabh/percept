@@ -1,29 +1,29 @@
 var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
-var circle1 = new Percept.View.Ellipse('circle1', new Percept.Vector2(canvas.width * .33, canvas.height / 2), 30, 30, {
+var circle1 = new Percept.View.Ellipse('circle1', new Percept.Vector(canvas.width * .33, canvas.height / 2), 30, 30, {
     fill: true,
     fillColor: 'red'
 });
-var circle2 = new Percept.View.Ellipse('circle2', new Percept.Vector2(80, 0), 15, 15, {
+var circle2 = new Percept.View.Ellipse('circle2', new Percept.Vector(80, 0), 15, 15, {
     fill: true,
     fillColor: 'green'
 });
-var circle3 = new Percept.View.Ellipse('circle3', new Percept.Vector2(25, 0), 5, 5, {
+var circle3 = new Percept.View.Ellipse('circle3', new Percept.Vector(25, 0), 5, 5, {
     fill: true,
     fillColor: 'blue'
 });
 circle3.parent = circle2;
 circle2.parent = circle1;
 
-var circle4 = new Percept.View.Ellipse('circle4', new Percept.Vector2(canvas.width * .66, canvas.height / 2), 30, 30, {
+var circle4 = new Percept.View.Ellipse('circle4', new Percept.Vector(canvas.width * .66, canvas.height / 2), 30, 30, {
     fill: true,
     fillColor: 'red'
 });
-var circle5 = new Percept.View.Ellipse('circle5', new Percept.Vector2(80, 0), 15, 15, {
+var circle5 = new Percept.View.Ellipse('circle5', new Percept.Vector(80, 0), 15, 15, {
     fill: true,
     fillColor: 'green'
 });
-var circle6 = new Percept.View.Ellipse('circle6', new Percept.Vector2(25, 0), 5, 5, {
+var circle6 = new Percept.View.Ellipse('circle6', new Percept.Vector(25, 0), 5, 5, {
     fill: true,
     fillColor: 'blue'
 });

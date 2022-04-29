@@ -1,4 +1,4 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
@@ -8,36 +8,36 @@ export interface LineOptions {
   lineCap?: CanvasLineCap;
   lineDashSegments?: number[];
   shadowColor?: string;
-  shadowOffset?: Vector2;
+  shadowOffset?: Vector;
   staticShadow?: boolean;
   shadowBlur?: number;
 }
 
 export class Line extends Node {
-  get from(): Vector2 {
+  get from(): Vector {
     if (this._from instanceof Node) return this._from.absolutePosition;
     else return this.transform.controlPoints[0];
   }
-  get to(): Vector2 {
+  get to(): Vector {
     if (this._to instanceof Node) return this._to.absolutePosition;
     else return this.transform.controlPoints[1];
   }
 
   constructor(
     id: string,
-    public _from: Vector2 | Node,
-    public _to: Vector2 | Node,
+    public _from: Vector | Node,
+    public _to: Vector | Node,
     pivot?: number,
     public props?: LineOptions
   ) {
     super(
       id,
-      _from instanceof Vector2 && _to instanceof Vector2
+      _from instanceof Vector && _to instanceof Vector
         ? pivot
           ? _from.add((_to.x - _from.x) * pivot, (_to.y - _from.y) * pivot)
           : _from.clone()
-        : Vector2.Zero(),
-      _from instanceof Vector2 && _to instanceof Vector2 ? [_from, _to] : []
+        : Vector.Zero(),
+      _from instanceof Vector && _to instanceof Vector ? [_from, _to] : []
     );
 
     !props && (this.props = {});
@@ -91,9 +91,9 @@ export class Line extends Node {
     this.offContext.stroke();
   }
 
-  getDimension(): Vector2 {
-    return new Vector2(
-      Vector2.Distance(
+  getDimension(): Vector {
+    return new Vector(
+      Vector.Distance(
         this.transform.controlPoints[0],
         this.transform.controlPoints[1]
       ),

@@ -1,5 +1,5 @@
 import { Drawing, DebugCall } from ".";
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 
 /**
  * Includes static methods for debugging
@@ -17,7 +17,7 @@ export class Debug {
   static debugPoint(
     key: string,
     drawing: Drawing,
-    point: Vector2,
+    point: Vector,
     props: { color: string; radius?: number },
     frames?: number
   ) {
@@ -32,7 +32,7 @@ export class Debug {
   /* istanbul ignore next */
   private static _debugPoint(
     context: CanvasRenderingContext2D,
-    center: Vector2,
+    center: Vector,
     props: { color: string; radius?: number }
   ) {
     context.fillStyle = props.color;
@@ -60,8 +60,8 @@ export class Debug {
   static debugLine(
     key: string,
     drawing: Drawing,
-    from: Vector2,
-    to: Vector2,
+    from: Vector,
+    to: Vector,
     props: { color: string; width?: number },
     frames?: number
   ) {
@@ -76,8 +76,8 @@ export class Debug {
   /* istanbul ignore next */
   private static _debugLine(
     context: CanvasRenderingContext2D,
-    from: Vector2,
-    to: Vector2,
+    from: Vector,
+    to: Vector,
     props: { color: string; width?: number }
   ) {
     context.strokeStyle = props.color;

@@ -4,7 +4,7 @@ var drawing = new Percept.Drawing(canvas);
 for (var i = 0 ; i < 100 ; i++) {
     var image = new Percept.View.Image(
         'image' + i,
-        Percept.Vector2.Random(canvas),
+        Percept.Vector.Random(canvas),
         'https://upload.wikimedia.org/wikipedia/commons/f/fa/Barrel_icon.png',
         50, 50
     );

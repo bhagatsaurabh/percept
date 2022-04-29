@@ -2,7 +2,7 @@ var canvas = new Percept.Canvas(document.getElementById('canvas'));
 
 var ellipse = new Percept.View.Ellipse(
     'ellipse',
-    new Percept.Vector2(canvas.width * .33, canvas.height / 2),
+    new Percept.Vector(canvas.width * .33, canvas.height / 2),
     30, 50,
     {
         fill: true,
@@ -14,7 +14,7 @@ var ellipse = new Percept.View.Ellipse(
 
 var circle = new Percept.View.Ellipse(
     'circle',
-    new Percept.Vector2(canvas.width * .66, canvas.height / 2),
+    new Percept.Vector(canvas.width * .66, canvas.height / 2),
     25, 25,
     {
         fill: true,

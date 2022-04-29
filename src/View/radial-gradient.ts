@@ -1,4 +1,4 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { Handle } from "../common/enums";
 import { Node } from "../core/node";
 
@@ -6,9 +6,9 @@ export class RadialGradient {
   node: Node;
 
   constructor(
-    public fromOffset: Vector2,
+    public fromOffset: Vector,
     public fromRadius: number | Handle,
-    public toOffset: Vector2,
+    public toOffset: Vector,
     public toRadius: number | Handle,
     public colors: string[],
     public weights: number[]

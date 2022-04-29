@@ -1,5 +1,5 @@
 import { Canvas, Debug, Node, Color } from ".";
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { Empty } from "../view/empty";
 
 export interface DebugCall {
@@ -13,12 +13,12 @@ export interface DebugCall {
  */
 export class Drawing {
   // Scene-graph root node
-  private renderTree: Node;
+  private sceneGraph: Node;
   /**@hidden */
   debugCalls: Record<string, DebugCall[]>;
 
   colorToNode: { [key: string]: Node };
-  mousePos: Vector2;
+  mousePos: Vector;
 
   /**
    *
@@ -26,18 +26,19 @@ export class Drawing {
    * @param globalUpdate A function that will be called per frame
    */
   constructor(public canvas: Canvas, public globalUpdate?: Function) {
-    let rootNode = new Empty("#Root", Vector2.Zero());
+    let rootNode = new Empty("#Root", Vector.Zero());
     rootNode.context = this.canvas.context;
     rootNode.drawing = this;
-    this.renderTree = rootNode;
+    this.sceneGraph = rootNode;
     this.debugCalls = {};
 
-    this.mousePos = Vector2.Zero();
+    this.mousePos = Vector.Zero();
     this.colorToNode = {};
     this._registerEvents();
   }
 
-  _registerEvents(): void {
+  /* istanbul ignore next */
+  private _registerEvents(): void {
     let currentHitNode: Node, prevHitNode: Node;
     let currentDragNode: Node = null;
     let canvasOffset: DOMRect;
@@ -84,7 +85,8 @@ export class Drawing {
     };
   }
 
-  _getHitNode(position: Vector2): Node {
+  /* istanbul ignore next */
+  private _getHitNode(position: Vector): Node {
     return this.colorToNode[
       Color.rgbToHex(
         this.canvas.offContext.getImageData(position.x, position.y, 1, 1).data
@@ -92,9 +94,7 @@ export class Drawing {
     ];
   }
 
-  /**
-   * @hidden
-   */
+  /** @hidden */
   render() {
     this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.canvas.offContext.clearRect(
@@ -104,15 +104,15 @@ export class Drawing {
       this.canvas.height
     );
 
-    this.renderTree.call("update");
+    this.sceneGraph.call("update");
 
     this.globalUpdate && this.globalUpdate();
 
-    this.renderTree.transform.childs.forEach((child) => {
+    this.sceneGraph.transform.childs.forEach((child) => {
       child.updateWorldTransform();
     });
 
-    this.renderTree.transform.childs.forEach((child) => {
+    this.sceneGraph.transform.childs.forEach((child) => {
       child.node.render();
     });
 
@@ -126,13 +126,13 @@ export class Drawing {
    */
   add(node: Node | Node[]): void {
     if (node instanceof Node) {
-      node.parent = this.renderTree;
+      node.parent = this.sceneGraph;
       node.setContext(this.canvas.context, this.canvas.offContext);
       node.setDrawing(this);
       node.setHitColor();
     } else {
       node.forEach((cNode) => {
-        cNode.parent = this.renderTree;
+        cNode.parent = this.sceneGraph;
         cNode.setContext(this.canvas.context, this.canvas.offContext);
         cNode.setDrawing(this);
         cNode.setHitColor();
@@ -140,12 +140,17 @@ export class Drawing {
     }
   }
 
+  /**
+   * Removes a view object from this drawing
+   *
+   * @param nodeOrID A View object or its id
+   */
   remove(nodeOrID: Node | string) {
     if (nodeOrID instanceof Node) nodeOrID = nodeOrID.id;
 
     let queue = [];
     let currentNode;
-    queue.push(this.renderTree);
+    queue.push(this.sceneGraph);
 
     while ((currentNode = queue.shift())) {
       if (currentNode.id == nodeOrID) {
@@ -161,7 +166,8 @@ export class Drawing {
     }
   }
 
-  _debugSceneGraph(root: Node, indent: string): void {
+  /* istanbul ignore next */
+  private _debugSceneGraph(root: Node, indent: string): void {
     console.log(indent + root.id + "[" + root.order + "]");
 
     root.transform.childs.forEach((child) => {

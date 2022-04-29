@@ -1,13 +1,13 @@
-import { Matrix, Vector2 } from ".";
+import { Matrix, Vector } from "./index";
 import { Constant } from "../common/constants";
 import { Node } from "../core/node";
 
 // Stores a node's transform (position, rotation, scale)
 export class Transform {
   // reference control points to apply transform to
-  refControlPoints: Vector2[];
+  refControlPoints: Vector[];
   // transformed control points
-  controlPoints: Vector2[];
+  controlPoints: Vector[];
   localTrasform: Matrix;
   worldTransform: Matrix;
   _parent: Transform;
@@ -31,15 +31,15 @@ export class Transform {
     }
   }
 
-  get position(): Vector2 {
+  get position(): Vector {
     return this._position;
   }
-  set position(newPosition: Vector2) {
+  set position(newPosition: Vector) {
     this._position = newPosition;
   }
 
-  get absolutePosition(): Vector2 {
-    return Vector2.Zero().transform(this.worldTransform);
+  get absolutePosition(): Vector {
+    return Vector.Zero().transform(this.worldTransform);
   }
 
   get rotation(): number {
@@ -56,19 +56,19 @@ export class Transform {
     this._localRotation = newRotation % 360;
   }
 
-  get scale(): Vector2 {
+  get scale(): Vector {
     return this._scale;
   }
-  set scale(newScale: Vector2) {
+  set scale(newScale: Vector) {
     this._scale = newScale;
   }
 
   constructor(
-    public _position: Vector2,
+    public _position: Vector,
     public _localRotation: number,
     public _rotation: number,
-    public _scale: Vector2,
-    controlPoints: Vector2[],
+    public _scale: Vector,
+    controlPoints: Vector[],
     public node: Node
   ) {
     this._parent = null;
@@ -79,8 +79,8 @@ export class Transform {
     this.controlPoints = [...controlPoints];
   }
 
-  private relativeControlPoints(controlPoints: Vector2[]): Vector2[] {
-    let result: Vector2[] = [];
+  private relativeControlPoints(controlPoints: Vector[]): Vector[] {
+    let result: Vector[] = [];
     controlPoints.forEach((controlPoint) => {
       result.push(controlPoint.subtract(this.position));
     });

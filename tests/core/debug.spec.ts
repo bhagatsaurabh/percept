@@ -1,7 +1,7 @@
 import { Drawing } from "../../src/core";
 import { Canvas } from "../../src/core/canvas";
 import { Debug } from "../../src/core/debug";
-import { Vector2 } from "../../src/math/vector";
+import { Vector } from "../../src/math/vector";
 
 const canvas = new Canvas(document.createElement("canvas"));
 
@@ -16,7 +16,7 @@ describe("The Debug methods", () => {
     const limitDebugCallsSpy = jest.spyOn<any, any>(Debug, "limitDebugCalls");
 
     const props = { color: "red" };
-    Debug.debugPoint("test", drawing, new Vector2(50, 50), props, 10);
+    Debug.debugPoint("test", drawing, new Vector(50, 50), props, 10);
 
     expect(limitDebugCallsSpy).toHaveBeenCalledWith(drawing, "test", 10);
     expect(drawing.debugCalls.hasOwnProperty("test")).toStrictEqual(true);
@@ -39,8 +39,8 @@ describe("The Debug methods", () => {
     Debug.debugLine(
       "test",
       drawing,
-      new Vector2(50, 50),
-      new Vector2(100, 100),
+      new Vector(50, 50),
+      new Vector(100, 100),
       props,
       10
     );

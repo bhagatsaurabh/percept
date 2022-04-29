@@ -1,8 +1,8 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { Node } from "../core/node";
 
 export class Empty extends Node {
-  constructor(id: string, position: Vector2) {
+  constructor(id: string, position: Vector) {
     super(id, position, []);
   }
 
@@ -13,7 +13,7 @@ export class Empty extends Node {
     /**/
   }
 
-  getDimension(): Vector2 {
-    return Vector2.Zero();
+  getDimension(): Vector {
+    return Vector.Zero();
   }
 }

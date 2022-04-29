@@ -1,4 +1,4 @@
-import { Transform, Vector2 } from "../math";
+import { Transform, Vector } from "../math";
 import { Drawing } from "./drawing";
 import { Event } from "./event";
 import { Color } from "./color";
@@ -14,12 +14,11 @@ export abstract class Node implements Event {
 
   abstract _render(): void;
   abstract _offRender(): void;
-  abstract getDimension(): Vector2;
+  abstract getDimension(): Vector;
 
   get zIndex(): number {
     return this.order;
   }
-
   set zIndex(zIndex: number) {
     this.order = zIndex;
 
@@ -43,13 +42,13 @@ export abstract class Node implements Event {
     });
   }
 
-  get position(): Vector2 {
+  get position(): Vector {
     return this.transform.position;
   }
-  set position(position: Vector2) {
+  set position(position: Vector) {
     this.transform.position = position;
   }
-  get absolutePosition(): Vector2 {
+  get absolutePosition(): Vector {
     return this.transform.absolutePosition;
   }
 
@@ -67,19 +66,19 @@ export abstract class Node implements Event {
     this.transform.localRotation = degrees;
   }
 
-  get scale(): Vector2 {
+  get scale(): Vector {
     return this.transform.scale;
   }
-  set scale(scale: Vector2) {
+  set scale(scale: Vector) {
     this.transform.scale = scale;
   }
 
-  constructor(public id: string, position: Vector2, controlPoints: Vector2[]) {
+  constructor(public id: string, position: Vector, controlPoints: Vector[]) {
     this.transform = new Transform(
       position,
       0,
       0,
-      Vector2.One(),
+      Vector.Unit(),
       controlPoints,
       this
     );

@@ -1,4 +1,4 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { LinearGradient, RadialGradient } from ".";
 import { Node } from "../core/node";
 
@@ -10,7 +10,7 @@ export interface EllipseOptions {
   outlineWidth?: number;
   outlineDashSegments?: number[];
   shadowColor?: string;
-  shadowOffset?: Vector2;
+  shadowOffset?: Vector;
   staticShadow?: boolean;
   shadowBlur?: number;
 }
@@ -18,7 +18,7 @@ export interface EllipseOptions {
 export class Ellipse extends Node {
   constructor(
     id: string,
-    position: Vector2,
+    position: Vector,
     public minor: number,
     public major: number,
     public props?: EllipseOptions
@@ -131,13 +131,13 @@ export class Ellipse extends Node {
     }
   }
 
-  getDimension(): Vector2 {
-    return new Vector2(
-      Vector2.Distance(
+  getDimension(): Vector {
+    return new Vector(
+      Vector.Distance(
         this.transform.controlPoints[1],
         this.transform.controlPoints[3]
       ),
-      Vector2.Distance(
+      Vector.Distance(
         this.transform.controlPoints[0],
         this.transform.controlPoints[2]
       )

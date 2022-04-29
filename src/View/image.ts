@@ -1,9 +1,9 @@
-import { Vector2 } from "../math/vector";
+import { Vector } from "../math/vector";
 import { Node } from "../core/node";
 
 export interface ImageOptions {
   shadowColor?: string;
-  shadowOffset?: Vector2;
+  shadowOffset?: Vector;
   staticShadow?: boolean;
   shadowBlur?: number;
 }
@@ -13,7 +13,7 @@ export class Image extends Node {
 
   constructor(
     id: string,
-    position: Vector2,
+    position: Vector,
     source: string | HTMLImageElement,
     public width: number,
     public height: number,
@@ -96,7 +96,7 @@ export class Image extends Node {
     );
   }
 
-  getDimension(): Vector2 {
-    return new Vector2(this.width, this.height);
+  getDimension(): Vector {
+    return new Vector(this.width, this.height);
   }
 }
