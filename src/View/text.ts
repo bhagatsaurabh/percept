@@ -1,5 +1,5 @@
 import { Vector } from "../math/vector";
-import { LinearGradient, RadialGradient } from ".";
+import { LinearGradient, RadialGradient } from "./index";
 import { Node } from "../core/node";
 
 export interface TextOptions {
@@ -31,16 +31,18 @@ export class Text extends Node {
     id: string,
     position: Vector,
     text: string,
-    public props?: TextOptions
+    public props: TextOptions = {}
   ) {
     super(id, position, []);
 
-    !props && (this.props = {});
     this.text = text;
-    if (this.props.outlineColor && typeof this.props.outlineColor != "string") {
+    if (
+      this.props.outlineColor &&
+      typeof this.props.outlineColor !== "string"
+    ) {
       this.props.outlineColor.node = this;
     }
-    if (this.props.fillColor && typeof this.props.fillColor != "string") {
+    if (this.props.fillColor && typeof this.props.fillColor !== "string") {
       this.props.fillColor.node = this;
     }
 
@@ -50,6 +52,7 @@ export class Text extends Node {
     this._originalHeight = textMetricContext.measureText("M").width;
   }
 
+  /* istanbul ignore next */
   _render(): void {
     if (this.props) {
       this.props.outlineColor &&
@@ -105,6 +108,7 @@ export class Text extends Node {
       );
   }
 
+  /* istanbul ignore next */
   _offRender(): void {
     this.offContext.fillStyle = this.hitColor;
 
@@ -128,12 +132,6 @@ export class Text extends Node {
   }
 
   getDimension(): Vector {
-    return new Vector(
-      Vector.Distance(
-        this.transform.controlPoints[0],
-        this.transform.controlPoints[1]
-      ),
-      0
-    );
+    return new Vector(this._originalWidth, this._originalHeight);
   }
 }

@@ -28,7 +28,7 @@ export class Line extends Node {
     public _from: Vector | Node,
     public _to: Vector | Node,
     pivot?: number,
-    public props?: LineOptions
+    public props: LineOptions = {}
   ) {
     super(
       id,
@@ -40,12 +40,12 @@ export class Line extends Node {
       _from instanceof Vector && _to instanceof Vector ? [_from, _to] : []
     );
 
-    !props && (this.props = {});
-    if (this.props.color && typeof this.props.color != "string") {
+    if (this.props.color && typeof this.props.color !== "string") {
       this.props.color.node = this;
     }
   }
 
+  /* istanbul ignore next */
   _render(): void {
     if (this.props) {
       this.props.color &&
@@ -81,6 +81,7 @@ export class Line extends Node {
     this.context.stroke();
   }
 
+  /* istanbul ignore next */
   _offRender(): void {
     this.props.lineWidth && (this.offContext.lineWidth = this.props.lineWidth);
     this.offContext.strokeStyle = this.hitColor;

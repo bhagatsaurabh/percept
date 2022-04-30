@@ -17,11 +17,10 @@ export class Image extends Node {
     source: string | HTMLImageElement,
     public width: number,
     public height: number,
-    public props?: ImageOptions
+    public props: ImageOptions = {}
   ) {
     super(id, position, []);
 
-    !props && (this.props = {});
     if (typeof source == "string") {
       this._source = new window.Image();
       this._source.src = source;
@@ -31,6 +30,7 @@ export class Image extends Node {
     this._source.crossOrigin = "Anonymous";
   }
 
+  /* istanbul ignore next */
   _render(): void {
     if (this.props) {
       this.props.shadowColor &&
@@ -71,6 +71,7 @@ export class Image extends Node {
     );
   }
 
+  /* istanbul ignore next */
   _offRender(): void {
     this.offContext.fillStyle = this.hitColor;
 

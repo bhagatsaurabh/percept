@@ -1,5 +1,5 @@
 import { Vector } from "../math/vector";
-import { LinearGradient, RadialGradient } from ".";
+import { LinearGradient, RadialGradient } from "./index";
 import { Node } from "../core/node";
 
 export interface EllipseOptions {
@@ -21,7 +21,7 @@ export class Ellipse extends Node {
     position: Vector,
     public minor: number,
     public major: number,
-    public props?: EllipseOptions
+    public props: EllipseOptions = {}
   ) {
     super(id, position, [
       position.subtract(0, minor),
@@ -30,15 +30,18 @@ export class Ellipse extends Node {
       position.subtract(major, 0),
     ]);
 
-    !props && (this.props = {});
-    if (this.props.outlineColor && typeof this.props.outlineColor != "string") {
+    if (
+      this.props.outlineColor &&
+      typeof this.props.outlineColor !== "string"
+    ) {
       this.props.outlineColor.node = this;
     }
-    if (this.props.fillColor && typeof this.props.fillColor != "string") {
+    if (this.props.fillColor && typeof this.props.fillColor !== "string") {
       this.props.fillColor.node = this;
     }
   }
 
+  /* istanbul ignore next */
   _render(): void {
     if (this.props) {
       this.props.outlineColor &&
@@ -99,6 +102,7 @@ export class Ellipse extends Node {
     }
   }
 
+  /* istanbul ignore next */
   _offRender(): void {
     this.props.outlineWidth &&
       (this.offContext.lineWidth = this.props.outlineWidth);

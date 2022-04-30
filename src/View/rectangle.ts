@@ -1,5 +1,5 @@
 import { Vector } from "../math/vector";
-import { LinearGradient, RadialGradient } from ".";
+import { LinearGradient, RadialGradient } from "./index";
 import { Node } from "../core/node";
 
 export interface RectangleOptions {
@@ -21,7 +21,7 @@ export class Rectangle extends Node {
     position: Vector,
     width: number,
     height: number,
-    public props?: RectangleOptions
+    public props: RectangleOptions = {}
   ) {
     super(id, position, [
       position.add(-width / 2, -height / 2),
@@ -30,15 +30,18 @@ export class Rectangle extends Node {
       position.add(-width / 2, height / 2),
     ]);
 
-    !props && (this.props = {});
-    if (this.props.outlineColor && typeof this.props.outlineColor != "string") {
+    if (
+      this.props.outlineColor &&
+      typeof this.props.outlineColor !== "string"
+    ) {
       this.props.outlineColor.node = this;
     }
-    if (this.props.fillColor && typeof this.props.fillColor != "string") {
+    if (this.props.fillColor && typeof this.props.fillColor !== "string") {
       this.props.fillColor.node = this;
     }
   }
 
+  /* istanbul ignore next */
   _render(): void {
     if (this.props) {
       this.props.outlineColor &&
@@ -102,6 +105,7 @@ export class Rectangle extends Node {
     }
   }
 
+  /* istanbul ignore next */
   _offRender(): void {
     this.props.outlineWidth &&
       (this.offContext.lineWidth = this.props.outlineWidth);

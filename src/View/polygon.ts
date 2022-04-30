@@ -1,5 +1,5 @@
 import { Vector } from "../math/vector";
-import { LinearGradient, RadialGradient } from ".";
+import { LinearGradient, RadialGradient } from "./index";
 import { Node } from "../core/node";
 import { Handle } from "../common/enums";
 
@@ -21,7 +21,7 @@ export class Polygon extends Node {
     id: string,
     vertices: Vector[],
     center: Vector | Handle,
-    public props?: PolygonOptions
+    public props: PolygonOptions = {}
   ) {
     super(
       id,
@@ -29,15 +29,18 @@ export class Polygon extends Node {
       vertices
     );
 
-    !props && (this.props = {});
-    if (this.props.outlineColor && typeof this.props.outlineColor != "string") {
+    if (
+      this.props.outlineColor &&
+      typeof this.props.outlineColor !== "string"
+    ) {
       this.props.outlineColor.node = this;
     }
-    if (this.props.fillColor && typeof this.props.fillColor != "string") {
+    if (this.props.fillColor && typeof this.props.fillColor !== "string") {
       this.props.fillColor.node = this;
     }
   }
 
+  /* istanbul ignore next */
   _render(): void {
     if (this.props) {
       this.props.outlineColor &&
@@ -93,6 +96,7 @@ export class Polygon extends Node {
     }
   }
 
+  /* istanbul ignore next */
   _offRender(): void {
     this.props.outlineWidth &&
       (this.offContext.lineWidth = this.props.outlineWidth);
