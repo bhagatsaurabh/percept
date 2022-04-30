@@ -10,22 +10,28 @@ export class Transform {
   controlPoints: Vector[];
   localTrasform: Matrix;
   worldTransform: Matrix;
-  _parent: Transform;
   childs: Transform[];
+  private _parent: Transform;
+  private _position: Vector;
+  private _localRotation: number;
+  private _rotation: number;
+  private _scale: Vector;
 
   get parent(): Transform {
     return this._parent;
   }
   set parent(newParent: Transform) {
     if (this._parent) {
-      this._parent.childs.indexOf(this) &&
-        this._parent.childs.splice(this._parent.childs.indexOf(this), 1);
+      const index = this._parent.childs.indexOf(this);
+      if (index > -1) {
+        this._parent.childs.splice(index, 1);
+      }
     }
     newParent && newParent.childs.push(this);
     this._parent = newParent;
 
-    if (this.parent) {
-      this.parent.childs.sort((a, b) => {
+    if (this._parent) {
+      this._parent.childs.sort((a, b) => {
         return a.node.order - b.node.order;
       });
     }
@@ -64,13 +70,17 @@ export class Transform {
   }
 
   constructor(
-    public _position: Vector,
-    public _localRotation: number,
-    public _rotation: number,
-    public _scale: Vector,
+    position: Vector,
+    localRotation: number,
+    rotation: number,
+    scale: Vector,
     controlPoints: Vector[],
     public node: Node
   ) {
+    this._position = position;
+    this._localRotation = localRotation;
+    this._rotation = rotation;
+    this._scale = scale;
     this._parent = null;
     this.childs = [];
     this.localTrasform = Matrix.Identity();
@@ -79,6 +89,7 @@ export class Transform {
     this.controlPoints = [...controlPoints];
   }
 
+  /* istanbul ignore next */
   private relativeControlPoints(controlPoints: Vector[]): Vector[] {
     let result: Vector[] = [];
     controlPoints.forEach((controlPoint) => {
@@ -87,8 +98,16 @@ export class Transform {
     return result;
   }
 
-  // Updates this node's worldTransform using parent's worldTransform if any
-  updateWorldTransform(parentWorldTransform?: Matrix) {
+  // Transforms each control point using this node's worldTransform
+  /* istanbul ignore next */
+  private applyTransform() {
+    this.refControlPoints.forEach((controlPoint, index) => {
+      this.controlPoints[index] = controlPoint.transform(this.worldTransform);
+    });
+  }
+
+  /* istanbul ignore next */
+  private _updateWorldTransform(parentWorldTransform?: Matrix) {
     // Set translation
     this.localTrasform.value = [
       [1, 0, 0],
@@ -150,10 +169,8 @@ export class Transform {
     this.applyTransform();
   }
 
-  // Transforms each control point using this node's worldTransform
-  private applyTransform() {
-    this.refControlPoints.forEach((controlPoint, index) => {
-      this.controlPoints[index] = controlPoint.transform(this.worldTransform);
-    });
+  // Updates this node's worldTransform using parent's worldTransform if any
+  updateWorldTransform(parentWorldTransform?: Matrix) {
+    this._updateWorldTransform(parentWorldTransform);
   }
 }
