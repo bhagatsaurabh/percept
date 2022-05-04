@@ -4,9 +4,11 @@ import { Empty } from "../../src/view/empty";
 
 let canvas: Canvas, drawing: Drawing;
 beforeEach(() => {
-  canvas = new Canvas(document.createElement("canvas"));
-  canvas.width = 500;
-  canvas.width = 300;
+  const canvasEl = document.createElement("canvas");
+  canvasEl.width = 500;
+  canvasEl.height = 300;
+
+  canvas = new Canvas(canvasEl);
   drawing = new Drawing(canvas);
 });
 

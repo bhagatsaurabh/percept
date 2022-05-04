@@ -39,9 +39,11 @@ describe("The Drawing methods", () => {
   let canvas: Canvas;
 
   beforeEach(() => {
-    canvas = new Canvas(document.createElement("canvas"));
-    canvas.width = 500;
-    canvas.height = 300;
+    const canvasEl = document.createElement("canvas");
+    canvasEl.width = 500;
+    canvasEl.height = 300;
+
+    canvas = new Canvas(canvasEl);
   });
 
   test("if render method renders the scene-graph", () => {

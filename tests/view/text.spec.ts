@@ -45,7 +45,6 @@ describe("The Text View methods", () => {
   test("if the getDimension method returns correct view dimension", () => {
     const text = new Text("Node", Vector.Zero(), "sample text");
 
-    console.log(text.transform.controlPoints);
     expect(text.getDimension().toString()).toStrictEqual(
       new Vector(text._originalWidth, text._originalHeight).toString()
     );

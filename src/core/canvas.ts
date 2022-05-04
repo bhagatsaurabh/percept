@@ -9,9 +9,16 @@ export class Canvas {
   offCanvasElement: OffscreenCanvas | HTMLCanvasElement;
   offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
-  width: number;
-  height: number;
+  currDrawing: Drawing;
   private frameId: number = 0;
+  private canvasObserver: MutationObserver;
+
+  get width(): number {
+    return this.canvasElement?.width;
+  }
+  get height(): number {
+    return this.canvasElement?.height;
+  }
 
   /**
    * If no parameters are passed then a new canvas element will be created and appended to `<body>`
@@ -49,8 +56,6 @@ export class Canvas {
         }
       }
     }
-    this.width = this.canvasElement.width;
-    this.height = this.canvasElement.height;
     this.context = this.canvasElement.getContext("2d");
 
     if (typeof OffscreenCanvas !== "undefined") {
@@ -62,6 +67,25 @@ export class Canvas {
       this.offCanvasElement.height = this.height;
       this.offContext = this.offCanvasElement.getContext("2d");
     }
+
+    this.registerObservers();
+  }
+
+  /* istanbul ignore next */
+  private registerObservers() {
+    this.canvasObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === "attributes" &&
+          (mutation.attributeName === "width" ||
+            mutation.attributeName === "height")
+        ) {
+          this.draw(this.currDrawing);
+        }
+      });
+    });
+
+    this.canvasObserver.observe(this.canvasElement, { attributes: true });
   }
 
   /**
@@ -83,6 +107,7 @@ export class Canvas {
 
   /* istanbul ignore next */
   private render(drawing: Drawing) {
+    this.currDrawing = drawing;
     drawing.render();
     if (this.frameId < 0) return;
     this.frameId = window.requestAnimationFrame(

@@ -265,9 +265,11 @@ describe("The Vector static methods", () => {
   });
 
   test("if static method Random returns a new random Vector provided a canvas", () => {
-    const canvas = new Canvas(document.createElement("canvas"));
-    canvas.width = 240;
-    canvas.height = 200;
+    const canvasEl = document.createElement("canvas");
+    canvasEl.width = 240;
+    canvasEl.height = 200;
+
+    const canvas = new Canvas(canvasEl);
 
     jest.spyOn(Math, "random").mockImplementation(() => 0.5);
 
