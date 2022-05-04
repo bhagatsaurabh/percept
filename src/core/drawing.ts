@@ -18,7 +18,7 @@ export class Drawing {
   debugCalls: Record<string, DebugCall[]>;
 
   colorToNode: { [key: string]: Node };
-  mousePos: Vector;
+  pointers: any[] = [];
 
   /**
    *
@@ -32,55 +32,102 @@ export class Drawing {
     this.sceneGraph = rootNode;
     this.debugCalls = {};
 
-    this.mousePos = Vector.Zero();
     this.colorToNode = {};
     this._registerEvents();
   }
 
+  private getRelativePosition(ev: PointerEvent | WheelEvent | MouseEvent) {
+    const canvasOffset = this.canvas.canvasElement.getBoundingClientRect();
+    return new Vector(
+      ev.clientX - canvasOffset.left,
+      ev.clientY - canvasOffset.top
+    );
+  }
+
+  private updatePointer(ev: PointerEvent, position: Vector) {
+    let pointer = this.pointers.find((pntr) => pntr.id === ev.pointerId);
+    if (pointer) {
+      pointer.position = position;
+    }
+  }
+
+  private removePointer(ev: PointerEvent) {
+    this.pointers.splice(
+      this.pointers.findIndex((pointer) => pointer.id === ev.pointerId),
+      1
+    );
+  }
+
   /* istanbul ignore next */
   private _registerEvents(): void {
-    let currentHitNode: Node, prevHitNode: Node;
-    let currentDragNode: Node = null;
-    let canvasOffset: DOMRect;
+    let currHitNode: Node, prevHitNode: Node;
 
-    this.canvas.canvasElement.onmousemove = (ev) => {
-      canvasOffset = this.canvas.canvasElement.getBoundingClientRect();
-      this.mousePos.x = ev.clientX - canvasOffset.left;
-      this.mousePos.y = ev.clientY - canvasOffset.top;
+    this.canvas.canvasElement.onpointerdown = (ev: PointerEvent) => {
+      this.pointers.push({
+        id: ev.pointerId,
+        position: this.getRelativePosition(ev),
+      });
 
-      currentHitNode = this._getHitNode(this.mousePos);
-      if (currentHitNode != prevHitNode) {
-        prevHitNode && prevHitNode.call("mouseexit");
-        currentHitNode && currentHitNode.call("mouseenter");
+      if (this.pointers.length === 1) {
+        currHitNode = this._getHitNode(this.pointers[0].position);
+        currHitNode &&
+          currHitNode.call("down", [this.pointers[0].position.clone()]);
+      } else {
+        currHitNode = null;
       }
-      prevHitNode = currentHitNode;
-
-      currentDragNode && currentDragNode.call("drag", [this.mousePos.clone()]);
     };
 
-    this.canvas.canvasElement.onmousedown = () => {
-      currentDragNode = currentHitNode;
+    this.canvas.canvasElement.onpointermove = (ev: PointerEvent) => {
+      const position = this.getRelativePosition(ev);
+      this.updatePointer(ev, position);
 
-      let hitNode = this._getHitNode(this.mousePos);
-      hitNode && hitNode.call("mousedown");
+      currHitNode && currHitNode.call("drag", [position.clone()]);
+
+      if (ev.pointerType === "mouse" && !currHitNode) {
+        let hitNode = this._getHitNode(position);
+        if (hitNode !== prevHitNode) {
+          prevHitNode && prevHitNode.call("exit", [position.clone()]);
+          hitNode && hitNode.call("enter", [position.clone()]);
+        } else {
+          hitNode && !currHitNode && hitNode.call("over", [position.clone()]);
+        }
+        prevHitNode = hitNode;
+      }
     };
 
-    this.canvas.canvasElement.onmouseup = () => {
-      currentDragNode = null;
+    this.canvas.canvasElement.onpointerup = (ev: PointerEvent) => {
+      this.removePointer(ev);
 
-      let hitNode = this._getHitNode(this.mousePos);
-      hitNode && hitNode.call("mouseup");
+      currHitNode = null;
+
+      const position = this.getRelativePosition(ev);
+      let hitNode = this._getHitNode(position);
+      hitNode && hitNode.call("up", [position.clone()]);
     };
 
-    this.canvas.canvasElement.onclick = () => {
-      let hitNode = this._getHitNode(this.mousePos);
-      hitNode && hitNode.call("click");
+    this.canvas.canvasElement.onpointerout = (ev) => {
+      this.removePointer(ev);
+
+      if (this.pointers.length === 0) {
+        currHitNode = null;
+      }
+      if (prevHitNode) {
+        const position = this.getRelativePosition(ev);
+        prevHitNode.call("exit", [position.clone()]);
+        prevHitNode = null;
+      }
+    };
+
+    this.canvas.canvasElement.onclick = (ev) => {
+      const position = this.getRelativePosition(ev);
+      let hitNode = this._getHitNode(position);
+      hitNode && hitNode.call("click", [position.clone()]);
     };
 
     this.canvas.canvasElement.oncontextmenu = (ev) => {
       ev.preventDefault();
 
-      let hitNode = this._getHitNode(this.mousePos);
+      let hitNode = this._getHitNode(this.getRelativePosition(ev));
       hitNode && hitNode.call("rightclick");
     };
   }

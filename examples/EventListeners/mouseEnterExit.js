@@ -1,42 +1,59 @@
-var canvas = new Percept.Canvas(document.getElementById('canvas'));
+var canvas = new Percept.Canvas(document.getElementById("canvas"));
 
-var middle = new Percept.View.Rectangle('middle', new Percept.Vector(canvas.width / 2, canvas.height / 2), 70, 30, {
+var middle = new Percept.View.Rectangle(
+  "middle",
+  new Percept.Vector(canvas.width / 2, canvas.height / 2),
+  70,
+  30,
+  {
     fill: true,
-    fillColor: '#cc99ff',
+    fillColor: "#cc99ff",
     outline: true,
-    outlineColor: '#3385ff',
-    shadowColor: '#d2ff4d',
-    shadowBlur: 5
+    outlineColor: "#3385ff",
+    shadowColor: "#d2ff4d",
+    shadowBlur: 5,
+  }
+);
+middle.on("enter", () => {
+  middle.props.fillColor = "red";
+  middle.childs.forEach((child) => {
+    child.position.addInPlace(50);
+  });
 });
-middle.on('mouseenter', () => {
-    middle.props.fillColor = 'red';
-    middle.childs.forEach((child) => {
-        child.position.addInPlace(50);
-    });
+middle.on("exit", () => {
+  middle.props.fillColor = "#cc99ff";
+  middle.childs.forEach((child) => {
+    child.position = Percept.Vector.Zero();
+  });
 });
-middle.on('mouseexit', () => {
-    middle.props.fillColor = '#cc99ff';
-    middle.childs.forEach((child) => {
-        child.position = Percept.Vector.Zero();
-    });
-});
-var text = new Percept.View.Text('caption', middle.position.subtract(0, 40), 'Hover over me', {
-    font: '12px Arial'
-});
+var text = new Percept.View.Text(
+  "caption",
+  middle.position.subtract(0, 40),
+  "Hover over me",
+  {
+    font: "12px Arial",
+  }
+);
 
-for (var i = 0 ; i < 10 ; i++) {
-    var movingCirc = new Percept.View.Ellipse('movingCirc' + i, Percept.Vector.Zero(), 5, 5, {
-        fill: true,
-        fillColor: Percept.Color.Random(),
-        shadowColor: 'black',
-        shadowBlur: 3
-    });
-    movingCirc.rotation = i * 36;
-    movingCirc.on('update', (view) => {
-        view.rotation += 1;
-    });
+for (var i = 0; i < 10; i++) {
+  var movingCirc = new Percept.View.Ellipse(
+    "movingCirc" + i,
+    Percept.Vector.Zero(),
+    5,
+    5,
+    {
+      fill: true,
+      fillColor: Percept.Color.Random(),
+      shadowColor: "black",
+      shadowBlur: 3,
+    }
+  );
+  movingCirc.rotation = i * 36;
+  movingCirc.on("update", (view) => {
+    view.rotation += 1;
+  });
 
-    movingCirc.parent = middle;
+  movingCirc.parent = middle;
 }
 
 var drawing = new Percept.Drawing(canvas);

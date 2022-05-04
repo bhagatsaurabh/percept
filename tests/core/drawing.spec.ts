@@ -30,8 +30,6 @@ describe("The Drawing constructor", () => {
     expect(drawing["sceneGraph"] instanceof Node).toStrictEqual(true);
     expect(drawing["sceneGraph"].id).toStrictEqual("#Root");
     expect(drawing["debugCalls"]).toStrictEqual({});
-    expect(drawing.mousePos.x).toStrictEqual(0);
-    expect(drawing.mousePos.y).toStrictEqual(0);
     expect(drawing.colorToNode).toStrictEqual({});
     expect(registerEventsSpy).toHaveBeenCalled();
   });
