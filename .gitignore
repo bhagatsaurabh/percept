@@ -1,4 +1,5 @@
 node_modules
+bundles
 lib
 lib-esm
 index.html
