@@ -105,6 +105,15 @@ export class Canvas {
     window.cancelAnimationFrame(this.frameId);
   }
 
+  /**
+   * Resumes rendering the current Drawing (if any)
+   */
+  resume() {
+    if (this.currDrawing) {
+      this.draw(this.currDrawing);
+    }
+  }
+
   /* istanbul ignore next */
   private render(drawing: Drawing) {
     this.currDrawing = drawing;
