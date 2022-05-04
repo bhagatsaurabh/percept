@@ -1,8 +1,9 @@
 {
   "name": "canvas-percept",
-  "version": "1.0.1",
-  "description": "HTML5 Canvas rendering library",
+  "version": "1.0.2",
+  "description": "HTML5 Canvas rendering engine",
   "main": "lib/percept.js",
+  "types": "lib/percept.d.ts",
   "scripts": {
     "test": "jest --coverage",
     "clean": "shx rm -rf bundles lib lib-esm",
@@ -14,8 +15,16 @@
     "url": "git+https://github.com/saurabh-prosoft/Percept.git"
   },
   "keywords": [
-    "HTML5 Canvas",
-    "2D"
+    "canvas library",
+    "html5 canvas engine",
+    "2d library",
+    "canvas engine",
+    "html5 canvas library",
+    "percept",
+    "canvas percept",
+    "canvas-percept",
+    "canvas rendering library",
+    "rendering library"
   ],
   "author": "Saurabh Bhagat",
   "license": "MIT",

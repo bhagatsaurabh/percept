@@ -2,7 +2,14 @@
 **/tsconfig.json
 **/webpack.config.js
 node_modules
-src
+src/
 docs/
 examples/
 coverage/
+tests/
+.editorconfig
+CODE_OF_CONDUCT.md
+jest.config.js
+tsconfig.json
+webpack.prod.js
+index.html
