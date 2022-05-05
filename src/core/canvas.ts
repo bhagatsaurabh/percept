@@ -85,6 +85,18 @@ export class Canvas {
           (mutation.attributeName === "width" ||
             mutation.attributeName === "height")
         ) {
+          let tempData = this.offContext.getImageData(
+            0,
+            0,
+            this.offCanvasElement.width,
+            this.offCanvasElement.height
+          );
+          Object.assign(this.offCanvasElement, {
+            width: this.canvasElement.width,
+            height: this.canvasElement.height,
+          });
+          this.offContext.putImageData(tempData, 0, 0);
+
           this.draw(this.currDrawing);
         }
       });
