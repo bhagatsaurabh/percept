@@ -69,6 +69,11 @@ export class Canvas {
     }
 
     this.registerObservers();
+
+    if (!(window as any)["PERCEPT_INSTANCES"]) {
+      (window as any)["PERCEPT_INSTANCES"] = [];
+    }
+    (window as any)["PERCEPT_INSTANCES"].push(this);
   }
 
   /* istanbul ignore next */
