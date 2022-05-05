@@ -68,6 +68,8 @@ export class Canvas {
       this.offContext = this.offCanvasElement.getContext("2d");
     }
 
+    this.canvasElement.style.touchAction = "none";
+
     this.registerObservers();
 
     if (!(window as any)["PERCEPT_INSTANCES"]) {
