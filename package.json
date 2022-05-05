@@ -1,6 +1,6 @@
 {
   "name": "canvas-percept",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "HTML5 Canvas rendering engine",
   "main": "lib/percept.js",
   "types": "lib/percept.d.ts",
