@@ -100,7 +100,7 @@ export class Canvas {
    */
   draw(drawing: Drawing) {
     this.stop();
-    this.render(drawing);
+    drawing && this.render(drawing);
   }
 
   /**
