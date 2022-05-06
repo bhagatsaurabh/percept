@@ -1,18 +1,24 @@
 {
   "name": "canvas-percept",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "HTML5 Canvas rendering engine",
-  "main": "lib/percept.js",
-  "types": "lib/percept.d.ts",
+  "main": "dist/commonjs/percept.js",
+  "types": "dist/commonjs/percept.d.ts",
   "scripts": {
     "test": "jest --coverage",
-    "clean": "shx rm -rf bundles lib lib-esm",
-    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack --config=webpack.prod.js",
-    "docs": "typedoc --out docs/ src/percept.ts --excludePrivate --darkHighlightTheme dark-plus"
+    "clean": "shx rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "npm run build:umd & npm run build:cjs & npm run build:esm",
+    "postbuild": "dts-bundle-generator -o dist/percept.d.ts src/percept.ts",
+    "build:umd": "webpack --config=webpack.prod.js",
+    "build:cjs": "tsc",
+    "build:esm": "tsc -m es6 --outDir dist/esm",
+    "docs": "typedoc --out docs/ src/percept.ts --excludePrivate --darkHighlightTheme dark-plus",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saurabh-prosoft/Percept.git"
+    "url": "git+https://github.com/saurabh-prosoft/percept.git"
   },
   "keywords": [
     "canvas library",
@@ -32,6 +38,7 @@
     "@types/jest": "^27.4.1",
     "@types/node": "^14.14.22",
     "@types/offscreencanvas": "^2019.6.4",
+    "dts-bundle-generator": "^6.9.0",
     "jest": "^27.5.1",
     "jest-canvas-mock": "^2.3.1",
     "terser-webpack-plugin": "^5.3.1",

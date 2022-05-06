@@ -15,10 +15,10 @@ import * as Percept from 'canvas-percept';
 
 ## Usage - CDN
 
-[https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/bundles/percept.js](https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/bundles/percept.js)
+[https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/dist/percept.js](https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/dist/percept.js)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/bundles/percept.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-percept@1.0.0/dist/percept.js"></script>
 ```
 
 ## Example

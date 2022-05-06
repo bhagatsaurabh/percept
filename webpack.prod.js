@@ -1,31 +1,33 @@
-const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-  mode: 'production',
+  mode: "production",
   entry: {
-    'percept': './src/percept.ts'
+    percept: "./src/percept.ts",
   },
   output: {
-    path: path.resolve(__dirname, 'bundles'),
-    filename: '[name].js',
-    libraryTarget: 'umd',
-    library: 'Percept',
-    umdNamedDefine: true
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].js",
+    libraryTarget: "umd",
+    library: "Percept",
+    umdNamedDefine: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: [".ts", ".tsx", ".js"],
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [new TerserPlugin()],
   },
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      use: 'ts-loader',
-      exclude: /node_modules/
-    }]
-  }
-}
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+};
