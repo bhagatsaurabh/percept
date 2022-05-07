@@ -1,6 +1,6 @@
 {
   "name": "canvas-percept",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "HTML5 Canvas rendering engine",
   "main": "dist/commonjs/percept.js",
   "types": "dist/commonjs/percept.d.ts",
@@ -8,8 +8,8 @@
     "test": "jest --coverage",
     "clean": "shx rm -rf dist",
     "prebuild": "npm run clean",
-    "build": "npm run build:umd & npm run build:cjs & npm run build:esm",
-    "postbuild": "dts-bundle-generator -o dist/percept.d.ts src/percept.ts",
+    "build": "npm run build:umd && npm run build:cjs && npm run build:esm",
+    "postbuild": "npx rollup --config",
     "build:umd": "webpack --config=webpack.prod.js",
     "build:cjs": "tsc",
     "build:esm": "tsc -m es6 --outDir dist/esm",
@@ -38,9 +38,10 @@
     "@types/jest": "^27.4.1",
     "@types/node": "^14.14.22",
     "@types/offscreencanvas": "^2019.6.4",
-    "dts-bundle-generator": "^6.9.0",
     "jest": "^27.5.1",
     "jest-canvas-mock": "^2.3.1",
+    "rollup": "^2.72.0",
+    "rollup-plugin-dts": "^4.2.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^27.1.4",
     "ts-loader": "^8.0.14",
@@ -48,5 +49,6 @@
     "typescript": "^4.6.3",
     "webpack": "^5.17.0",
     "webpack-cli": "^4.4.0"
-  }
+  },
+  "dependencies": {}
 }
