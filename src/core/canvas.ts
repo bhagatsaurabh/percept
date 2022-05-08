@@ -114,7 +114,8 @@ export class Canvas {
    */
   draw(drawing: Drawing) {
     this.stop();
-    drawing && this.render(drawing);
+    this.currDrawing = drawing;
+    this.resume();
   }
 
   /**
@@ -129,13 +130,12 @@ export class Canvas {
    */
   resume() {
     if (this.currDrawing) {
-      this.draw(this.currDrawing);
+      this.render(this.currDrawing);
     }
   }
 
   /* istanbul ignore next */
   private render(drawing: Drawing) {
-    this.currDrawing = drawing;
     drawing.render();
     if (this.frameId < 0) return;
     this.frameId = window.requestAnimationFrame(
