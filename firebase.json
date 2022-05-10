@@ -8,6 +8,11 @@
     ],
     "redirects": [
       {
+        "source": "/",
+        "destination": "/modules.html",
+        "type": 301
+      },
+      {
         "source": "/index.html",
         "destination": "/modules.html",
         "type": 301
