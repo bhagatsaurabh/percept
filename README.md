@@ -20,7 +20,7 @@ Percept provides an easy-to-use API for rendering on canvas.
 ## Installation & Usage
 <br/>
 
-### Node / ESModule
+### Node
 
 ```shell
 npm i canvas-percept
