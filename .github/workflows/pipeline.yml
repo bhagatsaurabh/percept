@@ -1,0 +1,124 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Build
+      run: |
+        npm i
+        npm run build
+  Test:
+    needs: [Build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        cache: 'npm'
+
+    - name: Test
+      run: |
+        npm i
+        npm test
+
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        # token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+        files: ./coverage/clover.xml
+        flags: unittests
+        name: codecov-umbrella
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: true
+  Docs:
+    needs: [Test]
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+
+        - name: Setup Node
+          uses: actions/setup-node@v1
+          with:
+            node-version: 14
+            cache: 'npm'
+
+        - name: Build docs
+          run: |
+            npm i && npm run docs
+
+        - name: Upload docs artifact
+        - uses: actions/upload-artifact@master
+          with:
+            name: percept-docs
+            path: docs
+  Deploy-ghpages:
+    needs: [Docs]
+    runs-on: ubuntu-latest
+      steps:
+        - name: Download docs artifact
+        - uses: actions/download-artifact@v3
+          with:
+            name: percept-docs
+            path: docs
+
+        - name: Deploy docs to GitHub Pages
+          uses: crazy-max/ghaction-github-pages@v2
+          with:
+            target_branch: gh-pages
+            build_dir: docs
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  Deploy-Firebase:
+    needs: [Docs]
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Download docs artifact
+        - uses: actions/download-artifact@v3
+          with:
+            name: percept-docs
+            path: docs
+
+        - name: Deploy to Firebase Hosting
+        - uses: FirebaseExtended/action-hosting-deploy@v0
+          with:
+            repoToken: '${{ secrets.GITHUB_TOKEN }}'
+            firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERCEPT_DOCS }}'
+            channelId: live
+            projectId: percept-docs
+  Cleanup:
+    needs: [Deploy-ghpages, Deploy-Firebase]
+    if: always()
+    runs-on: ubuntu-latest
+      steps:
+        - name: Delete docs artifact
+        - uses: geekyeggo/delete-artifact@v1
+          with:
+            name: percept-docs
