@@ -2,11 +2,13 @@ import { Matrix, Vector } from "./index";
 import { Constant } from "../common/constants";
 import { Node } from "../core/node";
 
-// Stores a node's transform (position, rotation, scale)
+/**
+ * A Node's world and local transform (position, rotation, scale)
+ */
 export class Transform {
-  // reference control points to apply transform to
+  /** Original reference control points to apply transform to */
   refControlPoints: Vector[];
-  // transformed control points
+  /** Transformed control points */
   controlPoints: Vector[];
   localTrasform: Matrix;
   worldTransform: Matrix;
@@ -98,7 +100,7 @@ export class Transform {
     return result;
   }
 
-  // Transforms each control point using this node's worldTransform
+  /** Transforms each control point using this Node's {@link Node.worldTransform worldTransform} */
   /* istanbul ignore next */
   private applyTransform() {
     this.refControlPoints.forEach((controlPoint, index) => {
@@ -169,7 +171,10 @@ export class Transform {
     this.applyTransform();
   }
 
-  // Updates this node's worldTransform using parent's worldTransform if any
+  /**
+   * Updates this Node's worldTransform using parent's worldTransform (if this node has any parent)
+   * @param parentWorldTransform worldTransform of parent Node
+   */
   updateWorldTransform(parentWorldTransform?: Matrix) {
     this._updateWorldTransform(parentWorldTransform);
   }

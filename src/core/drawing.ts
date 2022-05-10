@@ -1,4 +1,4 @@
-import { Canvas, Debug, Node, Color } from ".";
+import { Canvas, Debug, Node, Color } from "./index";
 import { Vector } from "../math/vector";
 import { Empty } from "../view/empty";
 
@@ -9,16 +9,16 @@ export interface DebugCall {
 }
 
 /**
- * Stores all views which will be rendered by canvas
+ * A Drawing is essentially a scene-graph consisting of all the {@link View Views} added to it using {@link Drawing.add add} method, it also registers event listeners on {@link Canvas.canvasElement canvasElement}
  */
 export class Drawing {
   // Scene-graph root node
   private sceneGraph: Node;
-  /**@hidden */
-  debugCalls: Record<string, DebugCall[]>;
+  private pointers: any[] = [];
 
+  /** @hidden */
+  debugCalls: Record<string, DebugCall[]>;
   colorToNode: { [key: string]: Node };
-  pointers: any[] = [];
 
   /**
    *
@@ -167,9 +167,9 @@ export class Drawing {
   }
 
   /**
-   * Adds a view object to this drawing
+   * Adds a {@link View} to this drawing
    *
-   * @param node A View object to be rendered
+   * @param node A View to be added to the scene-graph
    */
   add(node: Node | Node[]): void {
     if (node instanceof Node) {
@@ -188,9 +188,9 @@ export class Drawing {
   }
 
   /**
-   * Removes a view object from this drawing
+   * Removes a {@link View} from this drawing
    *
-   * @param nodeOrID A View object or its id
+   * @param nodeOrID A View or its id
    */
   remove(nodeOrID: Node | string) {
     if (nodeOrID instanceof Node) nodeOrID = nodeOrID.id;

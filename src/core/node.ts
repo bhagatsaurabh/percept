@@ -3,6 +3,9 @@ import { Drawing } from "./drawing";
 import { Event } from "./event";
 import { Color } from "./color";
 
+/**
+ * A Node in the scene-graph, consisting of a {@link Transform}
+ */
 export abstract class Node implements Event {
   drawing: Drawing;
   context: CanvasRenderingContext2D;
@@ -73,6 +76,13 @@ export abstract class Node implements Event {
     this.transform.scale = scale;
   }
 
+  /**
+   * A scene-graph Node
+   *
+   * @param id A unique identifier for this node
+   * @param position Position where the node will be first initiated
+   * @param controlPoints A set of {@link Vector Vectors} defining points of control for this Node, for e.g. for a Rectangle, the four corners are its control points, transformations such as position, rotation and scale are applied to these control points
+   */
   constructor(public id: string, position: Vector, controlPoints: Vector[]) {
     this.transform = new Transform(
       position,
@@ -86,6 +96,9 @@ export abstract class Node implements Event {
     this.order = 0;
   }
 
+  /**
+   * Sets a unique color for this node on hit-maps
+   */
   setHitColor() {
     // Set unique color for hit detection in offscreen canvas
     let color: string = Color.Random();
@@ -101,10 +114,16 @@ export abstract class Node implements Event {
     });
   }
 
+  /**
+   * Register an event on this Node
+   * @param eventKey name of the event
+   * @param callback callback
+   */
   on(eventKey: string, callback: Function): void {
     this.registeredEvents[eventKey] = callback;
   }
 
+  /** Calls internal _render/_offRender functions and recursively invokes render functions for all child nodes */
   render(): void {
     this.context.save();
     this._render();
@@ -116,12 +135,16 @@ export abstract class Node implements Event {
     }
   }
 
+  /** Calls internal _offRender function for this node */
   offRender(): void {
     this.offContext.save();
     this._offRender();
     this.offContext.restore();
   }
 
+  /**
+   * Calls all the event callbacks registered using {@link Node.on on}
+   */
   call(method: string, args?: any[]) {
     if (this.registeredEvents[method]) {
       if (args) {
@@ -136,6 +159,7 @@ export abstract class Node implements Event {
     }
   }
 
+  /** @hidden */
   setContext(
     context: CanvasRenderingContext2D,
     offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D
@@ -147,6 +171,7 @@ export abstract class Node implements Event {
     });
   }
 
+  /** @hidden */
   setDrawing(drawing: Drawing) {
     this.drawing = drawing;
     this.transform.childs.forEach((child) => {
@@ -154,6 +179,10 @@ export abstract class Node implements Event {
     });
   }
 
+  /**
+   * Remove this node from {@link Drawing Drawing's} scene-graph
+   * Calls {@link Drawing.remove remove} on Drawing object
+   */
   dispose(): void {
     this.drawing.remove(this.id);
   }

@@ -1,14 +1,17 @@
 import { Drawing } from "./drawing";
 
 /**
- * The Canvas object holds an HTMLCanvasElement reference and its 2d context
+ * The Canvas object holds an HTMLCanvasElement reference and its 2d context, registers resize observers and can initiate render of {@link Drawing}
  */
 export class Canvas {
+  /** Reference to the bound `<canvas>` element */
   canvasElement: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
+  /** Reference to the created OffscreenCanvas used as hit-maps (if not supported, another `<canvas>` will be created) */
   offCanvasElement: OffscreenCanvas | HTMLCanvasElement;
   offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
+  /** Drawing that is currently being rendered or paused */
   currDrawing: Drawing;
   private frameId: number = 0;
   private canvasObserver: MutationObserver;
@@ -21,7 +24,7 @@ export class Canvas {
   }
 
   /**
-   * If no parameters are passed then a new canvas element will be created and appended to `<body>`
+   * If no parameters are passed then a new canvas will be created and appended to `<body>`
    *
    * @param element Reference to an html `<canvas>` or `<div>` element, if a `<div>` element is passed, then a canvas will be created and appended
    * @param width Passing a width will overwrite previously defined canvas width
@@ -108,7 +111,7 @@ export class Canvas {
   }
 
   /**
-   * Calls render function of `Drawing`
+   * Stops rendering current drawing (see {@link Canvas.currDrawing}) (if any) and starts the one passed as argument
    *
    * @param drawing A `Drawing` object, which will be rendered by this canvas
    */

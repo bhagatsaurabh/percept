@@ -19,7 +19,6 @@ export class Vector {
   add(value: number): Vector;
   add(vector: Vector): Vector;
   add(arg1: number | Vector, arg2?: number): Vector {
-    // Params : (vector) or (x, y)
     if (arg1 instanceof Vector) {
       return new Vector(this.x + arg1.x, this.y + arg1.y);
     } else if (typeof arg2 === "undefined") {
@@ -33,7 +32,6 @@ export class Vector {
   addInPlace(value: number): Vector;
   addInPlace(vector: Vector): Vector;
   addInPlace(arg1: number | Vector, arg2?: number): Vector {
-    // Params : (vector) or (x, y)
     if (arg1 instanceof Vector) {
       this.x += arg1.x;
       this.y += arg1.y;
@@ -51,7 +49,6 @@ export class Vector {
   multiply(value: number): Vector;
   multiply(vector: Vector): Vector;
   multiply(arg1: number | Vector, arg2?: number): Vector {
-    // Params : (vector) or (x, y)
     if (arg1 instanceof Vector) {
       return new Vector(this.x * arg1.x, this.y * arg1.y);
     } else if (typeof arg2 === "undefined") {
@@ -65,7 +62,6 @@ export class Vector {
   multiplyInPlace(value: number): Vector;
   multiplyInPlace(vector: Vector): Vector;
   multiplyInPlace(arg1: number | Vector, arg2?: number): Vector {
-    // Params : (vector) or (x, y)
     if (arg1 instanceof Vector) {
       this.x *= arg1.x;
       this.y *= arg1.y;
@@ -83,7 +79,6 @@ export class Vector {
   subtract(value: number): Vector;
   subtract(vector: Vector): Vector;
   subtract(arg1: number | Vector, arg2?: number): Vector {
-    // Params : (vector) or (x, y)
     if (arg1 instanceof Vector) {
       return new Vector(this.x - arg1.x, this.y - arg1.y);
     } else if (typeof arg2 === "undefined") {
@@ -97,7 +92,6 @@ export class Vector {
   subtractInPlace(value: number): Vector;
   subtractInPlace(vector: Vector): Vector;
   subtractInPlace(arg1: number | Vector, arg2?: number): Vector {
-    // Params : (vector) or (x, y)
     if (arg1 instanceof Vector) {
       this.x -= arg1.x;
       this.y -= arg1.y;
