@@ -5,7 +5,7 @@
   "main": "dist/cjs/percept.js",
   "types": "dist/cjs/percept.d.ts",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "clean": "npx shx rm -rf dist",
     "prebuild": "npm run clean",
     "build": "npm run build:umd && npm run build:cjs && npm run build:esm",
