@@ -21,7 +21,7 @@ jobs:
 
       - name: Build docs
         run: |
-          npm run docs
+          npm ci && npm run docs
       - name: Deploy docs to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
         with:
