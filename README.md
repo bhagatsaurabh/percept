@@ -1,4 +1,5 @@
-# Percept
+![Flow Connect](https://raw.githubusercontent.com/saurabh-prosoft/percept/master/static/logo.png)
+
 An HTML5 Canvas rendering library
 
 Working with HTML5 canvas can be quite cumbersome, especially if you are making an animation or game or adding interactivity, Percept provides an easy to use library for rendering on canvas.
