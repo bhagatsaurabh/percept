@@ -1,0 +1,14 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "Percept",
+  "out": "docs/",
+  "entryPoints": [
+    "./src/percept.ts"
+  ],
+  "excludePrivate": true,
+  "hideGenerator": true,
+  "darkHighlightTheme": "dark-plus",
+  "plugin": [
+    "typedoc-plugin-extras"
+  ]
+}
