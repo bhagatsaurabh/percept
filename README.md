@@ -27,6 +27,8 @@
 </a>
 </p>
 
+<br/>
+
 Working with HTML5 canvas can be quite difficult, especially if you're making an
 animation, game, or adding interactivity.
 <br/>
@@ -41,7 +43,6 @@ Percept provides an easy-to-use API for rendering on canvas.
 <br/>
 
 ## Installation & Usage
-<br/>
 
 ### Node
 
