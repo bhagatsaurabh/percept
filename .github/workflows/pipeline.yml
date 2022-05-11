@@ -56,8 +56,32 @@ jobs:
         name: codecov-umbrella
         path_to_write_report: ./coverage/codecov_report.txt
         verbose: true
-  Docs:
+  Quality:
     needs: [Test]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        cache: 'npm'
+
+    - name: Test
+      run: |
+        npm i
+        npm test
+
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  Docs:
+    needs: [Quality]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
