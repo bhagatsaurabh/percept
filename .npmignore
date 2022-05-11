@@ -6,11 +6,16 @@ docs/
 examples/
 node_modules
 src/
+static/
 tests/
 .editorconfig
+.firebaserc
 CODE_OF_CONDUCT.md
+firebase.json
 index.html
 jest.config.js
 rollup.config.js
+sonar-project.properties
 tsconfig.json
+typedoc.json
 webpack.prod.js
