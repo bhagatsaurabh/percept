@@ -109,8 +109,8 @@ export class Rectangle extends Node {
   _offRender(): void {
     this.props.outlineWidth &&
       (this.offContext.lineWidth = this.props.outlineWidth);
-    this.offContext.strokeStyle = this.hitColor;
-    this.offContext.fillStyle = this.hitColor;
+    this.offContext.strokeStyle = this.hitColor.cssString;
+    this.offContext.fillStyle = this.hitColor.cssString;
 
     this.offContext.beginPath();
     this.offContext.moveTo(

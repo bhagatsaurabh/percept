@@ -150,15 +150,18 @@ describe("The Node accessors", () => {
 
 describe("The Node methods", () => {
   test("if setHitColor method sets a unique hitColor of node", () => {
+    let mockColor1 = new Color([10, 20, 30, 40]);
+    let mockColor2 = new Color([40, 50, 60, 70]);
+
     const node = new Empty("Node1", Vector.Zero());
     const mockChildSetHitColor = jest.fn();
     drawing.add(node);
-    drawing.colorToNode["#zxcvbn"] = node;
+    drawing.colorToNode[mockColor2.key] = node;
 
     let counter = 0;
     jest.spyOn(Color, "Random").mockImplementation(() => {
       counter += 1;
-      return counter === 2 ? "#ghijkl" : "#zxcvbn";
+      return counter === 2 ? mockColor1 : mockColor2;
     });
     (node.transform as any).childs = [
       {
@@ -172,8 +175,8 @@ describe("The Node methods", () => {
 
     node.setHitColor();
 
-    expect(node.hitColor).toStrictEqual("#ghijkl");
-    expect(drawing.colorToNode["#ghijkl"]).toStrictEqual(node);
+    expect(node.hitColor.isEqual(mockColor1)).toStrictEqual(true);
+    expect(drawing.colorToNode[mockColor1.key]).toStrictEqual(node);
     expect(mockChildSetHitColor).toHaveBeenCalledTimes(1);
   });
 

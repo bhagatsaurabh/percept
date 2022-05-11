@@ -135,7 +135,7 @@ export class Drawing {
   /* istanbul ignore next */
   private _getHitNode(position: Vector): Node {
     return this.colorToNode[
-      Color.rgbToHex(
+      Color.rgbaToKey(
         this.canvas.offContext.getImageData(position.x, position.y, 1, 1).data
       )
     ];

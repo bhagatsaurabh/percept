@@ -13,7 +13,7 @@ export abstract class Node implements Event {
   transform: Transform;
   registeredEvents: any;
   order: number;
-  hitColor: string;
+  hitColor: Color;
 
   abstract _render(): void;
   abstract _offRender(): void;
@@ -100,14 +100,14 @@ export abstract class Node implements Event {
    * Sets a unique color for this node on hit-maps
    */
   setHitColor() {
-    // Set unique color for hit detection in offscreen canvas
-    let color: string = Color.Random();
-    while (this.drawing.colorToNode[color]) {
-      color = Color.Random();
+    // Set unique color for hit-map in offscreen canvas
+    let hitColor = Color.Random();
+    while (this.drawing.colorToNode[hitColor.key]) {
+      hitColor = Color.Random();
     }
 
-    this.hitColor = color;
-    this.drawing.colorToNode[color] = this;
+    this.hitColor = hitColor;
+    this.drawing.colorToNode[hitColor.key] = this;
 
     this.transform.childs.forEach((child) => {
       child.node.setHitColor();

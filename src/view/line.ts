@@ -84,7 +84,7 @@ export class Line extends Node {
   /* istanbul ignore next */
   _offRender(): void {
     this.props.lineWidth && (this.offContext.lineWidth = this.props.lineWidth);
-    this.offContext.strokeStyle = this.hitColor;
+    this.offContext.strokeStyle = this.hitColor.cssString;
 
     this.offContext.beginPath();
     this.offContext.moveTo(this.from.x, this.from.y);

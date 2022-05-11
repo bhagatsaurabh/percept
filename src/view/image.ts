@@ -73,7 +73,7 @@ export class Image extends Node {
 
   /* istanbul ignore next */
   _offRender(): void {
-    this.offContext.fillStyle = this.hitColor;
+    this.offContext.fillStyle = this.hitColor.cssString;
 
     // Rotate bounding-rectangle using worldTransform's rotation component
     this.offContext.translate(this.absolutePosition.x, this.absolutePosition.y);
