@@ -1,7 +1,7 @@
 name: pipeline
 
 on:
-  push:
+  pull_request:
     branches: [ master ]
   workflow_dispatch:
 
@@ -95,54 +95,3 @@ jobs:
     - name: Build docs
       run: |
         npm i && npm run docs
-
-    - name: Upload docs artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: percept-docs
-        path: docs
-  Deploy-ghpages:
-    needs: [Docs]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download docs artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: percept-docs
-        path: docs
-
-    - name: Deploy docs to GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v2
-      with:
-        target_branch: gh-pages
-        build_dir: docs
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Deploy-Firebase:
-    needs: [Docs]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Download docs artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: percept-docs
-        path: docs
-
-    - name: Deploy to Firebase Hosting
-      uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        repoToken: '${{ secrets.GITHUB_TOKEN }}'
-        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERCEPT_DOCS }}'
-        channelId: live
-        projectId: percept-docs
-  Cleanup:
-    needs: [Deploy-ghpages, Deploy-Firebase]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Delete docs artifact
-      uses: geekyeggo/delete-artifact@v1
-      with:
-        name: percept-docs
