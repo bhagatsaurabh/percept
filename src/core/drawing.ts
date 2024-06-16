@@ -193,6 +193,10 @@ export class Drawing {
    * @param nodeOrID A View or its id
    */
   remove(nodeOrID: Node | string) {
+    if (nodeOrID instanceof Node && nodeOrID === this.sceneGraph) {
+      this.sceneGraph = null;
+      return;
+    }
     if (nodeOrID instanceof Node) nodeOrID = nodeOrID.id;
 
     let queue = [];
