@@ -1,6 +1,6 @@
 {
   "name": "canvas-percept",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "HTML5 Canvas rendering engine",
   "main": "dist/cjs/percept.js",
   "types": "dist/cjs/percept.d.ts",
