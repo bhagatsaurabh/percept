@@ -63,12 +63,16 @@ export class Canvas {
 
     if (typeof OffscreenCanvas !== "undefined") {
       this.offCanvasElement = new OffscreenCanvas(this.width, this.height);
-      this.offContext = this.offCanvasElement.getContext("2d");
+      this.offContext = this.offCanvasElement.getContext("2d", {
+        willReadFrequently: true,
+      });
     } else {
       this.offCanvasElement = document.createElement("canvas");
       this.offCanvasElement.width = this.width;
       this.offCanvasElement.height = this.height;
-      this.offContext = this.offCanvasElement.getContext("2d");
+      this.offContext = this.offCanvasElement.getContext("2d", {
+        willReadFrequently: true,
+      });
     }
 
     this.canvasElement.style.touchAction = "none";
