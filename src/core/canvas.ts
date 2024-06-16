@@ -149,6 +149,7 @@ export class Canvas {
    */
   dispose() {
     this.stop();
+    this.currDrawing = null;
     this.currDrawing?.dispose();
     this.canvasObserver?.disconnect();
     this.canvasElement.remove();
