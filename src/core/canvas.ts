@@ -10,6 +10,7 @@ export class Canvas {
   /** Reference to the created OffscreenCanvas used as hit-maps (if not supported, another `<canvas>` will be created) */
   offCanvasElement: OffscreenCanvas | HTMLCanvasElement;
   offContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
+  isCanvasCreated = false;
 
   /** Drawing that is currently being rendered or paused */
   currDrawing: Drawing;
@@ -40,6 +41,7 @@ export class Canvas {
       this.canvasElement.width = document.body.clientWidth;
       this.canvasElement.height = document.body.clientHeight;
       document.body.appendChild(this.canvasElement);
+      this.isCanvasCreated = true;
     } else {
       if (element instanceof HTMLDivElement) {
         this.canvasElement = document.createElement("canvas");
@@ -51,6 +53,7 @@ export class Canvas {
           this.canvasElement.height = element.clientHeight;
         }
         element.appendChild(this.canvasElement);
+        this.isCanvasCreated = true;
       } else {
         this.canvasElement = element;
         if (width && height) {
@@ -139,6 +142,16 @@ export class Canvas {
     if (this.currDrawing) {
       this.render(this.currDrawing);
     }
+  }
+
+  /**
+   * Removes the Canvas and cleans-up any listeners
+   */
+  dispose() {
+    this.stop();
+    this.currDrawing?.dispose();
+    this.canvasObserver?.disconnect();
+    this.canvasElement.remove();
   }
 
   /* istanbul ignore next */
