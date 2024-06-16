@@ -221,4 +221,8 @@ export class Drawing {
       this._debugSceneGraph(child.node, " " + indent);
     });
   }
+
+  dispose() {
+    this.sceneGraph.dispose();
+  }
 }
