@@ -71,7 +71,7 @@ jobs:
         npm test
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@156db6fef3e168e4972abb76de0b32bbce8ec77a
+      uses: SonarSource/sonarcloud-github-action@v2.3.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
