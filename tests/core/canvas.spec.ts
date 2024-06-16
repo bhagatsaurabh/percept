@@ -118,6 +118,8 @@ describe("With OffscreenCanvas", () => {
     expect(canvas.offCanvasElement instanceof OffscreenCanvas).toStrictEqual(
       true
     );
-    expect(canvas.offCanvasElement.getContext).toHaveBeenCalledWith("2d");
+    expect(canvas.offCanvasElement.getContext).toHaveBeenCalledWith("2d", {
+      willReadFrequently: true,
+    });
   });
 });
