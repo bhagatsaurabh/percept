@@ -97,7 +97,7 @@ jobs:
           npm i && npm run docs
 
       - name: Upload docs artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: percept-docs
           path: docs
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download docs artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: percept-docs
           path: docs
