@@ -1,0 +1,124 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Percept</title><meta name="description" content="Documentation for Percept"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script>	<link rel="icon" href="favicon.ico" />
+</head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Percept</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>Percept </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center">
+<a href="https://percept.saurabhagat.me">
+<img width="50%" alt="Percept" src="https://raw.githubusercontent.com/bhagatsaurabh/percept/main/static/logo.png" />
+</a>
+</p>
+
+<h2 align="center">An HTML5 Canvas Rendering Engine</h2>
+
+<br/>
+
+<p align="center">
+<a href="https://github.com/bhagatsaurabh/percept/actions/workflows/pipeline.yml">
+<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/bhagatsaurabh/percept/pipeline.yml?branch=main&label=CI&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t%2FAAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gUKFyETutzc4wAABApJREFUSMedlH1M1WUUxz%2Fnd2HGVsyLeMk%2F2HRo%2BgerSeIE3eRNJoo01Li6xaw1UAspV7zNF0Rteq9by%2BlUslUiMzEvKPEiV2DpFJZbOcNcGBW5ZclVzIGIee%2Fv9Ede2rjdXev717Nn55zP95zn2RHGqazMtV21qYk2%2BQjS02nTU9DdbZi%2BPigq2jUlL0%2Fk2jX%2Bo8oW1TtVV63CrfGwezefyh%2BwZ4%2BMD6xIa5ipmpTkazF9cOaMVOKAyEiW4oGBAWOGz4rGx%2B%2BakmcXw%2BMJBnxLG1R14sSnEsxXUZeLTHKQtLSxgNucgP5%2Bo%2FQb14hqc3PFFtf7qvPn7%2BrM7RXp7qaATLSoaCyhmclgs%2Fm%2BCvsFVq8O1XF4%2FqPPwWqlHjuycGFAwA15ESoqDHmJLZCSYj7NILS2lpe74lULC6nmPCxbNj5PjukpJCYmGPjdV%2BqdatpshtNyFRobOcQDsFhok40wOoqbRrSz03F2eanI8eNheFmHdnUxyLdIRobCbKiulipA%2FoUwTXrBag0O1mGko0P28gLEx%2FMsL6OtrUaUzEDy88053iXg9XKZIwCG7pZRpLiYJj6AW7dCfyf9ENavL%2Fv5ZKPq1q2gqipiydSpcPq0H6x2sqClZWRmxPeQm%2Fv3096543Dm2cW4d29sov7DOwlfJKgZHW2Z%2FucpJC9P6ogFm00iCQerVd%2BgDoqLA%2Fys03CorDQ%2Blj7o6PDlMws2bHjQFzEdXbNm35Ilz4nx8GGwdoQnVLn95HU1S0p0qvQgTmfAXEpxwbZtzkkrjolUVT1p3ZAGSnc2rFVz7lzLQ3MmEh6u1zUbTU4OZsQ%2FEce0lTki27f%2FbwMl5%2BsnqSYkGHF6Fc6epVnS0AkTKPBdQ7Kz6TTeRBcswE06smNHQOFGKYf9%2BxnRGXD3rllAJzowYHnddwTq6vx7JMCAv2MZMksRt5tZHISbN3UpI%2BjFi%2FIJUYjdbgwTBVlZZgp9aGpqMCMB%2BmehRUFqqhEK7PUxgmZlSTuVSGwsg7wGpumbYPSijx450lccEGPnTi5wC%2FbtC2ng8UIzEyyz0b17jfIvXTfUTEwMBg4b4hAcPMgVhmHePH3GcKKZmc7NudViXLo0VvgC62FwMAD4q3wGtbXUyVy0sJAoLsPQEFWSA0lJhuYyDDU1lLMFIiMlw5eI5uSMgX%2FnByQ5OSj4sfQ9ItDbtwPuRW2o2%2B3oXx4rxuHD1OgxWLxY5%2BjXyLlzUtbjmqOmx0MtFUh0NHGyGb1%2Fnx%2B1CfF6Q4H9qvjtRJ2akyebGZb9SE8P2bwNMTFjHT8GO75b%2BZNIV5c%2Fz5ArrEWKiuhmEXg83NM2pL9fG3QjmpERCuyX%2F1drqRyA1FRqeB5tbyeOZRAWpkflKmzaND7vL7TQ7bt9WJJoAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA1LTEwVDIzOjMzOjE5KzAwOjAw7KPZpwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wNS0xMFQyMzozMzoxOSswMDowMJ3%2BYRsAAAAASUVORK5CYII%3D&style=flat-square">
+</a>
+<a href="https://app.codecov.io/gh/bhagatsaurabh/percept">
+<img alt="Codecov test coverage" src="https://img.shields.io/codecov/c/github/bhagatsaurabh/percept/main?label=Coverage&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t%2FAAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gUKFzMgffjNJgAAAj1JREFUSMfVkk9I03EYxp%2F3pxuixyCpgSRDJylUGAuiwuZB5mEXMRXMAmtEsEAJzJ8LMWTuYEEXD0rKJBFyTOniQYLC44QMm8SiUEL0Yv%2FY5rbY7%2BmSc6jjF20eeo%2Ff7%2FO%2Bz%2Bd9vl%2BBTlGj1k%2BjERJb%2FLUeiQA4j1GDIXsDAmgJBEQpue4509SkN1%2FRE4giyoAkk6DM4dbwcEarVUytrQAW%2BGhkBMA82hMJQF5q37xevbl%2FDbBHgrN8uLS0d1D0Pvza7wfwXALBIIA13E2lRCme8dYFg%2FkHOKL6rwAScsNkQvqtgdMvSED5jsF4HEAdzEYjtcgn9V5pad4AqFFz3jYYABbC1NUFoBIXJyZERAZE04CiBcO7uTkAgp%2BbmxCZZa%2FbnbeIyOh0r7ezk4y%2BUdeSSTJ%2B2V1WXn6ILqomnc4MXcDdYjbnYEw2NxcUkFGXeiocphY7rl4YG9PXx1xq4eoqGZtVn05N6flI9uijJ9XHHR0QfMS2zwegD1cWF0EU8urWVvaJsi3PqqsB9uNDVRWA%2B7hUWytS4vdcW17WBdjdBNgZrHgVCgHsxh2L5d%2BjlHPYmJ8XpTjs8TU27r8%2B%2BAkZ%2FVxxoq0tZ%2BP0inwLk91ORtrdZTZbVgCS7KeiQBQXTD09ORsfJOnWKoeGSBKQdPIZCew4k6MOB8AZ%2FKipyT8ALLBarUCs%2BcGXhoZDAGiBo77%2BCIz31zH5arcfAgDQNj4OiJ2ulRUA6%2BhKpfJg%2BGeO3GRfKATgCacnJ3cvfwN9%2FfvYsMKoQwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wNS0xMFQyMzo1MTozMiswMDowMEDBkF4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDUtMTBUMjM6NTE6MzIrMDA6MDAxnCjiAAAAAElFTkSuQmCC&style=flat-square">
+</a>
+<a href="https://sonarcloud.io/summary/overall?id=bhagatsaurabh_percept">
+<img src="https://sonarcloud.io/api/project_badges/measure?project=bhagatsaurabh_percept&metric=security_rating" alt="SonarCloud security rating" />
+</a>
+<a href="https://sonarcloud.io/summary/overall?id=bhagatsaurabh_percept">
+<img src="https://sonarcloud.io/api/project_badges/measure?project=bhagatsaurabh_percept&metric=alert_status" alt="SonarCloud quality gate status">
+</a>
+<a href="https://bundlephobia.com/package/canvas-percept@1.0.20"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/canvas-percept?label=Minified%20Size&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t%2FAAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gULACcja4qZWQAAAphJREFUSMe9VF1IU2EYft7T3NCcIv6kC0E06C5mtCEJQ7GMFFptod0MgzBBidALAwsiXK6LUop1KQil1ihHOBWxLiKNTG8iFBRCiQWS2Dyt5YbzvF2cjpp%2FZy3ouXng%2Ffme932%2Bj48QJ5gnJ1vmc3IAnBGeFhYCfJVPGI1gvMZzoxHAT2hyc0HciWd6PYAnNKvXAzTGfXo9wGm44veTqpA0OXGtOTUVWHu574DVClAG9TocIETwpqwMgBlOUj1nE%2BZQIopgycv9Fsu2RmZmgAj8%2Fk7LPYcDROfoYHs7gO%2F4mJ4er2ObkE%2B1djuROcOZ19e3PgBLU%2BdvslYLCs1EH3k8ADoxY7XGfm4kIrNWK%2FNWV8gCg9dLZArfbrDZlKiwkQ%2B9iF7s6opdOBqVeWFBZlHcu55GudLp3BZlabzgRnV5OYh6%2BdDwsLrwyorMS0syZ2bKrNPtWM5o4trxcRLMo215RUVb0wKIkriyvl5dWNlQYYNhT%2BH1FSlAqYODu6UFMBrRXFysLqzccXb271YBMYEDkn1kZPcBCF9xKiVleyoUkjkc%2FtPqWEFncToYBIe%2BaF9NTOzlwBE88Ps3QqurMi8vy5yVpXj5dwOwhS4PDJBQSrdIebA7OxDk4f5%2BgFkOLS7%2Bm%2FC6Aw%2FX7G63WpUAlrwYdbkAcR4loggkJcmphIT4hJGPqe5uIlO6q3VsTH0A%2BlCacD8YBL75%2BejsLJB2Cdbp6Tg2ruBWnw%2FQuSLJdXWxdmmAZOPahZoasFQNs9sN%2FPisaerpAe1vWC212QB6R4crKgCOwFRQAOAukgUBgAmf5uYA6qA6jwc4tqghn4%2BIqO2xJMU8N3N32nXD0BCzx9P4NjExTtvjhgBAxMlAgKiqquO48sv9P%2FwCgnPvRA99ivYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDUtMTFUMDA6Mzk6MzUrMDA6MDCMyB2VAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA1LTExVDAwOjM5OjM1KzAwOjAw%2FZWlKQAAAABJRU5ErkJggg%3D%3D&style=flat-square"></a>
+<a href="https://www.npmjs.com/package/canvas-percept">
+<img alt="npm monthly downloads" src="https://img.shields.io/npm/dm/canvas-percept?label=Downloads&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t%2FAAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gULAC0rn7754QAAAUpJREFUSMfFk79LAnEYxp%2F3cgla2lzMzSXIzaEhcgguF0VEExp0sxqEptu%2BXmPNcdfQ3hS3iFCIs0IR%2FQm39QeEP058mjRCwjs5zmf5wsv7fZ%2FP%2B8ALbFgS9MP9E2kOs1ntE%2BCg0ZjXZweAZGz76kxEbfd6fufFggIsjBMAeuXyn%2Fqiyz%2BAFjiyR5BHIn7roQOErY0DrIzM6pOKrot3QMxEwvfkVwC7rnvxLNJqJpNrJyA7gPZVr%2BMFQGw0Wml8C2BrMqEBSPr3StYGaOyLqHi3iz1QTgsFpACq8Xip8Rug8jx5AyVVKl1mRNRxp%2BM7Mb%2Byx6RisWgNydaN51nnpOJ0al%2BTZrNaDd3wPz1opGlUKvM3MuOwJdYJqeg4KAJi5vORGd8BOHQcDQYA6HrUmzMNYKDrYpFUrNUkDgK5XFQAsw%2BIVm23o158ST%2BEvnxCe1B8SQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wNS0xMVQwMDo0NTo0MyswMDowMNba1LsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDUtMTFUMDA6NDU6NDMrMDA6MDCnh2wHAAAAAElFTkSuQmCC&style=flat-square">
+</a>
+</p>
+
+<br/>
+
+<p>Working with HTML5 canvas can be quite difficult, especially if you&#39;re making an
+animation, game, or adding interactivity.
+<br/>
+Percept provides an easy-to-use API for rendering on canvas.</p>
+<p><a href="https://percept.saurabhagat.me">percept.saurabhagat.me</a></p>
+<ul>
+<li><a href="https://docs.percept.saurabhagat.me">API Documentation</a></li>
+<li><a href="https://percept.saurabhagat.me">Examples</a></li>
+<li><a href="https://percept.saurabhagat.me/playground">Online Playground</a></li>
+</ul>
+<br/>
+
+
+<a href="#installation-amp-usage" id="installation-amp-usage" style="color: inherit; text-decoration: none;">
+  <h2>Installation &amp; Usage</h2>
+</a>
+
+<a href="#node" id="node" style="color: inherit; text-decoration: none;">
+  <h3>Node</h3>
+</a>
+<pre><code class="language-shell"><span class="hl-0">npm i canvas-percept</span>
+</code></pre>
+<p>or</p>
+<pre><code class="language-shell"><span class="hl-0">yarn add canvas-percept</span>
+</code></pre>
+<br/>
+
+<pre><code class="language-js"><span class="hl-1">import</span><span class="hl-0"> </span><span class="hl-2">*</span><span class="hl-0"> </span><span class="hl-1">as</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0"> </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-4">&quot;canvas-percept&quot;</span><span class="hl-0">;</span>
+</code></pre>
+<br/>
+
+
+<a href="#cdn" id="cdn" style="color: inherit; text-decoration: none;">
+  <h3>CDN</h3>
+</a>
+<p><a href="https://cdn.jsdelivr.net/npm/canvas-percept@1.0.20/dist/percept.js">https://cdn.jsdelivr.net/npm/canvas-percept@1.0.20/dist/percept.js</a></p>
+<pre><code class="language-html"><span class="hl-5">&lt;</span><span class="hl-6">script</span><span class="hl-7"> </span><span class="hl-8">src</span><span class="hl-7">=</span><span class="hl-9">&quot;https://cdn.jsdelivr.net/npm/canvas-percept@1.0.20/dist/percept.js&quot;</span><span class="hl-5">&gt;&lt;/</span><span class="hl-6">script</span><span class="hl-5">&gt;</span>
+</code></pre>
+<br/>
+
+
+<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+  <h2>Example</h2>
+</a>
+<p>Drawing a simple draggable rotating shape</p>
+<pre><code class="language-javascript"><span class="hl-2">let</span><span class="hl-0"> </span><span class="hl-3">canvas</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-10">Canvas</span><span class="hl-0">(</span><span class="hl-3">document</span><span class="hl-0">.</span><span class="hl-10">getElementById</span><span class="hl-0">(</span><span class="hl-4">&quot;canvas&quot;</span><span class="hl-0">));</span><br/><br/><span class="hl-2">let</span><span class="hl-0"> </span><span class="hl-3">shape</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-3">View</span><span class="hl-0">.</span><span class="hl-10">Rectangle</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;rect&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-10">Vector</span><span class="hl-0">(</span><span class="hl-3">canvas</span><span class="hl-0">.</span><span class="hl-3">width</span><span class="hl-0"> / </span><span class="hl-11">2</span><span class="hl-0">, </span><span class="hl-3">canvas</span><span class="hl-0">.</span><span class="hl-3">height</span><span class="hl-0"> / </span><span class="hl-11">2</span><span class="hl-0">),</span><br/><span class="hl-0">  </span><span class="hl-11">100</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-11">30</span><span class="hl-0">,</span><br/><span class="hl-0">  {</span><br/><span class="hl-0">    </span><span class="hl-3">fill:</span><span class="hl-0"> </span><span class="hl-2">true</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">fillColor:</span><span class="hl-0"> </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-3">View</span><span class="hl-0">.</span><span class="hl-10">LinearGradient</span><span class="hl-0">(</span><br/><span class="hl-0">      </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-3">Vector</span><span class="hl-0">.</span><span class="hl-10">Zero</span><span class="hl-0">(),</span><br/><span class="hl-0">      </span><span class="hl-11">45</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-3">Handle</span><span class="hl-0">.</span><span class="hl-12">AUTO</span><span class="hl-0">,</span><br/><span class="hl-0">      [</span><span class="hl-4">&quot;#57cfd2&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;#987bd2&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;#ffd966&quot;</span><span class="hl-0">],</span><br/><span class="hl-0">      [</span><span class="hl-11">0</span><span class="hl-0">, </span><span class="hl-11">0.5</span><span class="hl-0">, </span><span class="hl-11">1</span><span class="hl-0">]</span><br/><span class="hl-0">    ),</span><br/><span class="hl-0">    </span><span class="hl-3">shadowColor:</span><span class="hl-0"> </span><span class="hl-4">&quot;#000&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">shadowBlur:</span><span class="hl-0"> </span><span class="hl-11">5</span><span class="hl-0">,</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">);</span><br/><span class="hl-2">let</span><span class="hl-0"> </span><span class="hl-3">text</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-3">View</span><span class="hl-0">.</span><span class="hl-10">Text</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;caption&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-10">Vector</span><span class="hl-0">(</span><span class="hl-11">80</span><span class="hl-0">, </span><span class="hl-11">0</span><span class="hl-0">),</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;Drag Me !&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  { </span><span class="hl-3">font:</span><span class="hl-0"> </span><span class="hl-4">&quot;bold 12px Arial&quot;</span><span class="hl-0">, </span><span class="hl-3">fillColor:</span><span class="hl-0"> </span><span class="hl-4">&quot;green&quot;</span><span class="hl-0"> }</span><br/><span class="hl-0">);</span><br/><br/><span class="hl-3">text</span><span class="hl-0">.</span><span class="hl-3">parent</span><span class="hl-0"> = </span><span class="hl-3">shape</span><span class="hl-0">;</span><br/><br/><span class="hl-3">shape</span><span class="hl-0">.</span><span class="hl-10">on</span><span class="hl-0">(</span><span class="hl-4">&quot;drag&quot;</span><span class="hl-0">, (</span><span class="hl-3">view</span><span class="hl-0">, </span><span class="hl-3">pos</span><span class="hl-0">) </span><span class="hl-2">=&gt;</span><span class="hl-0"> (</span><span class="hl-3">view</span><span class="hl-0">.</span><span class="hl-3">position</span><span class="hl-0"> = </span><span class="hl-3">pos</span><span class="hl-0">));</span><br/><span class="hl-3">shape</span><span class="hl-0">.</span><span class="hl-10">on</span><span class="hl-0">(</span><span class="hl-4">&quot;update&quot;</span><span class="hl-0">, () </span><span class="hl-2">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-3">shape</span><span class="hl-0">.</span><span class="hl-3">props</span><span class="hl-0">.</span><span class="hl-3">fillColor</span><span class="hl-0">.</span><span class="hl-3">degrees</span><span class="hl-0"> -= </span><span class="hl-11">5</span><span class="hl-0">;</span><br/><span class="hl-0">  </span><span class="hl-3">shape</span><span class="hl-0">.</span><span class="hl-3">localRotation</span><span class="hl-0"> += </span><span class="hl-11">1</span><span class="hl-0">;</span><br/><span class="hl-0">  </span><span class="hl-3">text</span><span class="hl-0">.</span><span class="hl-3">rotation</span><span class="hl-0"> -= </span><span class="hl-11">1</span><span class="hl-0">;</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-2">let</span><span class="hl-0"> </span><span class="hl-3">drawing</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-3">Percept</span><span class="hl-0">.</span><span class="hl-10">Drawing</span><span class="hl-0">(</span><span class="hl-3">canvas</span><span class="hl-0">);</span><br/><span class="hl-3">drawing</span><span class="hl-0">.</span><span class="hl-10">add</span><span class="hl-0">(</span><span class="hl-3">shape</span><span class="hl-0">);</span><br/><br/><span class="hl-3">canvas</span><span class="hl-0">.</span><span class="hl-10">draw</span><span class="hl-0">(</span><span class="hl-3">drawing</span><span class="hl-0">);</span>
+</code></pre>
+<p>See this in action in the <a href="https://percept.saurabhagat.me/playground">Playground</a> !</p>
+<br/>
+
+
+<a href="#build-amp-local-development" id="build-amp-local-development" style="color: inherit; text-decoration: none;">
+  <h2>Build &amp; Local Development</h2>
+</a>
+<p>To output all module types, run</p>
+<pre><code class="language-shell"><span class="hl-0">npm run build</span>
+</code></pre>
+<br/>
+
+<p>To target a specific type, run</p>
+<pre><code class="language-shell"><span class="hl-13"># CommonJS modules</span><br/><span class="hl-0">npm run build:cjs</span><br/><br/><span class="hl-13"># ECMAScript (ES) modules</span><br/><span class="hl-0">npm run build:esm</span><br/><br/><span class="hl-13"># UMD modules</span><br/><span class="hl-0">npm run build:umd</span>
+</code></pre>
+<br/>
+
+<p>API Documentation is generated using <a href="https://typedoc.org/">TypeDoc</a></p>
+<pre><code class="language-shell"><span class="hl-0">npm run docs</span>
+</code></pre>
+<br/>
+
+
+<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+  <h2>Testing</h2>
+</a>
+<p>Run tests with coverage using <a href="https://jestjs.io/">Jest</a></p>
+<pre><code class="language-shell"><span class="hl-0">npm run </span><span class="hl-10">test</span>
+</code></pre>
+<br/>
+
+
+<a href="#website-source" id="website-source" style="color: inherit; text-decoration: none;">
+  <h2>Website source</h2>
+</a>
+<p>See <a href="https://github.com/bhagatsaurabh/percept-site">percept-site</a></p>
+<br/>
+
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p><a href="./LICENSE">MIT</a></p>
+<p>Copyright &copy; 2021-present | Saurabh Bhagat</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="modules/View.html">View</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/Constant.html" class="tsd-kind-icon">Constant</a></li><li class="tsd-kind-enum"><a href="enums/Handle.html" class="tsd-kind-icon">Handle</a></li><li class="tsd-kind-class"><a href="classes/Canvas.html" class="tsd-kind-icon">Canvas</a></li><li class="tsd-kind-class"><a href="classes/Color.html" class="tsd-kind-icon">Color</a></li><li class="tsd-kind-class"><a href="classes/Debug.html" class="tsd-kind-icon">Debug</a></li><li class="tsd-kind-class"><a href="classes/Dimension.html" class="tsd-kind-icon">Dimension</a></li><li class="tsd-kind-class"><a href="classes/Drawing.html" class="tsd-kind-icon">Drawing</a></li><li class="tsd-kind-class"><a href="classes/Matrix.html" class="tsd-kind-icon">Matrix</a></li><li class="tsd-kind-class"><a href="classes/Node.html" class="tsd-kind-icon">Node</a></li><li class="tsd-kind-class"><a href="classes/Transform.html" class="tsd-kind-icon">Transform</a></li><li class="tsd-kind-class"><a href="classes/Vector.html" class="tsd-kind-icon">Vector</a></li><li class="tsd-kind-interface"><a href="interfaces/DebugCall.html" class="tsd-kind-icon">Debug<wbr/>Call</a></li><li class="tsd-kind-interface"><a href="interfaces/Event.html" class="tsd-kind-icon">Event</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li><li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>
