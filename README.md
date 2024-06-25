@@ -15,11 +15,11 @@
 <a href="https://app.codecov.io/gh/bhagatsaurabh/percept">
 <img alt="Codecov test coverage" src="https://img.shields.io/codecov/c/github/bhagatsaurabh/percept/main?label=Coverage&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t%2FAAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gUKFzMgffjNJgAAAj1JREFUSMfVkk9I03EYxp%2F3pxuixyCpgSRDJylUGAuiwuZB5mEXMRXMAmtEsEAJzJ8LMWTuYEEXD0rKJBFyTOniQYLC44QMm8SiUEL0Yv%2FY5rbY7%2BmSc6jjF20eeo%2Ff7%2FO%2Bz%2Bd9vl%2BBTlGj1k%2BjERJb%2FLUeiQA4j1GDIXsDAmgJBEQpue4509SkN1%2FRE4giyoAkk6DM4dbwcEarVUytrQAW%2BGhkBMA82hMJQF5q37xevbl%2FDbBHgrN8uLS0d1D0Pvza7wfwXALBIIA13E2lRCme8dYFg%2FkHOKL6rwAScsNkQvqtgdMvSED5jsF4HEAdzEYjtcgn9V5pad4AqFFz3jYYABbC1NUFoBIXJyZERAZE04CiBcO7uTkAgp%2BbmxCZZa%2FbnbeIyOh0r7ezk4y%2BUdeSSTJ%2B2V1WXn6ILqomnc4MXcDdYjbnYEw2NxcUkFGXeiocphY7rl4YG9PXx1xq4eoqGZtVn05N6flI9uijJ9XHHR0QfMS2zwegD1cWF0EU8urWVvaJsi3PqqsB9uNDVRWA%2B7hUWytS4vdcW17WBdjdBNgZrHgVCgHsxh2L5d%2BjlHPYmJ8XpTjs8TU27r8%2B%2BAkZ%2FVxxoq0tZ%2BP0inwLk91ORtrdZTZbVgCS7KeiQBQXTD09ORsfJOnWKoeGSBKQdPIZCew4k6MOB8AZ%2FKipyT8ALLBarUCs%2BcGXhoZDAGiBo77%2BCIz31zH5arcfAgDQNj4OiJ2ulRUA6%2BhKpfJg%2BGeO3GRfKATgCacnJ3cvfwN9%2FfvYsMKoQwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wNS0xMFQyMzo1MTozMiswMDowMEDBkF4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDUtMTBUMjM6NTE6MzIrMDA6MDAxnCjiAAAAAElFTkSuQmCC&style=flat-square">
 </a>
-<a href="https://sonarcloud.io/summary/overall?id=percept">
-<img src="https://sonarcloud.io/api/project_badges/measure?project=percept&metric=security_rating" alt="SonarCloud security rating" />
+<a href="https://sonarcloud.io/summary/overall?id=bhagatsaurabh_percept">
+<img src="https://sonarcloud.io/api/project_badges/measure?project=bhagatsaurabh_percept&metric=security_rating" alt="SonarCloud security rating" />
 </a>
-<a href="https://sonarcloud.io/summary/overall?id=percept">
-<img src="https://sonarcloud.io/api/project_badges/measure?project=percept&metric=alert_status" alt="SonarCloud quality gate status">
+<a href="https://sonarcloud.io/summary/overall?id=bhagatsaurabh_percept">
+<img src="https://sonarcloud.io/api/project_badges/measure?project=bhagatsaurabh_percept&metric=alert_status" alt="SonarCloud quality gate status">
 </a>
 <a href="https://bundlephobia.com/package/canvas-percept@1.0.20"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/canvas-percept?label=Minified%20Size&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t%2FAAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gULACcja4qZWQAAAphJREFUSMe9VF1IU2EYft7T3NCcIv6kC0E06C5mtCEJQ7GMFFptod0MgzBBidALAwsiXK6LUop1KQil1ihHOBWxLiKNTG8iFBRCiQWS2Dyt5YbzvF2cjpp%2FZy3ouXng%2Ffme932%2Bj48QJ5gnJ1vmc3IAnBGeFhYCfJVPGI1gvMZzoxHAT2hyc0HciWd6PYAnNKvXAzTGfXo9wGm44veTqpA0OXGtOTUVWHu574DVClAG9TocIETwpqwMgBlOUj1nE%2BZQIopgycv9Fsu2RmZmgAj8%2Fk7LPYcDROfoYHs7gO%2F4mJ4er2ObkE%2B1djuROcOZ19e3PgBLU%2BdvslYLCs1EH3k8ADoxY7XGfm4kIrNWK%2FNWV8gCg9dLZArfbrDZlKiwkQ%2B9iF7s6opdOBqVeWFBZlHcu55GudLp3BZlabzgRnV5OYh6%2BdDwsLrwyorMS0syZ2bKrNPtWM5o4trxcRLMo215RUVb0wKIkriyvl5dWNlQYYNhT%2BH1FSlAqYODu6UFMBrRXFysLqzccXb271YBMYEDkn1kZPcBCF9xKiVleyoUkjkc%2FtPqWEFncToYBIe%2BaF9NTOzlwBE88Ps3QqurMi8vy5yVpXj5dwOwhS4PDJBQSrdIebA7OxDk4f5%2BgFkOLS7%2Bm%2FC6Aw%2FX7G63WpUAlrwYdbkAcR4loggkJcmphIT4hJGPqe5uIlO6q3VsTH0A%2BlCacD8YBL75%2BejsLJB2Cdbp6Tg2ruBWnw%2FQuSLJdXWxdmmAZOPahZoasFQNs9sN%2FPisaerpAe1vWC212QB6R4crKgCOwFRQAOAukgUBgAmf5uYA6qA6jwc4tqghn4%2BIqO2xJMU8N3N32nXD0BCzx9P4NjExTtvjhgBAxMlAgKiqquO48sv9P%2FwCgnPvRA99ivYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDUtMTFUMDA6Mzk6MzUrMDA6MDCMyB2VAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA1LTExVDAwOjM5OjM1KzAwOjAw%2FZWlKQAAAABJRU5ErkJggg%3D%3D&style=flat-square"></a>
 <a href="https://www.npmjs.com/package/canvas-percept">
@@ -36,9 +36,9 @@ Percept provides an easy-to-use API for rendering on canvas.
 
 [percept.saurabhagat.me](https://percept.saurabhagat.me)
 
-* [API Documentation](https://docs.percept.saurabhagat.me)
-* [Examples](https://percept.saurabhagat.me)
-* [Online Playground](https://percept.saurabhagat.me/playground)
+- [API Documentation](https://docs.percept.saurabhagat.me)
+- [Examples](https://percept.saurabhagat.me)
+- [Online Playground](https://percept.saurabhagat.me/playground)
 
 <br/>
 
@@ -49,14 +49,17 @@ Percept provides an easy-to-use API for rendering on canvas.
 ```shell
 npm i canvas-percept
 ```
+
 or
+
 ```shell
 yarn add canvas-percept
 ```
+
 <br/>
 
 ```js
-import * as Percept from 'canvas-percept'
+import * as Percept from "canvas-percept";
 ```
 
 <br/>
@@ -80,11 +83,14 @@ let canvas = new Percept.Canvas(document.getElementById("canvas"));
 
 let shape = new Percept.View.Rectangle(
   "rect",
-  new Percept.Vector(canvas.width / 2, canvas.height / 2), 100, 30,
+  new Percept.Vector(canvas.width / 2, canvas.height / 2),
+  100,
+  30,
   {
     fill: true,
     fillColor: new Percept.View.LinearGradient(
-      Percept.Vector.Zero(), 45,
+      Percept.Vector.Zero(),
+      45,
       Percept.Handle.AUTO,
       ["#57cfd2", "#987bd2", "#ffd966"],
       [0, 0.5, 1]
@@ -95,8 +101,9 @@ let shape = new Percept.View.Rectangle(
 );
 let text = new Percept.View.Text(
   "caption",
-  new Percept.Vector(80, 0), "Drag Me !",
-  { font: "bold 12px Arial", fillColor: 'green' }
+  new Percept.Vector(80, 0),
+  "Drag Me !",
+  { font: "bold 12px Arial", fillColor: "green" }
 );
 
 text.parent = shape;
@@ -112,7 +119,6 @@ let drawing = new Percept.Drawing(canvas);
 drawing.add(shape);
 
 canvas.draw(drawing);
-
 ```
 
 See this in action in the [Playground](https://percept.saurabhagat.me/playground) !
@@ -122,6 +128,7 @@ See this in action in the [Playground](https://percept.saurabhagat.me/playground
 ## Build & Local Development
 
 To output all module types, run
+
 ```shell
 npm run build
 ```
@@ -129,6 +136,7 @@ npm run build
 <br/>
 
 To target a specific type, run
+
 ```shell
 # CommonJS modules
 npm run build:cjs
@@ -157,6 +165,7 @@ Run tests with coverage using [Jest](https://jestjs.io/)
 ```shell
 npm run test
 ```
+
 <br/>
 
 ## Website source
@@ -168,6 +177,5 @@ See [percept-site](https://github.com/bhagatsaurabh/percept-site)
 ## License
 
 [MIT](./LICENSE)
-
 
 Copyright &copy; 2021-present | Saurabh Bhagat
