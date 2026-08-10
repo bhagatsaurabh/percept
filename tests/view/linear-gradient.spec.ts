@@ -9,8 +9,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The LinearGradient methods", () => {
@@ -24,13 +24,13 @@ describe("The LinearGradient methods", () => {
     );
 
     (linearGradient as any).node = {
-      getDimension: jest.fn(() => new Vector(34, 56)),
+      getDimension: vi.fn(() => new Vector(34, 56)),
       transform: {
         worldTransform: Matrix.Identity(),
       },
     };
-    const createSpy = jest.spyOn(canvas.context, "createLinearGradient");
-    const addColorStopSpy = jest.spyOn(
+    const createSpy = vi.spyOn(canvas.context, "createLinearGradient");
+    const addColorStopSpy = vi.spyOn(
       CanvasGradient.prototype,
       "addColorStop"
     );
@@ -65,8 +65,8 @@ describe("The LinearGradient methods", () => {
         worldTransform: Matrix.Identity(),
       },
     };
-    const createSpy = jest.spyOn(canvas.context, "createLinearGradient");
-    const addColorStopSpy = jest.spyOn(
+    const createSpy = vi.spyOn(canvas.context, "createLinearGradient");
+    const addColorStopSpy = vi.spyOn(
       CanvasGradient.prototype,
       "addColorStop"
     );

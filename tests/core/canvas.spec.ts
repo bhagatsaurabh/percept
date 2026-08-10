@@ -1,17 +1,17 @@
 import { Canvas } from "../../src/core/canvas";
 import { Drawing } from "../../src/core/drawing";
 
-jest.mock("../../src/core/drawing", () => {
+vi.mock("../../src/core/drawing", () => {
   return {
     Drawing: function () {
-      this.render = jest.fn(() => {});
+      this.render = vi.fn(() => {});
     },
   };
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Canvas constructor", () => {
@@ -81,8 +81,8 @@ describe("The Canvas methods", () => {
   const canvas = new Canvas();
 
   test("if draw method renders the Drawing", () => {
-    const stopSpy = jest.spyOn(canvas, "stop");
-    const windowSpy = jest.spyOn(window, "requestAnimationFrame");
+    const stopSpy = vi.spyOn(canvas, "stop");
+    const windowSpy = vi.spyOn(window, "requestAnimationFrame");
 
     const drawing = new Drawing(canvas);
     canvas.draw(drawing);
@@ -93,7 +93,7 @@ describe("The Canvas methods", () => {
   });
 
   test("if stop method cancels rendering the Drawing", () => {
-    const windowSpy = jest.spyOn(window, "cancelAnimationFrame");
+    const windowSpy = vi.spyOn(window, "cancelAnimationFrame");
 
     const drawing = new Drawing(canvas);
     canvas.draw(drawing);
@@ -111,7 +111,7 @@ describe("With OffscreenCanvas", () => {
     ) {
       this.width = width;
       this.height = height;
-      this.getContext = jest.fn();
+      this.getContext = vi.fn();
     };
     const canvas = new Canvas();
 

@@ -9,8 +9,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The RadialGradient methods", () => {
@@ -25,13 +25,13 @@ describe("The RadialGradient methods", () => {
     );
 
     (radialGradient as any).node = {
-      getDimension: jest.fn(() => new Vector(75, 23)),
+      getDimension: vi.fn(() => new Vector(75, 23)),
       transform: {
         worldTransform: Matrix.Identity(),
       },
     };
-    const createSpy = jest.spyOn(canvas.context, "createRadialGradient");
-    const addColorStopSpy = jest.spyOn(
+    const createSpy = vi.spyOn(canvas.context, "createRadialGradient");
+    const addColorStopSpy = vi.spyOn(
       CanvasGradient.prototype,
       "addColorStop"
     );
@@ -58,13 +58,13 @@ describe("The RadialGradient methods", () => {
     );
 
     (radialGradient as any).node = {
-      getDimension: jest.fn(() => new Vector(75, 23)),
+      getDimension: vi.fn(() => new Vector(75, 23)),
       transform: {
         worldTransform: Matrix.Identity(),
       },
     };
-    const createSpy = jest.spyOn(canvas.context, "createRadialGradient");
-    const addColorStopSpy = jest.spyOn(
+    const createSpy = vi.spyOn(canvas.context, "createRadialGradient");
+    const addColorStopSpy = vi.spyOn(
       CanvasGradient.prototype,
       "addColorStop"
     );

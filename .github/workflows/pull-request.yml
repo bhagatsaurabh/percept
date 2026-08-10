@@ -2,7 +2,7 @@ name: pull-request
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -11,83 +11,83 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [24.x]
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
 
-    - name: Use Node ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        npm i
-        npm run build
+      - name: Build
+        run: |
+          npm ci
+          npm run build
   Test:
     needs: [Build]
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
 
-    - name: Test
-      run: |
-        npm i
-        npm test
+      - name: Test
+        run: |
+          npm ci
+          npm test
 
-    - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
-        files: ./coverage/clover.xml
-        flags: unittests
-        name: codecov-umbrella
-        path_to_write_report: ./coverage/codecov_report.txt
-        verbose: true
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v7.0.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
+          files: ./coverage/clover.xml
+          flags: unittests
+          name: codecov-umbrella
+          # path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
   Quality:
     needs: [Test]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
 
-    - name: Test
-      run: |
-        npm ci
-        npm test
+      - name: Test
+        run: |
+          npm ci
+          npm test
 
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v8.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   Docs:
     needs: [Quality]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
 
-    - name: Build docs
-      run: |
-        npm i && npm run docs
+      - name: Build docs
+        run: |
+          npm i && npm run docs

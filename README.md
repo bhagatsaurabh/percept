@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://percept.saurabhagat.me">
+<a href="https://percept.saurabhagat.dev">
 <img width="50%" alt="Percept" src="https://raw.githubusercontent.com/bhagatsaurabh/percept/main/static/logo.png" />
 </a>
 </p>
@@ -34,11 +34,11 @@ animation, game, or adding interactivity.
 <br/>
 Percept provides an easy-to-use API for rendering on canvas.
 
-[percept.saurabhagat.me](https://percept.saurabhagat.me)
+[percept.saurabhagat.dev](https://percept.saurabhagat.dev)
 
-- [API Documentation](https://docs.percept.saurabhagat.me)
-- [Examples](https://percept.saurabhagat.me)
-- [Online Playground](https://percept.saurabhagat.me/playground)
+- [API Documentation](https://docs.percept.saurabhagat.dev)
+- [Examples](https://percept.saurabhagat.dev)
+- [Online Playground](https://percept.saurabhagat.dev/playground)
 
 <br/>
 
@@ -121,7 +121,7 @@ drawing.add(shape);
 canvas.draw(drawing);
 ```
 
-See this in action in the [Playground](https://percept.saurabhagat.me/playground) !
+See this in action in the [Playground](https://percept.saurabhagat.dev/playground) !
 
 <br/>
 
@@ -160,7 +160,7 @@ npm run docs
 
 ## Testing
 
-Run tests with coverage using [Jest](https://jestjs.io/)
+Run tests with coverage using [Vitest](https://vitest.dev/)
 
 ```shell
 npm run test

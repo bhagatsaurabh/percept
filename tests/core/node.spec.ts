@@ -13,8 +13,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Node constructor", () => {
@@ -154,12 +154,12 @@ describe("The Node methods", () => {
     let mockColor2 = new Color([40, 50, 60, 70]);
 
     const node = new Empty("Node1", Vector.Zero());
-    const mockChildSetHitColor = jest.fn();
+    const mockChildSetHitColor = vi.fn();
     drawing.add(node);
     drawing.colorToNode[mockColor2.key] = node;
 
     let counter = 0;
-    jest.spyOn(Color, "Random").mockImplementation(() => {
+    vi.spyOn(Color, "Random").mockImplementation(() => {
       counter += 1;
       return counter === 2 ? mockColor1 : mockColor2;
     });
@@ -167,8 +167,8 @@ describe("The Node methods", () => {
       {
         node: {
           setHitColor: mockChildSetHitColor,
-          setContext: jest.fn(),
-          setDrawing: jest.fn(),
+          setContext: vi.fn(),
+          setDrawing: vi.fn(),
         },
       },
     ];
@@ -182,7 +182,7 @@ describe("The Node methods", () => {
 
   test("if on method sets the event callback on provided eventKey", () => {
     const node = new Empty("Node1", Vector.Zero());
-    const mockCallback = jest.fn();
+    const mockCallback = vi.fn();
     node.on("test", mockCallback);
 
     expect(node.registeredEvents["test"]).toStrictEqual(mockCallback);
@@ -190,9 +190,9 @@ describe("The Node methods", () => {
 
   test("if call method calls the event callback on provided eventKey without args", () => {
     const node = new Empty("Node1", Vector.Zero());
-    const mockChildCall = jest.fn();
+    const mockChildCall = vi.fn();
     (node.transform as any).childs = [{ node: { call: mockChildCall } }];
-    const mockCallback = jest.fn();
+    const mockCallback = vi.fn();
 
     node.on("test", mockCallback);
     node.call("test");
@@ -203,9 +203,9 @@ describe("The Node methods", () => {
 
   test("if call method calls the event callback on provided eventKey with args", () => {
     const node = new Empty("Node1", Vector.Zero());
-    const mockChildCall = jest.fn();
+    const mockChildCall = vi.fn();
     (node.transform as any).childs = [{ node: { call: mockChildCall } }];
-    const mockCallback = jest.fn();
+    const mockCallback = vi.fn();
 
     node.on("test", mockCallback);
     node.call("test", ["arg1", 56, true]);
@@ -217,7 +217,7 @@ describe("The Node methods", () => {
   test("if render method calls the View's _render method and its childs", () => {
     const node = new Empty("Node1", Vector.Zero());
     drawing.add(node);
-    const mockChildRender = jest.fn();
+    const mockChildRender = vi.fn();
     (node.transform as any).childs = [
       {
         node: {
@@ -225,8 +225,8 @@ describe("The Node methods", () => {
         },
       },
     ];
-    const _renderSpy = jest.spyOn(node, "_render");
-    const offRenderSpy = jest.spyOn(node, "offRender");
+    const _renderSpy = vi.spyOn(node, "_render");
+    const offRenderSpy = vi.spyOn(node, "offRender");
 
     node.render();
 
@@ -238,7 +238,7 @@ describe("The Node methods", () => {
   test("if offRender method calls the View's _offRender method", () => {
     const node = new Empty("Node1", Vector.Zero());
     drawing.add(node);
-    const _offRenderSpy = jest.spyOn(node, "_offRender");
+    const _offRenderSpy = vi.spyOn(node, "_offRender");
 
     node.offRender();
 
@@ -247,7 +247,7 @@ describe("The Node methods", () => {
 
   test("if setContext method sets the context and offContext properties with children", () => {
     const node = new Empty("Node1", Vector.Zero());
-    const mockChildSetContext = jest.fn();
+    const mockChildSetContext = vi.fn();
     (node.transform as any).childs = [
       { node: { setContext: mockChildSetContext } },
     ];
@@ -263,7 +263,7 @@ describe("The Node methods", () => {
 
   test("if setDrawing method sets the drawing property with children", () => {
     const node = new Empty("Node1", Vector.Zero());
-    const mockChildSetDrawing = jest.fn();
+    const mockChildSetDrawing = vi.fn();
     (node.transform as any).childs = [
       { node: { setDrawing: mockChildSetDrawing } },
     ];
@@ -277,7 +277,7 @@ describe("The Node methods", () => {
     const node = new Empty("Node1", Vector.Zero());
     drawing.add(node);
 
-    const removeSpy = jest.spyOn(drawing, "remove");
+    const removeSpy = vi.spyOn(drawing, "remove");
 
     node.dispose();
 

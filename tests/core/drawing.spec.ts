@@ -13,15 +13,15 @@ const createMockSceneGraph = (drawing: Drawing) => {
 };
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Drawing constructor", () => {
   const canvas = new Canvas(document.createElement("canvas"));
 
   test("if Drawing object is created using constructor with Canvas", () => {
-    const registerEventsSpy = jest
+    const registerEventsSpy = vi
       .spyOn<any, any>(Drawing.prototype, "_registerEvents")
       .mockImplementation(() => {});
 
@@ -47,18 +47,18 @@ describe("The Drawing methods", () => {
   });
 
   test("if render method renders the scene-graph", () => {
-    const globalUpdate = jest.fn();
+    const globalUpdate = vi.fn();
     const drawing = new Drawing(canvas, globalUpdate);
     drawing.add(new Empty("Node1", Vector.Zero()));
 
-    const clearRectSpy = jest.spyOn(drawing.canvas.context, "clearRect");
-    const offClearRectSpy = jest.spyOn(drawing.canvas.offContext, "clearRect");
-    const renderTreeSpy = jest.spyOn(drawing["sceneGraph"], "call");
-    const updateWorldTransformSpy = jest.spyOn(
+    const clearRectSpy = vi.spyOn(drawing.canvas.context, "clearRect");
+    const offClearRectSpy = vi.spyOn(drawing.canvas.offContext, "clearRect");
+    const renderTreeSpy = vi.spyOn(drawing["sceneGraph"], "call");
+    const updateWorldTransformSpy = vi.spyOn(
       drawing["sceneGraph"].transform.childs[0],
       "updateWorldTransform"
     );
-    const renderSpy = jest.spyOn(
+    const renderSpy = vi.spyOn(
       drawing["sceneGraph"].transform.childs[0].node,
       "render"
     );
@@ -74,9 +74,9 @@ describe("The Drawing methods", () => {
   });
 
   test("if add method adds a single new view object to the scene-graph", () => {
-    Node.prototype.setContext = jest.fn();
-    Node.prototype.setDrawing = jest.fn();
-    Node.prototype.setHitColor = jest.fn();
+    Node.prototype.setContext = vi.fn();
+    Node.prototype.setDrawing = vi.fn();
+    Node.prototype.setHitColor = vi.fn();
 
     const drawing = new Drawing(canvas);
 
@@ -95,9 +95,9 @@ describe("The Drawing methods", () => {
   });
 
   test("if add method adds an array of new view objects to the scene-graph", () => {
-    Node.prototype.setContext = jest.fn();
-    Node.prototype.setDrawing = jest.fn();
-    Node.prototype.setHitColor = jest.fn();
+    Node.prototype.setContext = vi.fn();
+    Node.prototype.setDrawing = vi.fn();
+    Node.prototype.setHitColor = vi.fn();
 
     const drawing = new Drawing(canvas);
 

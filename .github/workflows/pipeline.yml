@@ -11,70 +11,70 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [24.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
 
       - name: Use Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v7.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
       - name: Build
         run: |
-          npm i
+          npm ci
           npm run build
   Test:
     needs: [Build]
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: 14
+          node-version: 24
           cache: "npm"
 
       - name: Test
         run: |
-          npm i
+          npm ci
           npm test
 
       - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v7.0.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
           files: ./coverage/clover.xml
           flags: unittests
           name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
+          # path_to_write_report: ./coverage/codecov_report.txt
           verbose: true
   Quality:
     needs: [Test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: 16
+          node-version: 24
           cache: "npm"
 
       - name: Test
         run: |
-          npm i
+          npm ci
           npm test
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v8.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -82,14 +82,14 @@ jobs:
     needs: [Quality]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: 14
+          node-version: 24
           cache: "npm"
 
       - name: Build docs
@@ -97,7 +97,7 @@ jobs:
           npm i && npm run docs
 
       - name: Upload docs artifact
-        uses: actions/upload-artifact@v4.3.3
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: percept-docs
           path: docs
@@ -106,13 +106,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download docs artifact
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v8.0.1
         with:
           name: percept-docs
           path: docs
 
       - name: Deploy docs to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v5.0.0
         with:
           target_branch: gh-pages
           build_dir: docs
@@ -122,16 +122,16 @@ jobs:
     needs: [Docs]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
 
       - name: Download docs artifact
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v8.0.1
         with:
           name: percept-docs
           path: docs
 
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v0.11.0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERCEPT_DOCS }}"
@@ -143,6 +143,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete docs artifact
-        uses: geekyeggo/delete-artifact@v1
+        uses: geekyeggo/delete-artifact@v6.0.0
         with:
           name: percept-docs
