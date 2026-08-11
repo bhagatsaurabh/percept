@@ -6,14 +6,14 @@ import { Vector } from "../../src/math/vector";
 const canvas = new Canvas(document.createElement("canvas"));
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Debug methods", () => {
   test("if static method debugPoint pushes a new debug call to the queue", () => {
     const drawing = new Drawing(canvas);
-    const limitDebugCallsSpy = jest.spyOn<any, any>(Debug, "limitDebugCalls");
+    const limitDebugCallsSpy = vi.spyOn<any, any>(Debug, "limitDebugCalls");
 
     const props = { color: "red" };
     Debug.debugPoint("test", drawing, new Vector(50, 50), props, 10);
@@ -33,7 +33,7 @@ describe("The Debug methods", () => {
 
   test("if static method debugLine pushes a new debug call to the queue", () => {
     const drawing = new Drawing(canvas);
-    const limitDebugCallsSpy = jest.spyOn<any, any>(Debug, "limitDebugCalls");
+    const limitDebugCallsSpy = vi.spyOn<any, any>(Debug, "limitDebugCalls");
 
     const props = { color: "red" };
     Debug.debugLine(
@@ -65,14 +65,14 @@ describe("The Debug methods", () => {
 
   test("if static method show pushes a new debug call to the queue", () => {
     const debugCalls = {
-      key1: [{ debugFunction: jest.fn(), arguments: [1, "test1", true] }],
+      key1: [{ debugFunction: vi.fn(), arguments: [1, "test1", true] }],
       key2: [
-        { debugFunction: jest.fn(), arguments: [2, "test2", false] },
-        { debugFunction: jest.fn(), arguments: [3, "test3", true] },
+        { debugFunction: vi.fn(), arguments: [2, "test2", false] },
+        { debugFunction: vi.fn(), arguments: [3, "test3", true] },
       ],
       key3: [
-        { debugFunction: jest.fn(), arguments: [4, "test4", false] },
-        { debugFunction: jest.fn(), arguments: [5, "test5", null] },
+        { debugFunction: vi.fn(), arguments: [4, "test4", false] },
+        { debugFunction: vi.fn(), arguments: [5, "test5", null] },
       ],
     };
 

@@ -271,7 +271,7 @@ describe("The Vector static methods", () => {
 
     const canvas = new Canvas(canvasEl);
 
-    jest.spyOn(Math, "random").mockImplementation(() => 0.5);
+    vi.spyOn(Math, "random").mockImplementation(() => 0.5);
 
     expect(Vector.Random(canvas).toString()).toStrictEqual(
       "[120.000, 100.000]"
@@ -279,7 +279,7 @@ describe("The Vector static methods", () => {
   });
 
   test("if static method Random returns a new random Vector provided min/max values", () => {
-    jest.spyOn(Math, "random").mockImplementation(() => 0.5);
+    vi.spyOn(Math, "random").mockImplementation(() => 0.5);
 
     expect(Vector.Random(0, 240, 0, 200).toString()).toStrictEqual(
       "[120.000, 100.000]"

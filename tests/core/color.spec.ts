@@ -1,18 +1,18 @@
 import { Color } from "../../src/core/color";
 import * as utils from "../../src/utils/utils";
 
-jest.clearAllMocks();
+vi.clearAllMocks();
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Color methods", () => {
   test("if a new Color object is created with all formats", () => {
-    const hexSpy = jest.spyOn<any, any>(Color, "rgbaToHex");
-    const keySpy = jest.spyOn<any, any>(Color, "rgbaToKey");
-    const cssSpy = jest.spyOn<any, any>(Color, "rgbaToCSSString");
+    const hexSpy = vi.spyOn<any, any>(Color, "rgbaToHex");
+    const keySpy = vi.spyOn<any, any>(Color, "rgbaToKey");
+    const cssSpy = vi.spyOn<any, any>(Color, "rgbaToCSSString");
 
     const newColor = new Color([10, 20, 30, 40]);
 
@@ -36,7 +36,7 @@ describe("The Color methods", () => {
 
 describe("The Color static methods", () => {
   test("if static method Random generates an rgba color", () => {
-    const getRandomSpy = jest.spyOn(utils, "getRandom").mockReturnValue(50);
+    const getRandomSpy = vi.spyOn(utils, "getRandom").mockReturnValue(50);
     const randomColor = Color.Random();
 
     expect(randomColor).toBeInstanceOf(Color);
@@ -46,7 +46,7 @@ describe("The Color static methods", () => {
 
   test("if static method hexToRGBA converts provided hex value to rgba", () => {
     const hex = "#abcdef09";
-    const sliceSpy = jest.spyOn(String.prototype, "slice");
+    const sliceSpy = vi.spyOn(String.prototype, "slice");
     const rgba = Color.hexToRGBA(hex);
 
     expect(sliceSpy.mock.calls).toEqual([
@@ -61,7 +61,7 @@ describe("The Color static methods", () => {
 
   test("if static method rgbaToHex converts provided rgba value to hex", () => {
     const rgba = [10, 20, 30, 40];
-    const _componentToHexSpy = jest.spyOn<any, any>(Color, "_componentToHex");
+    const _componentToHexSpy = vi.spyOn<any, any>(Color, "_componentToHex");
     const hex = Color.rgbaToHex(rgba);
 
     expect(_componentToHexSpy.mock.calls).toEqual([
@@ -86,7 +86,7 @@ describe("The Color static methods", () => {
 
   test("if static method rgbaToCSSString converts provided rgba value to rgba css string", () => {
     const rgba = [10, 20, 30, 40];
-    const normalizeSpy = jest.spyOn(utils, "normalize").mockReturnValue(0.5);
+    const normalizeSpy = vi.spyOn(utils, "normalize").mockReturnValue(0.5);
     const cssString = Color.rgbaToCSSString(rgba);
 
     expect(typeof cssString).toStrictEqual("string");

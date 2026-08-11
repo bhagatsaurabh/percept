@@ -9,13 +9,13 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Transform constructor", () => {
   test("if the constructor creates a new Transform object given the parameters", () => {
-    const relativeControlPointsSpy = jest.spyOn<any, any>(
+    const relativeControlPointsSpy = vi.spyOn<any, any>(
       Transform.prototype,
       "relativeControlPoints"
     );
@@ -129,8 +129,8 @@ describe("The Transform accessors", () => {
   });
 
   test("if the get absolutePosition accessor returns the Transform's absolution position", () => {
-    const vectorZeroSpy = jest.spyOn(Vector, "Zero");
-    const vectorTransformSpy = jest.spyOn(Vector.prototype, "transform");
+    const vectorZeroSpy = vi.spyOn(Vector, "Zero");
+    const vectorTransformSpy = vi.spyOn(Vector.prototype, "transform");
 
     transform.absolutePosition;
 
@@ -220,7 +220,7 @@ describe("The Transform methods", () => {
       new Empty("Node2", new Vector(34, 65))
     );
 
-    const _updateWorldTransformSpy = jest.spyOn<any, any>(
+    const _updateWorldTransformSpy = vi.spyOn<any, any>(
       transform,
       "_updateWorldTransform"
     );

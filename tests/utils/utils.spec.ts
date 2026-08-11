@@ -1,13 +1,13 @@
 import { getRandom, normalize } from "../../src/utils/utils";
 
 afterEach(() => {
-  jest.clearAllMocks();
-  jest.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("The Util methods", () => {
   test("if getRandom util returns a random number in range correctly", () => {
-    const randomSpy = jest.spyOn(global.Math, "random");
+    const randomSpy = vi.spyOn(global.Math, "random");
     const random = getRandom(23, 476);
 
     expect(randomSpy).toHaveBeenCalled();
